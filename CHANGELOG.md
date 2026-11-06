@@ -5,6 +5,7 @@
 - Document that every app must add `OrbitalUi` to `ORB.namespaces`, including apps that only use ERB.
 - Remove `Dialog.turbo_frame_response`, which always raised `NoMethodError`. Use `ModalFrame` or `DialogFrame`.
 - Fix the spelling of the missing required attribute error.
+- Add a `src` prop to `Image` for URLs. Pass exactly one of `asset` and `src`.
 
 ## [0.2.0] - 2026-11-06
 

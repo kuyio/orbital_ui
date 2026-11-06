@@ -1,8 +1,8 @@
 <div class="mb-8">
   <Heading size="2xl" as="h1" class="mb-2">Image</Heading>
   <Text size="lg" tone="subdued" as="h2">
-    Renders an image from the Rails asset pipeline with explicit dimensions, preventing layout
-    shift while the image loads.
+    Renders an image from the Rails asset pipeline or a URL with explicit dimensions, preventing
+    layout shift while the image loads.
   </Text>
 </div>
 
@@ -25,6 +25,11 @@
       logical path (e.g. <code>logo.svg</code>, <code>photos/hero.jpg</code>) rather than a full
       URL. The component generates an <code>&lt;img&gt;</code> tag with the fingerprinted asset URL.
     </p>
+    <p>
+      The <code>src</code> prop takes a URL and uses it as given. Pass exactly one of
+      <code>asset</code> and <code>src</code>: passing both or neither raises an
+      <code>ArgumentError</code>, and a blank value counts as not passed.
+    </p>
   </Prose>
 </div>
 
@@ -33,14 +38,11 @@
   <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
   <Prose>
     <p>
-      Use the Image component for any image served from the asset pipeline — logos, illustrations,
-      avatars, and decorative graphics. The explicit <code>width</code> and <code>height</code>
+      Use the Image component with <code>asset</code> for images served from the asset pipeline —
+      logos, illustrations, avatars, and decorative graphics — and with <code>src</code> for
+      user-uploaded content or images from external URLs. The explicit <code>width</code> and <code>height</code>
       attributes reserve space in the layout before the image loads, eliminating cumulative layout
       shift (CLS).
-    </p>
-    <p>
-      For user-uploaded content or images from external URLs, use a plain <code>&lt;img&gt;</code>
-      tag instead, since those aren't served through the asset pipeline.
     </p>
     <p>
       For small symbolic graphics, prefer the <a href="/components/icon">Icon</a> component — it
@@ -60,14 +62,25 @@
       before the image loads.
     </p>
     <p>
-      Because the asset path is resolved at render time via <code>asset_path</code>, images benefit
-      from Rails' asset fingerprinting and CDN cache headers automatically.
+      Because the <code>asset</code> path is resolved at render time via <code>asset_path</code>,
+      those images benefit from Rails' asset fingerprinting and CDN cache headers automatically. A
+      <code>src</code> URL doesn't go through the asset pipeline.
     </p>
   </Prose>
 </div>
 
 <!-- Examples -->
 <div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">From a URL</Heading>
+    <Prose class="mb-4">
+      <p>Use <code>src</code> for images outside the asset pipeline, such as uploads or a CDN.</p>
+    </Prose>
+    <Example source={'
+      <Image src="/icon.png" width=64 height=64 alt="App icon"/>
+    '}/>
+  </div>
+
   <div>
     <Heading size="md" as="h3" class="mb-2">Different Sizes</Heading>
     <Prose class="mb-4">
@@ -119,7 +132,7 @@
       <Prose>
         <ul>
           <li>Omit the <code>alt</code> prop — an empty string is fine for decorative images, but missing alt is an accessibility violation.</li>
-          <li>Use this component for external URLs — it only works with the asset pipeline.</li>
+          <li>Pass both <code>asset</code> and <code>src</code> — use <code>asset</code> for the asset pipeline and <code>src</code> for URLs.</li>
           <li>Set dimensions that distort the image's aspect ratio.</li>
           <li>Use large raster images for small display sizes — serve appropriately sized assets.</li>
         </ul>
@@ -145,8 +158,14 @@
         <tr>
           <td class="px-4 py-2 font-mono text-xs">asset</td>
           <td class="px-4 py-2">String</td>
-          <td class="px-4 py-2">Asset pipeline path</td>
-          <td class="px-4 py-2 font-mono text-xs">required</td>
+          <td class="px-4 py-2">Asset pipeline path. Required unless <code>src</code> is set</td>
+          <td class="px-4 py-2 font-mono text-xs">—</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">src</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">URL, used as given. Required unless <code>asset</code> is set</td>
+          <td class="px-4 py-2 font-mono text-xs">—</td>
         </tr>
         <tr>
           <td class="px-4 py-2 font-mono text-xs">alt</td>

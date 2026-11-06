@@ -75,7 +75,7 @@ Every component accepts a `class` attribute for one-off adjustments.
 - **Avatar:** User avatars with initials or Gravatar integration
 - **Badge:** Small status indicators and labels
 - **Icon:** Inline SVG icons from Lucide and Font Awesome brands, with size variants
-- **Image:** Asset pipeline image component
+- **Image:** Images from the asset pipeline (`asset`) or a URL (`src`)
 - **Kbd:** Keyboard shortcut display
 - **Progress Bar:** Horizontal bar with value/max fill calculation
 - **Spinner:** Loading indicators
