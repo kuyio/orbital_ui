@@ -4,7 +4,7 @@ class OrbitalUi::Expander < OrbitalUi::Component
   attribute :vertical, type: :boolean, default: false
 
   orb_template <<-ORB
-    <div class="Orbital-Expander"></div>
+    <div **html_attributes></div>
   ORB
 
   private

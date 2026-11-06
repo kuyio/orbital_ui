@@ -26,6 +26,9 @@ module OrbitalUi
         # @param default [Object] the default value of the attribute
         # @param options [Hash] additional options for the attribute
         def attribute(name, type = nil, default: nil, **options)
+          # A redefined attribute replaces the inherited one. If both stayed, initialize would
+          # process it twice, and the second pass would reset the caller's value to the default.
+          attribute_definitions.reject! { |definition| definition[:name] == name }
           attribute_definitions << { name: name, type: type, default: default, **options }
         end
 

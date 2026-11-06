@@ -7,6 +7,9 @@
 - Fix the spelling of the missing required attribute error.
 - Add a `src` prop to `Image` for URLs. Pass exactly one of `asset` and `src`.
 - Add `gap` and `padding` props to `Card`, for its content area.
+- Fix `Expander` ignoring `vertical`, `class` and other attributes.
+- Fix `CheckBox` rendering an invalid `</input>` end tag.
+- Fix `Popcard` ignoring `position` and `on`. A subclass that redefines an attribute now replaces the inherited one.
 
 ## [0.2.0] - 2026-11-06
 

@@ -14,7 +14,7 @@ class OrbitalUi::CheckBox < OrbitalUi::Component
     <div class="Orbital-CheckBox">
       <label for={input_id} class="Orbital-CheckBox-Label">
         <div class="Orbital-CheckBox-Control">
-          <input **html_attributes />
+          {{ tag.input(**html_attributes) }}
           <span class="Orbital-CheckBox-Indicator"/>
           <Icon name="check" size="sm" class="Orbital-CheckBox-Icon" />
         </div>
