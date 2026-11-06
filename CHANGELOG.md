@@ -3,6 +3,8 @@
 - Rename the gem to `orbital_ui` and the module to `OrbitalUi`, because rubygems.org already has an unrelated gem named `Orbital`. Asset paths are now `orbital_ui/index` and `orbital_ui/theme`. `Orbital-` CSS classes and `orbital-` Stimulus controllers are unchanged.
 - Fix components rendering their template source instead of HTML when an app's Gemfile lists only this gem. The gem now loads `orb_template` itself.
 - Document that every app must add `OrbitalUi` to `ORB.namespaces`, including apps that only use ERB.
+- Remove `Dialog.turbo_frame_response`, which always raised `NoMethodError`. Use `ModalFrame` or `DialogFrame`.
+- Fix the spelling of the missing required attribute error.
 
 ## [0.2.0] - 2026-11-06
 

@@ -42,10 +42,5 @@ module OrbitalUi
         </div>
       </Modal>
     ORB
-
-    def self.turbo_frame_response(dialog_instance)
-      portal_id = OrbitalUi.configuration.dialog_portal_id
-      Turbo::StreamsHelper.turbo_stream.update(portal_id, dialog_instance)
-    end
   end
 end

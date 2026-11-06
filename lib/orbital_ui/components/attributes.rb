@@ -47,7 +47,7 @@ module OrbitalUi
           default_value = __default_value_for_attribute_definition(definition)
           raw_value = kwargs.delete(name)
 
-          raise "Misssing required attribute :#{name}" if raw_value.nil? && definition[:required]
+          raise "Missing required attribute :#{name}" if raw_value.nil? && definition[:required]
 
           value = ActiveModel::Type.lookup(definition[:type]).cast(raw_value)
 
