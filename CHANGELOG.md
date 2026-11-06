@@ -1,4 +1,4 @@
-## [Unreleased]
+## [0.3.2] - 2026-11-06
 
 - Add `Form`, which wraps `form_with` and fills each field's name, value, label and validation error from a model.
 - `Select` accepts `value` as well as `selected`, and matches integer values against its options.
