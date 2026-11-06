@@ -1,4 +1,4 @@
-## [0.3.0] - 2026-11-06
+## [0.3.1] - 2026-11-06
 
 - Rename the gem to `orbital_ui` and the module to `OrbitalUi`, because rubygems.org already has an unrelated gem named `Orbital`. Asset paths are now `orbital_ui/index` and `orbital_ui/theme`. `Orbital-` CSS classes and `orbital-` Stimulus controllers are unchanged.
 - Fix components rendering their template source instead of HTML when an app's Gemfile lists only this gem. The gem now loads `orb_template` itself.
