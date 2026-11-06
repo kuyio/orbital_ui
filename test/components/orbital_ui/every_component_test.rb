@@ -11,6 +11,7 @@ module OrbitalUi
 
     ARGUMENTS = {
       "OrbitalUi::Accordion::Item" => { value: "one" },
+      "OrbitalUi::Form" => { url: "/" },
       "OrbitalUi::Icon" => { name: "check" },
       "OrbitalUi::Image" => { src: "/photo.jpg" },
       "OrbitalUi::Menu::Sub" => { label: "More" }
@@ -25,7 +26,7 @@ module OrbitalUi
     ].freeze
 
     COMPONENTS = Dir.glob("**/*.rb", base: ROOT)
-      .reject { |path| path == "orbital_ui/component.rb" || path.include?("/concerns/") }
+      .grep_v(%r{\Aorbital_ui/component\.rb\z|/concerns/|/builder\.rb\z})
       .map { |path| path.delete_suffix(".rb").camelize.constantize }
       .sort_by(&:name)
       .freeze
@@ -46,7 +47,7 @@ module OrbitalUi
     end
 
     def render(component)
-      ActionController::Base.new.view_context.render(component) { "content" }.to_s
+      request_view_context.render(component) { "content" }.to_s
     end
 
     def assert_rendered_html(html)

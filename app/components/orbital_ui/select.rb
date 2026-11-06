@@ -4,6 +4,7 @@ module OrbitalUi
   class Select < Component
     attribute :options, :array, default: []
     attribute :selected, :string, default: nil
+    attribute :value, :string, default: nil
     attribute :placeholder, :string, default: "Select..."
     attribute :name, :string, default: nil
     attribute :id, :string, default: nil
@@ -15,6 +16,11 @@ module OrbitalUi
     attribute :required, :boolean, default: false
     attribute :position, :symbol, default: :s
     attribute :fullwidth, :boolean, default: false
+
+    def initialize(kwargs = {})
+      super
+      @selected ||= @value
+    end
 
     orb_template <<-ORB
       <div class="Orbital-Field" data-fullwidth={@fullwidth || nil}>
@@ -57,7 +63,7 @@ module OrbitalUi
                   data-value={option[:value]}
                   data-label={option[:label]}
                   disabled={option[:disabled] || false}
-                  selected={option[:value] == @selected}
+                  selected={option[:value].to_s == @selected}
                   data-action="click->orbital-select#handleItemClick">
                   {{option[:label]}}
                 </Menu::Item>
@@ -109,7 +115,7 @@ module OrbitalUi
     end
 
     def selected_option
-      @options.find { |opt| opt[:value] == @selected }
+      @options.find { |opt| opt[:value].to_s == @selected }
     end
 
     def display_label

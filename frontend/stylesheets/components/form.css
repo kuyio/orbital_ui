@@ -1,0 +1,47 @@
+@layer components {
+  .Orbital-Form {
+    @apply flex flex-col;
+    gap: var(--form-gap);
+  }
+
+  /* Gap: spacing between fields. Same scale as Stack. */
+  .Orbital-Form[data-gap="0"] {
+    --form-gap: 0px;
+  }
+  .Orbital-Form[data-gap="0.5"] {
+    --form-gap: 0.125rem;
+  }
+  .Orbital-Form[data-gap="1"] {
+    --form-gap: 0.25rem;
+  }
+  .Orbital-Form[data-gap="1.5"] {
+    --form-gap: 0.375rem;
+  }
+  .Orbital-Form[data-gap="2"] {
+    --form-gap: 0.5rem;
+  }
+  .Orbital-Form[data-gap="3"] {
+    --form-gap: 0.75rem;
+  }
+  .Orbital-Form[data-gap="4"] {
+    --form-gap: 1rem;
+  }
+  .Orbital-Form[data-gap="5"] {
+    --form-gap: 1.25rem;
+  }
+  .Orbital-Form[data-gap="6"] {
+    --form-gap: 1.5rem;
+  }
+  .Orbital-Form[data-gap="8"] {
+    --form-gap: 2rem;
+  }
+  .Orbital-Form[data-gap="10"] {
+    --form-gap: 2.5rem;
+  }
+  .Orbital-Form[data-gap="12"] {
+    --form-gap: 3rem;
+  }
+  .Orbital-Form[data-gap="16"] {
+    --form-gap: 4rem;
+  }
+}

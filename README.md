@@ -48,6 +48,16 @@ In ORB templates, use components as tags:
 
 Every component accepts a `class` attribute for one-off adjustments.
 
+`Form` wraps `form_with`, and fills each field's name, value, label and validation error from the model:
+
+```orb
+<Form model={@account}>
+  <Form:TextField name="email"/>
+  <Form:Select name="plan" options={plans}/>
+  <Form:Submit>Save</Form:Submit>
+</Form>
+```
+
 ## Demo
 
 [`demos/fernhill`](demos/fernhill) is a personal finance dashboard for a made-up company, built with Orbital in a standard Rails app. To run it, use `make demo`, then open http://localhost:3000.

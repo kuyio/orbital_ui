@@ -47,6 +47,8 @@ class SearchController < ApplicationController
     { title: "Spinner", description: "Animated loading indicator", url: "/components/spinner", category: "Components" },
     { title: "Text", description: "Body text with size, weight, and tone", url: "/components/text",
       category: "Components" },
+    { title: "Form", description: "Form with model binding and validation errors", url: "/components/form",
+      category: "Components" },
     { title: "TextField", description: "Text input with labels, icons, and validation", url: "/components/text-field",
       category: "Components" },
     { title: "Tooltip", description: "Small hover label for elements", url: "/components/tooltip",

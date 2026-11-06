@@ -1,0 +1,194 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Form</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    Wraps Rails' form_with and fills each field's name, value, label and validation error from a model.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <Form model={SampleAccount.new(name: "Sam Taylor")} url="#" class="w-full max-w-sm">
+      <Form:TextField name="name" fullwidth/>
+      <Form:Select name="plan" fullwidth options={[{label: "Free", value: "free"}, {label: "Pro", value: "pro"}]}/>
+      <Form:CheckBox name="newsletter" label="Send me product news"/>
+      <Form:Submit>Save</Form:Submit>
+    </Form>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Form model={@account}>\n  <Form:TextField name=\"email\"/>\n  <Form:Submit>Save</Form:Submit>\n</Form>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Write a field as <code>Form:</code> followed by the component's name, and give it the
+      attribute's <code>name</code>. Orbital fills in the scoped name and id, the value, a label and
+      any validation error. Anything you pass yourself wins.
+    </p>
+    <p>
+      Without a <code>url</code>, the form's address comes from the model, as it does with
+      <code>form_with</code>.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use Form for anything that submits to your server, especially when a model holds the values
+      and validations. It also works with only a <code>url</code>, for something like a search box.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      Fields render where you write them, so you can place them inside layout components such as
+      <a href="/components/grid">Grid</a>. Field components are found through
+      <code>ORB.namespaces</code>, then Orbital's own, so <code>Form:TextField</code> uses your
+      app's TextField if you've defined one in an earlier namespace.
+    </p>
+    <p>
+      Password fields never render their value. <code>Form:CheckBox</code> takes its checked state
+      from the model, and also sends a hidden <code>0</code>, so unchecking it updates the model.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Validation Errors</Heading>
+    <Prose class="mb-4">
+      <p>Errors from the model appear on their field after validation.</p>
+    </Prose>
+    <Example source={'
+      <Form model={SampleAccount.new(email: "not-an-email").tap(&:validate)} url="#" class="w-full max-w-sm">
+        <Form:TextField name="email" fullwidth/>
+        <Form:Submit>Save</Form:Submit>
+      </Form>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Inside a Layout</Heading>
+    <Prose class="mb-4">
+      <p>Fields stay where you write them, so they can share a row.</p>
+    </Prose>
+    <Example source={'
+      <Form model={SampleAccount.new} url="#" class="w-full max-w-md">
+        <Grid columns="2">
+          <Form:TextField name="name" fullwidth/>
+          <Form:TextField name="email" fullwidth/>
+        </Grid>
+        <Form:Submit>Save</Form:Submit>
+      </Form>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Without a Model</Heading>
+    <Prose class="mb-4">
+      <p>Pass a <code>url</code>, and set each field's value yourself.</p>
+    </Prose>
+    <Example source={'
+      <Form url="#" method="get" class="w-full max-w-sm">
+        <Form:TextField name="query" label="Search" iconLeft="search" fullwidth/>
+      </Form>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Validate on the server, and let Form show the errors.</li>
+          <li>Use <code>Form:Submit</code>, so the button submits the form.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Set <code>name</code> by hand on a plain field inside a model form. Use <code>Form:</code> fields, so it gets the right scope.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">model</td>
+          <td class="px-4 py-2">Object</td>
+          <td class="px-4 py-2">A record, or an array for a nested route</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">url</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Where the form submits</td>
+          <td class="px-4 py-2 font-mono text-xs">from the model</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">scope</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Prefix for field names</td>
+          <td class="px-4 py-2 font-mono text-xs">from the model</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">method</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">get, post, patch, put, delete</td>
+          <td class="px-4 py-2 font-mono text-xs">from the model</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">format</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Format of the form's URL</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">gap</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2 font-mono text-xs">0, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10, 12, 16</td>
+          <td class="px-4 py-2 font-mono text-xs">4</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">builder</td>
+          <td class="px-4 py-2">Class</td>
+          <td class="px-4 py-2">A subclass of <code>OrbitalUi::Form::Builder</code></td>
+          <td class="px-4 py-2 font-mono text-xs">OrbitalUi::Form::Builder</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -33,3 +33,15 @@ TestApp.initialize!
 
 require "active_support/test_case"
 require "minitest/autorun"
+
+module ActiveSupport
+  class TestCase
+    # A view context with a request, because forms need one for their CSRF token.
+    def request_view_context
+      controller = ActionController::Base.new
+      controller.request = ActionDispatch::TestRequest.create
+      controller.response = ActionDispatch::TestResponse.new
+      controller.view_context
+    end
+  end
+end

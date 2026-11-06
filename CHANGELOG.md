@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Add `Form`, which wraps `form_with` and fills each field's name, value, label and validation error from a model.
+- `Select` accepts `value` as well as `selected`, and matches integer values against its options.
 - Importing the theme now makes an app's `dark:` utilities follow Orbital's `dark` class. Without it, they follow the OS setting.
 - Add `bin/rails generate orbital_ui:install`, which sets up `ORB.namespaces`, the layout tags and, in `-c tailwind` apps, the Tailwind theme.
 - Move `Expander`'s CSS into the components layer, so app utilities can override it.

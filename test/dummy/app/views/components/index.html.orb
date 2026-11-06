@@ -255,6 +255,15 @@
         </div>
       </ComponentCard>
 
+      <ComponentCard name="form">
+        <div class="w-full max-w-48">
+          <Form url="#" gap="2">
+            <Form:TextField name="email" placeholder="you@example.com" fullwidth/>
+            <Form:Submit size="sm">Save</Form:Submit>
+          </Form>
+        </div>
+      </ComponentCard>
+
       <ComponentCard name="text-field">
         <div class="w-full max-w-48">
           <TextField label="Email" placeholder="you@example.com" iconLeft="mail"/>

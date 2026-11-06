@@ -17,11 +17,11 @@ class Ledger
   def accounts
     [
       Account.new(name: ACCOUNT_NAMES[0], number: "•••• 4021", kind: "Checking", icon: "landmark",
-        balance: 8_412.56 - transferred, change: 2.4),
+        balance: 8_412.56 + transferred(ACCOUNT_NAMES[0]), change: 2.4),
       Account.new(name: ACCOUNT_NAMES[1], number: "•••• 7788", kind: "Savings", icon: "piggy-bank",
-        balance: 24_930.11 + transferred, change: 0.6),
+        balance: 24_930.11 + transferred(ACCOUNT_NAMES[1]), change: 0.6),
       Account.new(name: ACCOUNT_NAMES[2], number: "•••• 1190", kind: "Investments", icon: "chart-line",
-        balance: 61_204.87, change: -1.3)
+        balance: 61_204.87 + transferred(ACCOUNT_NAMES[2]), change: -1.3)
     ]
   end
 
@@ -82,12 +82,17 @@ class Ledger
 
   private
 
-  def transferred = @transfers.sum { |transfer| transfer["amount"].to_f }
+  def transferred(account)
+    @transfers.sum do |transfer|
+      amount = transfer["amount"].to_f
+      (transfer["to"] == account ? amount : 0) - (transfer["from"] == account ? amount : 0)
+    end
+  end
 
   def pending_transfers
     @transfers.reverse.map do |transfer|
       Transaction.new(merchant: "Transfer to #{transfer['to']}", category: "Transfer", icon: "arrow-left-right",
-        date: "Today", account: "Everyday Checking", amount: -transfer["amount"].to_f, status: :pending)
+        date: "Today", account: transfer["from"], amount: -transfer["amount"].to_f, status: :pending)
     end
   end
 end

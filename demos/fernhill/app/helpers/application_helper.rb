@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  def account_options
+    Ledger::ACCOUNT_NAMES.map { |name| { label: name, value: name } }
+  end
+
   def signed_currency(amount)
     "#{'+' if amount.positive?}#{number_to_currency(amount)}"
   end
