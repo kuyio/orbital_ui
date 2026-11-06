@@ -1,0 +1,7 @@
+/.bundle
+/log/*
+/tmp/*
+/node_modules
+/app/assets/builds/*
+!/app/assets/builds/.keep
+/config/*.key

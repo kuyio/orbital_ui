@@ -9,7 +9,7 @@ RUBIES ?= 3.4.12 4.0.9
 .NOTPARALLEL:
 
 .PHONY: all test lint spec trivy audit brakeman test-rubies build clean release-check release \
-	help setup dev assets assets-dummy icons lint-js typecheck bun-audit
+	help setup dev docs demo assets assets-dummy icons lint-js typecheck bun-audit
 
 all: test
 
@@ -87,6 +87,12 @@ setup: ## Install dependencies and build the dummy app's assets
 
 dev: ## Start the dummy app and asset watchers
 	bin/dev
+
+docs: setup ## Install and run the docs site from test/dummy
+	bin/dev
+
+demo: ## Install and run the Fernhill demo app in demos/fernhill
+	cd demos/fernhill && env -u BUNDLE_GEMFILE bin/setup
 
 assets: ## Build the gem's committed JS and CSS. Run before committing frontend changes.
 	bun run build

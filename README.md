@@ -48,6 +48,10 @@ In ORB templates, use components as tags:
 
 Every component accepts a `class` attribute for one-off adjustments.
 
+## Demo
+
+[`demos/fernhill`](demos/fernhill) is a personal finance dashboard for a made-up company, built with Orbital in a standard Rails app. To run it, use `make demo`, then open http://localhost:3000.
+
 ## Components
 
 ### Layout & Structure
@@ -157,6 +161,8 @@ You'll need Ruby (see `.ruby-version`), [Bun](https://bun.sh/) and, for the full
 bin/setup   # Install dependencies and build the docs app's assets
 bin/dev     # Run the docs app on http://localhost:3000, with asset watchers
 ```
+
+`make docs` does both.
 
 `bin/dev` rebuilds the gem's committed assets in development mode, so run `make assets` before committing them.
 

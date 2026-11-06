@@ -1,0 +1,47 @@
+<header class="sticky top-0 z-10 border-b bg-background/90 px-4 py-2 backdrop-blur">
+  <div class="mx-auto max-w-6xl">
+    <NavigationMenu>
+      <NavigationMenu:Brand>
+        <Button variant="link" url="/" class="px-0">
+          <Icon name="shield-check" class="text-primary"/>
+          <Text weight="bold">Fernhill</Text>
+        </Button>
+      </NavigationMenu:Brand>
+
+      <NavigationMenu:Mobile>
+        <Menu>
+          <Menu:Item url="#overview" icon="wallet">Overview</Menu:Item>
+          <Menu:Item url="#accounts" icon="landmark">Accounts</Menu:Item>
+          <Menu:Item url="#activity" icon="receipt">Activity</Menu:Item>
+          <Menu:Item url="#budgets" icon="piggy-bank">Budgets</Menu:Item>
+        </Menu>
+      </NavigationMenu:Mobile>
+
+      <Button variant="ghost" url="#overview">Overview</Button>
+      <Button variant="ghost" url="#accounts">Accounts</Button>
+      <Button variant="ghost" url="#activity">Activity</Button>
+      <Button variant="ghost" url="#budgets">Budgets</Button>
+      <Expander/>
+      <Tooltip text="Toggle dark mode" position="s">
+        <Button id="theme-toggle" variant="ghost" size="icon" aria-label="Toggle dark mode" data-controller="theme" data-action="theme#toggle">
+          <Icon name="moon" class="dark:hidden"/>
+          <Icon name="sun" class="hidden dark:block"/>
+        </Button>
+      </Tooltip>
+      <Dropdown position="s">
+        <Dropdown:Trigger>
+          <Button id="user-menu" variant="ghost" size="icon" class="rounded-full" aria-label="Open account menu">
+            <Avatar name="Sam Taylor" initials="ST" size="sm"/>
+          </Button>
+        </Dropdown:Trigger>
+        <Menu>
+          <Menu:Label>Sam Taylor</Menu:Label>
+          <Menu:Item icon="user">Profile</Menu:Item>
+          <Menu:Item icon="settings">Settings</Menu:Item>
+          <Menu:Separator/>
+          <Menu:Item icon="log-out" destructive>Sign out</Menu:Item>
+        </Menu>
+      </Dropdown>
+    </NavigationMenu>
+  </div>
+</header>

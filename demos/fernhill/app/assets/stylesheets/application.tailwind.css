@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@import "./orbital_ui.tailwind.css";
+
+:root {
+  --primary: #0f766e;
+  --primary-foreground: #f0fdfa;
+  --ring: #0f766e;
+  --radius: 0.625rem;
+}
+
+.dark {
+  --primary: #2dd4bf;
+  --primary-foreground: #042f2e;
+  --ring: #2dd4bf;
+}

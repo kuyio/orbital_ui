@@ -1,0 +1,204 @@
+<main class="mx-auto max-w-6xl px-4 py-8 flex flex-col gap-6">
+  <Card :if={notice} id="flash" class="border-primary/40 bg-primary/5">
+    <InlineStack gap="3" align="center">
+      <Icon name="send" class="text-primary"/>
+      <Text weight="medium">{{ notice }}</Text>
+    </InlineStack>
+  </Card>
+
+  <section id="overview" class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 scroll-mt-20">
+    <div>
+      <Text tone="subdued" as="p">Good morning, Sam</Text>
+      <Heading size="3xl" weight="bold" as="h1">{{ number_to_currency(@ledger.net_worth) }}</Heading>
+      <Text tone="subdued" size="sm" as="p">Net worth across {{ @ledger.accounts.size }} accounts</Text>
+    </div>
+    <InlineStack gap="2">
+      <Button variant="outline">
+        <Icon name="download" size="sm"/>
+        Export
+      </Button>
+      <Button id="new-transfer" modal url={new_transfer_path}>
+        <Icon name="arrow-left-right" size="sm"/>
+        New transfer
+      </Button>
+    </InlineStack>
+  </section>
+
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <Card gap="1">
+      <InlineStack justify="between" align="center">
+        <Text tone="subdued" size="sm">Income this month</Text>
+        <Icon name="arrow-down-left" size="sm" class="text-tone-success"/>
+      </InlineStack>
+      <Heading size="xl" weight="semibold" as="p">{{ number_to_currency(@ledger.monthly_income) }}</Heading>
+      <Text tone="success" size="xs">+3.2% from October</Text>
+    </Card>
+    <Card gap="1">
+      <InlineStack justify="between" align="center">
+        <Text tone="subdued" size="sm">Spending this month</Text>
+        <Icon name="arrow-up-right" size="sm" class="text-tone-danger"/>
+      </InlineStack>
+      <Heading size="xl" weight="semibold" as="p">{{ number_to_currency(@ledger.monthly_spending) }}</Heading>
+      <Text tone="success" size="xs">-29.6% from October</Text>
+    </Card>
+    <Card gap="1">
+      <InlineStack justify="between" align="center">
+        <Text tone="subdued" size="sm">Savings rate</Text>
+        <Icon name="piggy-bank" size="sm" class="text-primary"/>
+      </InlineStack>
+      <Heading size="xl" weight="semibold" as="p">{{ @ledger.savings_rate }}%</Heading>
+      <ProgressBar value={@ledger.savings_rate} max={100} size="sm"/>
+    </Card>
+    <Card gap="1">
+      <InlineStack justify="between" align="center">
+        <Text tone="subdued" size="sm">Portfolio this month</Text>
+        <Icon name="trending-down" size="sm" class="text-tone-danger"/>
+      </InlineStack>
+      <Heading size="xl" weight="semibold" as="p">-1.3%</Heading>
+      <Text tone="subdued" size="xs">Index Portfolio</Text>
+    </Card>
+  </section>
+
+  <section class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <Card class="lg:col-span-2">
+      <Card:Header>
+        <Header:Title>Cash flow</Header:Title>
+        <Header:Description>Income and spending over the last six months</Header:Description>
+      </Card:Header>
+      <div id="cashflow" class="flex items-end justify-between gap-3 h-56">
+        <div :for={month in @ledger.months} class="flex flex-1 flex-col items-center gap-2 h-full">
+          <div class="flex w-full flex-1 items-end justify-center gap-1">
+            <Tooltip text={"#{month.name} income: #{number_to_currency(month.income)}"} class="h-full flex-1 max-w-8 [&>div:first-child]:flex [&>div:first-child]:h-full [&>div:first-child]:items-end">
+              <div class="w-full rounded-t bg-primary" style={bar_height(month.income, @ledger.chart_ceiling)}></div>
+            </Tooltip>
+            <Tooltip text={"#{month.name} spending: #{number_to_currency(month.spending)}"} class="h-full flex-1 max-w-8 [&>div:first-child]:flex [&>div:first-child]:h-full [&>div:first-child]:items-end">
+              <div class="w-full rounded-t bg-primary/30" style={bar_height(month.spending, @ledger.chart_ceiling)}></div>
+            </Tooltip>
+          </div>
+          <Text size="xs" tone="subdued">{{ month.name }}</Text>
+        </div>
+      </div>
+      <InlineStack gap="4" class="mt-4">
+        <InlineStack gap="2" align="center">
+          <span class="size-2.5 rounded-sm bg-primary"></span>
+          <Text size="xs" tone="subdued">Income</Text>
+        </InlineStack>
+        <InlineStack gap="2" align="center">
+          <span class="size-2.5 rounded-sm bg-primary/30"></span>
+          <Text size="xs" tone="subdued">Spending</Text>
+        </InlineStack>
+      </InlineStack>
+    </Card>
+
+    <Card id="accounts" padding="0" class="scroll-mt-20">
+      <Card:Header>
+        <Header:Title>Accounts</Header:Title>
+        <Header:Description>Balances as of today</Header:Description>
+      </Card:Header>
+      <Stack gap="0" dividers>
+        <InlineStack :for={account in @ledger.accounts} gap="3" align="center" padding="4" class="px-6">
+          <Avatar icon={account.icon} name={account.name} square size="md"/>
+          <div class="min-w-0 flex-1">
+            <Text weight="medium" size="sm" as="div" class="truncate">{{ account.name }}</Text>
+            <Text tone="subdued" size="xs" as="div">{{ account.kind }} {{ account.number }}</Text>
+          </div>
+          <div class="text-right">
+            <Text weight="semibold" size="sm" as="div">{{ number_to_currency(account.balance) }}</Text>
+            <Text size="xs" as="div" tone={account.change.positive? ? "success" : "danger"}>{{ account.change.positive? ? "+" : "" }}{{ account.change }}%</Text>
+          </div>
+        </InlineStack>
+      </Stack>
+    </Card>
+  </section>
+
+  <section class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <Card id="activity" padding="0" class="lg:col-span-2 scroll-mt-20" data-controller="table-search">
+      <Card:Header>
+        <Header:Title>Recent activity</Header:Title>
+        <Header:Description>Your latest transactions</Header:Description>
+        <Header:Action>
+          <TextField id="activity-search" name="activity_search" label="Search transactions" labelHidden iconLeft="search" placeholder="Search transactions" fullwidth data-action="input->table-search#filter"/>
+        </Header:Action>
+      </Card:Header>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-y bg-muted/50 text-left">
+              <th class="px-6 py-2 font-medium text-muted-foreground">Description</th>
+              <th class="px-3 py-2 font-medium text-muted-foreground hidden md:table-cell">Date</th>
+              <th class="px-3 py-2 font-medium text-muted-foreground">Status</th>
+              <th class="px-3 py-2 text-right font-medium text-muted-foreground">Amount</th>
+              <th class="w-12 pr-3"><span class="sr-only">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y">
+            <tr :for={transaction in @ledger.transactions} data-table-search-target="row">
+              <td class="px-6 py-3">
+                <InlineStack gap="3" align="center">
+                  <Avatar icon={transaction.icon} name={transaction.category} size="sm"/>
+                  <div>
+                    <Text weight="medium" size="sm" as="div">{{ transaction.merchant }}</Text>
+                    <Text tone="subdued" size="xs" as="div">{{ transaction.category }}</Text>
+                  </div>
+                </InlineStack>
+              </td>
+              <td class="px-3 py-3 text-muted-foreground hidden md:table-cell whitespace-nowrap">{{ transaction.date }}</td>
+              <td class="px-3 py-3"><Badge variant={status_variant(transaction.status)}>{{ transaction.status.to_s.humanize }}</Badge></td>
+              <td class={class_names("px-3 py-3 text-right font-medium whitespace-nowrap", "text-tone-success": transaction.amount.positive?)}>{{ signed_currency(transaction.amount) }}</td>
+              <td class="pr-3 text-right">
+                <Dropdown position="sw">
+                  <Dropdown:Trigger>
+                    <Button variant="ghost" size="icon" aria-label={"Actions for #{transaction.merchant}"}><Icon name="ellipsis" size="sm"/></Button>
+                  </Dropdown:Trigger>
+                  <Menu>
+                    <Menu:Item icon="receipt">View receipt</Menu:Item>
+                    <Menu:Item icon="repeat">Repeat payment</Menu:Item>
+                  </Menu>
+                </Dropdown>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div hidden data-table-search-target="empty" class="px-6 py-8 text-center">
+          <Text tone="subdued" size="sm">No transactions match your search.</Text>
+        </div>
+      </div>
+    </Card>
+
+    <div class="flex flex-col gap-4">
+      <Card id="budgets" gap="4" class="scroll-mt-20">
+        <Card:Header>
+          <Header:Title>Budgets</Header:Title>
+          <Header:Description>November</Header:Description>
+        </Card:Header>
+        <div :for={budget in @ledger.budgets}>
+          <InlineStack justify="between" align="center" class="mb-1.5">
+            <InlineStack gap="2" align="center">
+              <Icon name={budget.icon} size="sm" class="text-muted-foreground"/>
+              <Text size="sm">{{ budget.name }}</Text>
+            </InlineStack>
+            <Text size="xs" tone={budget.spent > budget.limit ? "danger" : "subdued"}>{{ number_to_currency(budget.spent, precision: 0) }} of {{ number_to_currency(budget.limit, precision: 0) }}</Text>
+          </InlineStack>
+          <ProgressBar value={[budget.spent, budget.limit].min} max={budget.limit} size="sm"/>
+        </div>
+      </Card>
+
+      <Card>
+        <Card:Header>
+          <Header:Title>Upcoming bills</Header:Title>
+        </Card:Header>
+        <Accordion id="bills">
+          <Accordion:Item :for={bill in @ledger.bills} value={bill.name}>
+            <Item:Trigger>
+              <span class="flex flex-1 justify-between pr-2">
+                <span>{{ bill.name }}</span>
+                <span class="font-normal text-muted-foreground">{{ number_to_currency(bill.amount) }}</span>
+              </span>
+            </Item:Trigger>
+            <Text size="sm" as="p">Due {{ bill.due }}. {{ bill.note }}</Text>
+          </Accordion:Item>
+        </Accordion>
+      </Card>
+    </div>
+  </section>
+</main>

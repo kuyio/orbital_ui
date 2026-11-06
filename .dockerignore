@@ -34,3 +34,6 @@
 *.gem
 /.dockerignore
 /Dockerfile*
+
+# The demo app is not part of the docs site image.
+/demos
