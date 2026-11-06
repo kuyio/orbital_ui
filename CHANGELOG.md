@@ -1,3 +1,14 @@
+## [Unreleased]
+
+- Importing the theme now makes an app's `dark:` utilities follow Orbital's `dark` class. Without it, they follow the OS setting.
+- Add `bin/rails generate orbital_ui:install`, which sets up `ORB.namespaces`, the layout tags and, in `-c tailwind` apps, the Tailwind theme.
+- Move `Expander`'s CSS into the components layer, so app utilities can override it.
+- `Accordion` trigger content now fills the trigger's width.
+- Fix `TextField` dropping attributes such as `id`, `class`, `data-*`, `aria-*`, `min` and `step`. They now go on the input.
+- Fix `TextField` with `multiline` not showing its `value`.
+- Fix `TextField` placeholders looking like typed values in dark mode.
+- Document using Orbital in `-c tailwind` and `-c sass` apps, and that Orbital's stylesheet includes Tailwind's reset.
+
 ## [0.3.1] - 2026-11-06
 
 - Rename the gem to `orbital_ui` and the module to `OrbitalUi`, because rubygems.org already has an unrelated gem named `Orbital`. Asset paths are now `orbital_ui/index` and `orbital_ui/theme`. `Orbital-` CSS classes and `orbital-` Stimulus controllers are unchanged.

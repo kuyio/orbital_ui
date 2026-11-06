@@ -11,18 +11,14 @@ The Orbital component library is designed to be easily themable. All visual styl
 1. **Import Orbital's CSS** in your application first
 2. **Define your overrides** after importing Orbital
 
-```html
-<!-- In your HTML -->
-<link rel="stylesheet" href="path/to/orbital_ui/index.css">
-<link rel="stylesheet" href="your-custom-theme.css">
+```erb
+<%= stylesheet_link_tag "orbital_ui/index" %>
+<%= stylesheet_link_tag "your-custom-theme" %>
 ```
 
-Or in CSS:
+Your overrides go outside any `@layer`:
 
 ```css
-/* In your main CSS file */
-@import "orbital_ui/index.css";
-
 :root {
   --primary: hotpink;
   --primary-foreground: white;
@@ -41,9 +37,11 @@ See [`custom-theme.css`](./custom-theme.css) for a complete pink theme example t
 
 ### To Use the Pink Theme:
 
-```html
-<link rel="stylesheet" href="orbital_ui/index.css">
-<link rel="stylesheet" href="theming/custom-theme.css">
+Copy it into `app/assets/stylesheets`, then:
+
+```erb
+<%= stylesheet_link_tag "orbital_ui/index" %>
+<%= stylesheet_link_tag "custom-theme" %>
 ```
 
 ## How It Works
@@ -136,7 +134,7 @@ All other variables will use Orbital's sensible defaults.
 
 ## Host App Responsibilities
 
-Orbital **only styles** `.Orbital-*` components. Your host application controls:
+Orbital is a full UI kit, and its stylesheet includes Tailwind's reset, so it affects your whole app. Your host application controls:
 
 - Page background colors
 - Body text colors and fonts
@@ -158,9 +156,7 @@ body {
   color: #1f2937;
 }
 
-/* Then import and optionally override Orbital */
-@import "orbital_ui/index.css";
-
+/* Optionally override Orbital, in a stylesheet loaded after Orbital's */
 :root {
   --primary: #your-brand-color;
 }

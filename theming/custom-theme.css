@@ -10,13 +10,9 @@
    1. Import Orbital's CSS first in your application
    2. Import this file (or define your own overrides) after
    
-   Example in HTML:
-   <link rel="stylesheet" href="path/to/orbital_ui/index.css">
-   <link rel="stylesheet" href="custom-theme.css">
-   
-   Example in CSS:
-   @import "orbital_ui/index.css";
-   @import "./custom-theme.css";
+   Example in a layout:
+   <%= stylesheet_link_tag "orbital_ui/index" %>
+   <%= stylesheet_link_tag "custom-theme" %>
 */
 
 /* ==================================================

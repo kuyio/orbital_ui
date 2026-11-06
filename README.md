@@ -10,35 +10,28 @@ A modern design system and component library for Ruby on Rails, built with [View
 
 ## Installation
 
-Add the gem to your application's Gemfile:
+Add the gem and run its install generator:
 
 ```bash
 bundle add orbital_ui
+bin/rails generate orbital_ui:install
 ```
 
 The gem is named `orbital_ui` because the `Orbital` gem on rubygems.org is an unrelated project.
 
 Orbital requires Ruby 3.4 or newer and Rails 7.1 or newer.
 
-To use Orbital components, you must add `OrbitalUi` to `ORB.namespaces` in an initializer, even if your own views only use ERB:
+The generator is safe to run again, and it does the following:
 
-```ruby
-# config/initializers/orb.rb
-ORB.namespaces += %w[OrbitalUi]
-```
+- **`ORB.namespaces`:** adds `ORB.namespaces += %w[OrbitalUi]` to `config/initializers/orb.rb`. Every app needs this, even if its own views only use ERB, because Orbital's templates use it to find each other. Without it, components such as `Alert`, `Dialog`, `Select` and `Spinner` raise a `NameError`.
+- **Layout:** adds Orbital's stylesheet and JavaScript to your layout, before your own stylesheet. If it can't find a place for them, it prints the tags instead. In a `-c tailwind` app, it also changes `stylesheet_link_tag :app` to `"application"`, because `:app` links your raw Tailwind sources, whose imports fail in the browser. It also adds a `dialogs` Turbo Frame for dialogs loaded from the server.
+- **Tailwind theme:** in a `-c tailwind` app, writes `app/assets/stylesheets/orbital_ui.tailwind.css` and imports it. See [Using with Tailwind](#using-with-tailwind).
 
-Orbital's own templates use this setting to find each other. Without it, components such as `Alert`, `Dialog`, `Select` and `Spinner` raise a `NameError`.
+Orbital works in apps created with `rails new -j bun -c tailwind`, the expected setup, and with `-c sass`.
 
 ## Usage
 
-Include Orbital's CSS and JavaScript in your layout:
-
-```erb
-<%= stylesheet_link_tag "orbital_ui/index" %>
-<%= javascript_include_tag "orbital_ui/index", type: "module" %>
-```
-
-Then use components in your views:
+Use components in your views:
 
 ```erb
 <%= render OrbitalUi::Button.new(variant: :primary) do %>
@@ -107,11 +100,9 @@ Every component accepts a `class` attribute for one-off adjustments.
 
 ## Theming
 
-Orbital uses a semantic color system powered by CSS custom properties. Override any variable after Orbital's CSS, either in a separate stylesheet or in your main one:
+Orbital uses a semantic color system powered by CSS custom properties. Override any variable in a stylesheet loaded after Orbital's, outside any `@layer`, because Orbital's variables aren't in a layer and a layered override won't apply:
 
 ```css
-@import "orbital_ui/index.css";
-
 :root {
   --primary: hotpink;
   --primary-foreground: white;
@@ -134,9 +125,27 @@ See the [theming guide](https://github.com/kuyio/orbital_ui/blob/main/theming/RE
 
 Add the `dark` class to your `<html>` or `<body>` element. All theme variables swap automatically. To customize dark mode colors, override them under `.dark`.
 
-### Host Application Responsibilities
+### Using with Tailwind
 
-Orbital **only styles** `.Orbital-*` components. Your application is responsible for page backgrounds and layouts, body text colors and fonts, global margins and padding, and any other styling. Orbital's shipped CSS doesn't provide general Tailwind utility classes for your own markup, so build those in your application's Tailwind setup.
+In an app created with `-c tailwind`, the install generator imports Orbital's theme into your Tailwind CSS:
+
+```css
+/* app/assets/stylesheets/application.tailwind.css */
+@import "tailwindcss";
+@import "./orbital_ui.tailwind.css";
+```
+
+You can then use Orbital's colors as utilities, such as `bg-primary`, and `dark:` follows Orbital's `dark` class instead of the OS setting. Your build only contains the classes your app uses, and Tailwind utilities in your views can override Orbital's component styles.
+
+Run the generator again after upgrading, so `orbital_ui.tailwind.css` picks up any new theme tokens.
+
+### Using with Sass
+
+In an app created with `-c sass`, the generator only needs to set up the initializer and layout. Override Orbital's variables in `app/assets/stylesheets/application.sass.scss`. Orbital's utility classes aren't available for your own markup, because they come from your own Tailwind build.
+
+### What Orbital Changes in Your App
+
+Orbital is a full UI kit. Its stylesheet includes Tailwind's reset, so it affects your whole app, including headings, lists and margins, whichever CSS setup you use. Your application is responsible for page layouts and backgrounds, and body text colors and fonts.
 
 ## Development
 

@@ -128,20 +128,21 @@
       <Heading size="lg" as="h2" class="mb-4">How to Use</Heading>
       <Prose>
         <p>
-          Orbital ships a default theme. To use a preset, import its CSS file after the base
-          theme — it overrides the <code>:root</code> variables.
+          Orbital ships a default theme. To use a preset, load its stylesheet after Orbital's —
+          it overrides the <code>:root</code> variables.
         </p>
       </Prose>
       <div class="border rounded-lg bg-card overflow-hidden mt-4">
-        <CodeBlock code={"@import \"tailwindcss\";\n@import \"orbital_ui/theme\";\n\n/* Override with a preset */\n@import \"orbital_ui/themes/blue\";"}/>
+        <CodeBlock code={"<%= stylesheet_link_tag \"orbital_ui/index\" %>\n<%= stylesheet_link_tag \"orbital_ui/themes/blue\" %>"}/>
       </div>
       <Prose class="mt-4">
         <p>
-          Or create your own theme by overriding individual variables:
+          Or create your own theme by overriding individual variables in your own stylesheet,
+          outside any <code>@layer</code>:
         </p>
       </Prose>
       <div class="border rounded-lg bg-card overflow-hidden mt-4">
-        <CodeBlock code={"@import \"tailwindcss\";\n@import \"orbital_ui/theme\";\n\n:root {\n  --primary: #7c3aed;\n  --primary-foreground: #f5f3ff;\n  --ring: #7c3aed;\n}"}/>
+        <CodeBlock code={":root {\n  --primary: #7c3aed;\n  --primary-foreground: #f5f3ff;\n  --ring: #7c3aed;\n}"}/>
       </div>
     </div>
 

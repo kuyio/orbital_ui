@@ -2,6 +2,7 @@
 
 module OrbitalUi
   class TextField < Component
+    attribute :id, :string, default: nil
     attribute :type, :string, default: "text"
     attribute :disabled, :boolean, default: false
     attribute :readonly, :boolean, default: false
@@ -72,7 +73,16 @@ module OrbitalUi
     end
 
     def render_input
-      common_opts = {
+      if @multiline
+        tag.textarea(@value, **html_attributes.except(:value), rows: @multiline)
+      else
+        tag.input(type: @type, **html_attributes)
+      end
+    end
+
+    # Any other attribute passed to TextField, such as data-action or min, goes on the input.
+    def default_attributes
+      super.merge(
         id: input_id,
         name: @name,
         value: @value,
@@ -85,13 +95,7 @@ module OrbitalUi
         class: input_classes,
         "data-error": error? || nil,
         "data-align": @rightAligned ? "right" : nil
-      }
-
-      if @multiline
-        tag.textarea(**common_opts, rows: @multiline)
-      else
-        tag.input(type: @type, **common_opts)
-      end
+      )
     end
 
     def input_padding_left

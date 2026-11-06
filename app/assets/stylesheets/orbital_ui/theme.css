@@ -2,14 +2,13 @@
    ORBITAL THEME
    ============================================
 
-   Import this file in your app's CSS to enable
-   Tailwind utility classes for Orbital's semantic
-   color system:
+   Import this file in your app's Tailwind CSS to enable
+   utility classes for Orbital's semantic color system,
+   and to make dark: utilities follow the .dark class.
+   The README's "Using with Tailwind" section shows how.
 
-     @import "tailwindcss";
-     @import "orbital_ui/theme";
-
-   To customize, override CSS variables after the import:
+   To customize, override CSS variables after the import,
+   outside any @layer:
 
      :root {
        --primary: hotpink;
@@ -83,7 +82,10 @@
   --tone-info: #6db3ff;
 }
 
-/* --- Tailwind @theme Integration --- */
+/* --- Tailwind Integration --- */
+
+/* Orbital switches on a .dark class, so dark: utilities should too. Tailwind's default is the OS setting. */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-background: var(--background);
