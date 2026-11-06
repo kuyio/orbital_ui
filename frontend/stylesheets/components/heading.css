@@ -1,0 +1,23 @@
+@layer components {
+  /* Heading component uses typography system for sizes, only need weight/align/tone */
+
+  .Orbital-Heading[data-tone="default"] {
+    @apply text-card-foreground;
+  }
+
+  .Orbital-Heading[data-tone="subdued"] {
+    @apply text-muted-foreground;
+  }
+
+  .Orbital-Heading[data-align="left"] {
+    @apply text-left;
+  }
+
+  .Orbital-Heading[data-align="center"] {
+    @apply text-center;
+  }
+
+  .Orbital-Heading[data-align="right"] {
+    @apply text-right;
+  }
+}

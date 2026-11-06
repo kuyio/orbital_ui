@@ -1,0 +1,250 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Avatar</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A compact visual representation of a user, showing a Gravatar image, initials, or a
+    fallback icon.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <div class="flex items-center gap-4">
+      <Avatar name="Sam Taylor" email="sam@example.com" initials="ST"/>
+      <Avatar name="Jane Doe" initials="JD"/>
+      <Avatar name="Unknown User"/>
+    </div>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Avatar name=\"Jane Doe\" initials=\"JD\"/>\n\n<Avatar name=\"Jane Doe\" email=\"jane@example.com\"/>\n\n<Avatar name=\"Unknown\"/>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Avatar resolves its display in order of specificity: if an <code>email</code> is provided,
+      it attempts to load a Gravatar image. If that fails (or no email is given), it falls back
+      to <code>initials</code>. If neither email nor initials are provided, a generic user icon
+      is shown.
+    </p>
+  </Prose>
+  <div class="border rounded-lg bg-muted/50 overflow-hidden mt-4">
+    <CodeBlock code={"Avatar display priority:\n1. Gravatar (from email) → fallback on load error\n2. Initials (first two characters, uppercased)\n3. Icon (default: user, overridable via icon prop)"}/>
+  </div>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use Avatar wherever you reference a user: comment threads, team lists, navigation bars,
+      profile cards, and activity feeds. The component provides a consistent visual anchor that
+      helps users scan lists of people quickly.
+    </p>
+    <p>
+      For generic images that aren't user avatars (product photos, thumbnails), use the
+      <a href="/components/image">Image</a> component instead.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      When an <code>email</code> is provided, the component generates a Gravatar URL using an MD5
+      hash of the email address. The image loads lazily and if the Gravatar service returns a 404
+      (no avatar registered), the component falls back to initials or the user icon automatically
+      via an <code>onerror</code> handler.
+    </p>
+    <p>
+      The <code>name</code> prop sets both the <code>title</code> attribute (shown on hover) and
+      <code>aria-label</code> for screen reader accessibility.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Sizes</Heading>
+    <Prose class="mb-4">
+      <p>Five sizes from <strong>xs</strong> (24px) to <strong>xl</strong> (64px). Use
+        <strong>sm</strong> in compact lists, <strong>md</strong> as the default, and
+        <strong>lg</strong>/<strong>xl</strong> for profile headers.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex items-end gap-4">
+        <Avatar name="User" initials="XS" size="xs"/>
+        <Avatar name="User" initials="SM" size="sm"/>
+        <Avatar name="User" initials="MD" size="md"/>
+        <Avatar name="User" initials="LG" size="lg"/>
+        <Avatar name="User" initials="XL" size="xl"/>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Shape</Heading>
+    <Prose class="mb-4">
+      <p>Avatars are round by default. Set <code>square</code> for a rounded-rectangle shape,
+        useful for team or organisation logos.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex items-center gap-4">
+        <Avatar name="Round" initials="RD" size="lg"/>
+        <Avatar name="Square" initials="SQ" size="lg" square/>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Custom Icon</Heading>
+    <Prose class="mb-4">
+      <p>Override the default user icon with the <code>icon</code> prop. Useful for bots,
+        service accounts, or role indicators.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex items-center gap-4">
+        <Avatar name="Admin" icon="shield" size="lg"/>
+        <Avatar name="Bot" icon="bot" size="lg"/>
+        <Avatar name="Support" icon="headphones" size="lg"/>
+        <Avatar name="GitHub" icon="github" size="lg" square/>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Fallback Chain</Heading>
+    <Prose class="mb-4">
+      <p>Avatar tries a Gravatar image from <code>email</code> first, then <code>initials</code>, then the default user icon. These example addresses have no Gravatar, so this page shows only the last two states.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex items-center gap-4">
+        <Avatar name="Sam Taylor" email="sam@example.com" initials="ST" size="lg"/>
+        <Avatar name="Jane Doe" initials="JD" size="lg" email="doesnotexist@example.com"/>
+        <Avatar name="Unknown User" size="lg"/>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">In Context</Heading>
+    <Prose class="mb-4">
+      <p>Avatars pair naturally with text for user references in lists, comments, and cards.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-4 w-full">
+        <div class="flex items-center gap-3">
+          <Avatar name="Alice" initials="AL"/>
+          <div>
+            <Heading size="sm" as="div">Alice</Heading>
+            <Text size="xs" tone="subdued" as="div">Just merged a pull request</Text>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <Avatar name="Bob" initials="BO"/>
+          <div>
+            <Heading size="sm" as="div">Bob</Heading>
+            <Text size="xs" tone="subdued" as="div">Left a comment on the design doc</Text>
+          </div>
+        </div>
+      </div>
+    '} align="start"/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Always provide a <code>name</code> for accessibility.</li>
+          <li>Use consistent sizes within the same list or context.</li>
+          <li>Prefer email-based Gravatars when available for real user photos.</li>
+          <li>Use initials when you have the user's name but no email.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Use Avatar for non-user images — use Image instead.</li>
+          <li>Show more than two initials — they won't fit at small sizes.</li>
+          <li>Omit the <code>name</code> prop — the avatar becomes inaccessible.</li>
+          <li>Mix round and square avatars in the same list.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">name</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any text</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">email</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Email address (for Gravatar)</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">initials</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">1–2 characters</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">icon</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Icon name</td>
+          <td class="px-4 py-2 font-mono text-xs">"user"</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">size</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">xs, sm, md, lg, xl</td>
+          <td class="px-4 py-2 font-mono text-xs">md</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">round</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">true</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">square</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

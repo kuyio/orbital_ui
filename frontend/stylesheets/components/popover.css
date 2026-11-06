@@ -1,0 +1,97 @@
+@layer components {
+  /* Base popover container */
+  .Orbital-Popover-Container {
+    @apply inline-block;
+  }
+
+  /* Base popover styles using Popover API */
+  .Orbital-Popover {
+    @apply border border-border bg-popover text-popover-foreground;
+    @apply rounded-md shadow-lg;
+    @apply p-4;
+
+    /* Positioned by Floating UI */
+    position: absolute;
+    margin: 0;
+    z-index: 50;
+
+    /* GPU acceleration hint - only when opening */
+    will-change: opacity, transform;
+
+    /* Starting state - invisible, no transform yet */
+    @starting-style {
+      opacity: 0;
+    }
+
+    /* Final state */
+    opacity: 1;
+    transform: translate(0);
+
+    /* Fast, snappy transitions with custom easing curve */
+    transition:
+      opacity 75ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 75ms cubic-bezier(0.16, 1, 0.3, 1),
+      display 75ms ease-out allow-discrete,
+      overlay 75ms ease-out allow-discrete;
+  }
+
+  /* Directional slide animations based on actual placement */
+  /* Bottom placement - slide up from above (4px) */
+  .Orbital-Popover:popover-open[data-placement^="bottom"] {
+    @starting-style {
+      transform: translateY(-4px);
+    }
+  }
+
+  /* Top placement - slide down from below (4px) */
+  .Orbital-Popover:popover-open[data-placement^="top"] {
+    @starting-style {
+      transform: translateY(4px);
+    }
+  }
+
+  /* Left placement - slide right from left (4px) */
+  .Orbital-Popover:popover-open[data-placement^="left"] {
+    @starting-style {
+      transform: translateX(4px);
+    }
+  }
+
+  /* Right placement - slide left from right (4px) */
+  .Orbital-Popover:popover-open[data-placement^="right"] {
+    @starting-style {
+      transform: translateX(-4px);
+    }
+  }
+
+  /* Remove GPU hint when closed to save resources */
+  .Orbital-Popover:not(:popover-open) {
+    will-change: auto;
+  }
+
+  /* Open state */
+  .Orbital-Popover:popover-open {
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  /* Hide popover initially until positioned by JavaScript */
+  .Orbital-Popover:popover-open:not([data-positioned]) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Show popover once positioned */
+  .Orbital-Popover:popover-open[data-positioned] {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Fallback for browsers without Popover API support (Firefox) */
+  /* Popovers will simply not display - graceful degradation */
+  @supports not (selector(:popover-open)) {
+    .Orbital-Popover[popover] {
+      display: none;
+    }
+  }
+}

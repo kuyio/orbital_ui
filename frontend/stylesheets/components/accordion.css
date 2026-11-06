@@ -1,0 +1,35 @@
+@layer components {
+  .Orbital-Accordion {
+    @apply flex flex-col w-full;
+  }
+
+  .Orbital-Accordion-Item {
+    @apply w-full border-b last:border-b-0;
+  }
+
+  .Orbital-Accordion-Item [data-accordion-trigger] {
+    @apply items-center;
+  }
+
+  .Orbital-Accordion-Item [data-accordion-chevron] {
+    transition: transform 200ms ease-out;
+  }
+
+  .Orbital-Accordion-Item:has(.Orbital-Accordion-Item-Content[data-state="open"]) [data-accordion-chevron] {
+    transform: rotate(180deg);
+  }
+
+  .Orbital-Accordion-Item-Content {
+    overflow: hidden;
+    transition: height 200ms ease-out;
+  }
+
+  .Orbital-Accordion-Item-Content[data-state="closed"] {
+    height: 0;
+  }
+
+  .Orbital-Accordion-Item-Inner {
+    @apply flex flex-col items-start gap-2 text-sm text-muted-foreground;
+    padding-bottom: 1rem;
+  }
+}

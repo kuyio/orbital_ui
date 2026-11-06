@@ -1,0 +1,1 @@
+inherit_gem: { kuyio-rubocop: rubocop-default.yml }

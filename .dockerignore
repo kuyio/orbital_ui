@@ -1,0 +1,36 @@
+# See https://docs.docker.com/engine/reference/builder/#dockerignore-file for more about ignoring files.
+
+# Ignore git and tooling directories.
+/.git/
+/.gitignore
+/.xpo/
+/.claude/
+/.codex/
+/.opencode/
+/.ruby-lsp/
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore all environment files and keys.
+/.env*
+*.key
+
+# Ignore logs, temp files and caches.
+*.log
+/log
+/tmp
+/.parcel-cache
+/test/dummy/log/*
+/test/dummy/tmp/*
+
+# Ignore installed and built assets. The image builds its own.
+/node_modules/
+/test/dummy/app/assets/builds/*
+!/test/dummy/app/assets/builds/.keep
+/test/dummy/public/assets
+
+# Ignore built gems and Docker files.
+*.gem
+/.dockerignore
+/Dockerfile*

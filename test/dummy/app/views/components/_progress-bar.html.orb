@@ -1,0 +1,232 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">ProgressBar</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A horizontal bar that visualizes progress or completion toward a goal.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <div class="w-full max-w-md">
+      <ProgressBar value=65 max=100/>
+    </div>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<ProgressBar value=65 max=100/>\n\n<ProgressBar value=3 max=10 size=\"lg\"/>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Pass a <code>value</code> and <code>max</code> to set the fill percentage.
+      The component clamps the result between 0% and 100%. The <code>size</code>
+      prop controls the bar height.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use ProgressBar to show how far along a process is — file uploads, profile completion,
+      step-based flows, or storage usage. It gives users a quick visual read on status without
+      requiring them to parse numbers.
+    </p>
+    <p>
+      For indeterminate loading states where progress can't be measured, use a <code>Spinner</code>
+      instead.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      The fill width is calculated as <code>value / max * 100%</code>, clamped to the 0–100%
+      range. The bar renders with <code>role="progressbar"</code> and the appropriate
+      <code>aria-valuenow</code>, <code>aria-valuemin</code>, and <code>aria-valuemax</code>
+      attributes for screen readers.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Sizes</Heading>
+    <Prose class="mb-4">
+      <p>Five sizes control the bar height — from a subtle <code>xs</code> track to a bold <code>xl</code> bar.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-4 w-full max-w-md">
+        <div class="flex items-center gap-3">
+          <Text size="xs" tone="subdued" as="span" class="w-6">xs</Text>
+          <ProgressBar value=70 max=100 size="xs"/>
+        </div>
+        <div class="flex items-center gap-3">
+          <Text size="xs" tone="subdued" as="span" class="w-6">sm</Text>
+          <ProgressBar value=70 max=100 size="sm"/>
+        </div>
+        <div class="flex items-center gap-3">
+          <Text size="xs" tone="subdued" as="span" class="w-6">md</Text>
+          <ProgressBar value=70 max=100 size="md"/>
+        </div>
+        <div class="flex items-center gap-3">
+          <Text size="xs" tone="subdued" as="span" class="w-6">lg</Text>
+          <ProgressBar value=70 max=100 size="lg"/>
+        </div>
+        <div class="flex items-center gap-3">
+          <Text size="xs" tone="subdued" as="span" class="w-6">xl</Text>
+          <ProgressBar value=70 max=100 size="xl"/>
+        </div>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Various Values</Heading>
+    <Prose class="mb-4">
+      <p>The fill adapts to any value/max ratio.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-4 w-full max-w-md">
+        <div class="flex items-center gap-3">
+          <Text size="xs" tone="subdued" as="span" class="w-8">0%</Text>
+          <ProgressBar value=0 max=100/>
+        </div>
+        <div class="flex items-center gap-3">
+          <Text size="xs" tone="subdued" as="span" class="w-8">25%</Text>
+          <ProgressBar value=25 max=100/>
+        </div>
+        <div class="flex items-center gap-3">
+          <Text size="xs" tone="subdued" as="span" class="w-8">50%</Text>
+          <ProgressBar value=50 max=100/>
+        </div>
+        <div class="flex items-center gap-3">
+          <Text size="xs" tone="subdued" as="span" class="w-8">75%</Text>
+          <ProgressBar value=75 max=100/>
+        </div>
+        <div class="flex items-center gap-3">
+          <Text size="xs" tone="subdued" as="span" class="w-8">100%</Text>
+          <ProgressBar value=100 max=100/>
+        </div>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Custom Max</Heading>
+    <Prose class="mb-4">
+      <p>Set <code>max</code> to any positive number — steps completed, bytes uploaded, etc.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-4 w-full max-w-md">
+        <div>
+          <div class="flex justify-between mb-1">
+            <Text size="sm" weight="medium" as="span">Steps completed</Text>
+            <Text size="sm" tone="subdued" as="span">3 of 5</Text>
+          </div>
+          <ProgressBar value=3 max=5 size="lg"/>
+        </div>
+        <div>
+          <div class="flex justify-between mb-1">
+            <Text size="sm" weight="medium" as="span">Storage used</Text>
+            <Text size="sm" tone="subdued" as="span">7.2 GB of 10 GB</Text>
+          </div>
+          <ProgressBar value=7.2 max=10 size="lg"/>
+        </div>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">In a Card</Heading>
+    <Prose class="mb-4">
+      <p>Progress bars work well inside cards to show status within a contained context.</p>
+    </Prose>
+    <Example source={'
+      <Card class="w-full max-w-sm">
+        <div class="flex flex-col gap-3">
+          <div class="flex justify-between">
+            <Heading size="sm" as="div">Project Alpha</Heading>
+            <Badge variant="secondary">In Progress</Badge>
+          </div>
+          <ProgressBar value=68 max=100/>
+          <Text size="xs" tone="subdued" as="p">68% complete — 12 of 18 tasks done</Text>
+        </div>
+      </Card>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Pair with a text label so users know what's being measured.</li>
+          <li>Use <code>xs</code> or <code>sm</code> for inline or dense layouts; <code>lg</code> or <code>xl</code> when the bar is a focal element.</li>
+          <li>Set <code>max</code> to reflect the actual total, not just 100.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Use a progress bar for indeterminate loading — use a Spinner instead.</li>
+          <li>Show a full bar (100%) indefinitely — update or remove it once the task completes.</li>
+          <li>Stack many progress bars without labels — they become indistinguishable.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">value</td>
+          <td class="px-4 py-2">Float</td>
+          <td class="px-4 py-2 font-mono text-xs">any number</td>
+          <td class="px-4 py-2 font-mono text-xs">0</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">max</td>
+          <td class="px-4 py-2">Float</td>
+          <td class="px-4 py-2 font-mono text-xs">any positive number</td>
+          <td class="px-4 py-2 font-mono text-xs">100</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">size</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">xs, sm, md, lg, xl</td>
+          <td class="px-4 py-2 font-mono text-xs">md</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

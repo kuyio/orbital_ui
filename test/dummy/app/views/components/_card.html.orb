@@ -1,0 +1,240 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Card</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A structured container for grouping related content with optional header, body, and footer
+    sections. Cards provide visual separation and hierarchy on a page.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <Card>
+      <Card:Header>
+        <Header:Title>Card Title</Header:Title>
+        <Header:Description>Card description</Header:Description>
+      </Card:Header>
+
+      <Text as="p">This is the card body with some example content.</Text>
+
+      <Card:Footer>
+        <Button>Action</Button>
+      </Card:Footer>
+    </Card>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Card>\n  <Card:Header>\n    <Header:Title>Title</Header:Title>\n    <Header:Description>Description</Header:Description>\n  </Card:Header>\n  Content here\n  <Card:Footer>Footer content</Card:Footer>\n</Card>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Cards use a nested slot structure. All slots are optional — you can use just a body, or just a
+      header and footer, depending on your needs.
+    </p>
+  </Prose>
+  <div class="border rounded-lg bg-muted/50 overflow-hidden mt-4">
+    <CodeBlock code={"Card\n├── Card:Header\n│   ├── Header:Title\n│   ├── Header:Description\n│   └── Header:Action\n├── content (direct)\n└── Card:Footer"}/>
+  </div>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Cards are the building blocks of dashboard layouts, settings pages, and any view where content
+      naturally groups into distinct sections. They work well for profile summaries, form containers,
+      feature highlights, and data panels.
+    </p>
+    <p>
+      Avoid cards when the content is a single flat list or a continuous flow of text. In those cases
+      the card border adds visual noise without providing meaningful grouping. Consider a simple
+      divider or heading instead.
+    </p>
+    <p>
+      For content that can be expanded or collapsed, consider an
+      <a href="/components/accordion">Accordion</a>. For overlaid content that requires user
+      interaction, use a <a href="/components/dialog">Dialog</a>.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      Cards are purely structural — they provide layout and visual grouping but carry no interactive
+      behaviour by default. Each slot renders its content inside a styled <code>&lt;div&gt;</code>
+      with appropriate padding and spacing.
+    </p>
+    <p>
+      The header section lays out the title and description vertically, with an optional action slot
+      that renders inline for contextual controls like an "Add" button or a dropdown menu.
+    </p>
+    <p>
+      The footer typically holds action buttons. Use <code>flex justify-between</code> inside the
+      footer to place a cancel button on the left and a submit button on the right.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">With Action Button</Heading>
+    <Prose class="mb-4">
+      <p>Use the <code>Header:Action</code> slot to place a contextual control alongside the title.
+        This is useful for "Add", "Edit", or overflow menu buttons.</p>
+    </Prose>
+    <Example source={'
+      <Card>
+        <Card:Header>
+          <Header:Title>Team Members</Header:Title>
+          <Header:Description>Manage your team and invite new members.</Header:Description>
+          <Header:Action>
+            <Button variant="outline" size="sm"><Icon name="plus" size="sm"/>Add</Button>
+          </Header:Action>
+        </Card:Header>
+
+        <Text as="p">You currently have 5 team members across 2 projects.</Text>
+
+        <Card:Footer>
+          <Button variant="secondary">View all members</Button>
+        </Card:Footer>
+      </Card>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Form Card</Heading>
+    <Prose class="mb-4">
+      <p>Cards are a natural container for forms. Place form fields in the body and submit/cancel
+        buttons in the footer for a clean, consistent layout.</p>
+    </Prose>
+    <Example source={'
+      <Card>
+        <Card:Header>
+          <Header:Title>Create Project</Header:Title>
+          <Header:Description>Fill in the details to start a new project.</Header:Description>
+        </Card:Header>
+
+        <div class="flex flex-col gap-4">
+          <TextField label="Project Name" placeholder="Enter project name" fullwidth/>
+          <TextField label="Description" placeholder="Brief description" multiline=3 fullwidth/>
+        </div>
+
+        <Card:Footer>
+          <div class="flex justify-between w-full">
+            <Button variant="ghost">Cancel</Button>
+            <Button>Create</Button>
+          </div>
+        </Card:Footer>
+      </Card>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Minimal Card</Heading>
+    <Prose class="mb-4">
+      <p>All slots are optional. A card with just a body is useful for simple content blocks that
+        need visual separation from their surroundings.</p>
+    </Prose>
+    <Example source={'
+      <Card>
+
+        <div class="flex items-center gap-4">
+          <Icon name="info" size="lg" class="text-blue-500"/>
+          <Text as="p">Your trial expires in 7 days. Upgrade to keep your data.</Text>
+        </div>
+
+      </Card>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use cards to group logically related content together.</li>
+          <li>Keep titles short and descriptions informative.</li>
+          <li>Place primary actions in the footer, contextual actions in the header.</li>
+          <li>Use consistent card sizes within a grid layout.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Nest cards inside other cards — it creates confusing depth.</li>
+          <li>Use cards for every piece of content; some content flows better without borders.</li>
+          <li>Put too many actions in the footer — two or three is the maximum.</li>
+          <li>Use cards as buttons; if the whole card should be clickable, wrap it in a link.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Card</Heading>
+  <div class="border rounded-lg overflow-hidden mb-4">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Slot</th>
+          <th class="text-left px-4 py-2 font-medium">Description</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Card:Header</td>
+          <td class="px-4 py-2">Optional header section containing title, description, and action.</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Card:Footer</td>
+          <td class="px-4 py-2">Bottom section, typically used for action buttons.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Card:Header</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Slot</th>
+          <th class="text-left px-4 py-2 font-medium">Description</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Header:Title</td>
+          <td class="px-4 py-2">The card's heading text.</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Header:Description</td>
+          <td class="px-4 py-2">Subtitle or supporting text below the title.</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Header:Action</td>
+          <td class="px-4 py-2">Inline control rendered alongside the title (button, dropdown, etc.).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

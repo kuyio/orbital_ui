@@ -1,0 +1,16 @@
+# Standard Trivy config for gems. Fails the scan on MEDIUM and above.
+# The Makefile's trivy target also reports anything below MEDIUM, without failing.
+exit-code: 1
+severity:
+  - MEDIUM
+  - HIGH
+  - CRITICAL
+scan:
+  scanners:
+    - vuln
+    - secret
+    - misconfig
+  skip-dirs:
+    - "**/.ruby-lsp"
+    - "**/node_modules"
+    - "**/vendor"

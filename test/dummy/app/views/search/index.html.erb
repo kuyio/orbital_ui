@@ -1,0 +1,22 @@
+<% grouped = @results.group_by { |e| e[:category] } %>
+
+<% if @results.empty? %>
+  <div class="command-palette-empty">
+    <p>No results found.</p>
+  </div>
+<% else %>
+  <% grouped.each do |category, entries| %>
+    <div class="command-palette-group">
+      <div class="command-palette-group-label"><%= category %></div>
+      <% entries.each do |entry| %>
+        <a href="<%= entry[:url] %>"
+           class="command-palette-item"
+           data-command-palette-target="item"
+           data-action="mouseenter->command-palette#highlightItem click->command-palette#navigate">
+          <span class="command-palette-item-title"><%= entry[:title] %></span>
+          <span class="command-palette-item-desc"><%= entry[:description] %></span>
+        </a>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

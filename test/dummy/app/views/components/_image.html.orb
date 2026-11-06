@@ -1,0 +1,172 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Image</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    Renders an image from the Rails asset pipeline with explicit dimensions, preventing layout
+    shift while the image loads.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <Image asset="logo.svg" width=64 height=64 alt="Orbital logo"/>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Image asset=\"logo.svg\" width=64 height=64 alt=\"Orbital logo\"/>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      The <code>asset</code> prop is resolved through the Rails asset pipeline, so you pass the
+      logical path (e.g. <code>logo.svg</code>, <code>photos/hero.jpg</code>) rather than a full
+      URL. The component generates an <code>&lt;img&gt;</code> tag with the fingerprinted asset URL.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use the Image component for any image served from the asset pipeline — logos, illustrations,
+      avatars, and decorative graphics. The explicit <code>width</code> and <code>height</code>
+      attributes reserve space in the layout before the image loads, eliminating cumulative layout
+      shift (CLS).
+    </p>
+    <p>
+      For user-uploaded content or images from external URLs, use a plain <code>&lt;img&gt;</code>
+      tag instead, since those aren't served through the asset pipeline.
+    </p>
+    <p>
+      For small symbolic graphics, prefer the <a href="/components/icon">Icon</a> component — it
+      renders inline SVGs that scale with text and inherit <code>currentColor</code>.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      The component renders a standard <code>&lt;img&gt;</code> element with
+      <code>display: inline-block</code>. The <code>width</code> and <code>height</code> props
+      map directly to HTML attributes, which browsers use to calculate the intrinsic aspect ratio
+      before the image loads.
+    </p>
+    <p>
+      Because the asset path is resolved at render time via <code>asset_path</code>, images benefit
+      from Rails' asset fingerprinting and CDN cache headers automatically.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Different Sizes</Heading>
+    <Prose class="mb-4">
+      <p>The <code>width</code> and <code>height</code> props set the rendered dimensions in pixels.
+        For responsive behaviour, combine with CSS classes like <code>max-w-full</code>.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex items-end gap-6">
+        <Image asset="logo.svg" width=32 height=32 alt="Small logo"/>
+        <Image asset="logo.svg" width=64 height=64 alt="Medium logo"/>
+        <Image asset="logo.svg" width=128 height=128 alt="Large logo"/>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">With Styling</Heading>
+    <Prose class="mb-4">
+      <p>Add Tailwind classes for rounded corners, borders, shadows, or other visual treatments.
+        The component passes through all HTML attributes to the underlying <code>&lt;img&gt;</code>.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex items-center gap-6">
+        <Image asset="logo.svg" width=64 height=64 alt="Rounded" class="rounded-lg"/>
+        <Image asset="logo.svg" width=64 height=64 alt="Circular" class="rounded-full"/>
+        <Image asset="logo.svg" width=64 height=64 alt="Bordered" class="rounded-lg border-2 shadow-md"/>
+      </div>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Always provide a descriptive <code>alt</code> text for meaningful images.</li>
+          <li>Set <code>width</code> and <code>height</code> to the image's actual dimensions to prevent layout shift.</li>
+          <li>Use SVGs for logos and icons — they scale without loss of quality.</li>
+          <li>Use <code>alt=""</code> for purely decorative images so screen readers skip them.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Omit the <code>alt</code> prop — an empty string is fine for decorative images, but missing alt is an accessibility violation.</li>
+          <li>Use this component for external URLs — it only works with the asset pipeline.</li>
+          <li>Set dimensions that distort the image's aspect ratio.</li>
+          <li>Use large raster images for small display sizes — serve appropriately sized assets.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">asset</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Asset pipeline path</td>
+          <td class="px-4 py-2 font-mono text-xs">required</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">alt</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any text</td>
+          <td class="px-4 py-2 font-mono text-xs">""</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">width</td>
+          <td class="px-4 py-2">Integer</td>
+          <td class="px-4 py-2">Pixels</td>
+          <td class="px-4 py-2 font-mono text-xs">32</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">height</td>
+          <td class="px-4 py-2">Integer</td>
+          <td class="px-4 py-2">Pixels</td>
+          <td class="px-4 py-2 font-mono text-xs">32</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

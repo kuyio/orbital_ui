@@ -1,0 +1,231 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Alert</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A modal dialog for displaying important messages that require user acknowledgement before continuing.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <Button modal="alert-info">Show Alert</Button>
+    <Alert id="alert-info" title="Heads up!" description="This is an informational alert." variant="info"/>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Button modal=\"my-alert\">Show</Button>\n<Alert id=\"my-alert\" title=\"Title\" description=\"Description\" variant=\"info\"/>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      An Alert is a two-part pattern: a trigger element with a <code>modal</code> prop pointing to the
+      alert's <code>id</code>, and the Alert component itself. The alert renders as a fixed overlay
+      and is hidden until the trigger is clicked.
+    </p>
+  </Prose>
+  <div class="border rounded-lg bg-muted/50 overflow-hidden mt-4">
+    <CodeBlock code={"Button (modal=\"my-alert\")\n└── opens ─→ Alert (id=\"my-alert\")\n                ├── Icon (based on variant)\n                ├── Title\n                ├── Description\n                └── Action Button"}/>
+  </div>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Alerts are for messages that demand attention and a conscious response. They interrupt the
+      current workflow on purpose — the user must acknowledge the message before they can continue
+      interacting with the page.
+    </p>
+    <p>
+      Use alerts for success confirmations, warnings about irreversible actions, error notifications,
+      or informational messages that the user should not miss. If the message is purely informational
+      and does not need acknowledgement, consider an inline banner or toast notification instead.
+    </p>
+    <p>
+      For actions that need a choice (confirm / cancel), use a
+      <a href="/components/confirmation-dialog">Confirmation Dialog</a> instead.
+      For complex forms or multi-step workflows, use a
+      <a href="/components/dialog">Dialog</a>.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      When opened, the alert displays a backdrop overlay that dims the rest of the page. The page
+      scroll is locked and focus is trapped inside the alert panel.
+    </p>
+    <p>
+      By default, alerts are <strong>dismissible</strong> — the user can close them by clicking the
+      close button, pressing Escape, or clicking the backdrop. Set <code>dismissible={false}</code> to
+      create a strict alert that can only be dismissed by clicking the action button. This is useful for
+      legal acceptances, mandatory acknowledgements, or critical error states.
+    </p>
+    <p>
+      Each variant automatically displays an appropriate icon: a checkmark for success, a triangle for
+      warnings, an exclamation circle for danger, and an info circle for informational alerts. The
+      default variant shows no icon.
+    </p>
+  </Prose>
+</div>
+
+<!-- Variants -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Success</Heading>
+    <Prose class="mb-4">
+      <p>Confirms a completed action. Shows a checkmark icon.</p>
+    </Prose>
+    <Example source={'
+      <Button modal="alert-success">Show Alert</Button>
+      <Alert id="alert-success" title="Success" description="Operation completed successfully." variant="success"/>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Warning</Heading>
+    <Prose class="mb-4">
+      <p>Warns about a potentially risky action. Shows a triangle exclamation icon.</p>
+    </Prose>
+    <Example source={'
+      <Button modal="alert-warning">Show Alert</Button>
+      <Alert id="alert-warning" title="Warning" description="Please proceed with caution." variant="warning"/>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Danger</Heading>
+    <Prose class="mb-4">
+      <p>Indicates an error or destructive outcome. Shows a circle exclamation icon.</p>
+    </Prose>
+    <Example source={'
+      <Button modal="alert-danger">Show Alert</Button>
+      <Alert id="alert-danger" title="Danger" description="Something went wrong." variant="danger"/>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Non-dismissible</Heading>
+    <Prose class="mb-4">
+      <p>
+        No close button, no backdrop dismiss, no Escape key. The user <strong>must</strong> click the
+        action button to continue. Use sparingly — only when the acknowledgement is genuinely required.
+      </p>
+    </Prose>
+    <Example source={'
+      <Button modal="alert-nodismiss">Show Alert</Button>
+      <Alert id="alert-nodismiss" title="Terms Updated" description="Please review and accept the updated terms of service to continue." variant="warning" dismissible={false} button_text="I Accept"/>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Custom Button Text</Heading>
+    <Prose class="mb-4">
+      <p>
+        Override the default "OK" label with something more specific to the context. Action-oriented
+        labels like "Install Now" or "I Accept" help the user understand what will happen.
+      </p>
+    </Prose>
+    <Example source={'
+      <Button modal="alert-custom">Show Alert</Button>
+      <Alert id="alert-custom" title="Update Available" description="A new version is ready to install." variant="info" button_text="Install Now"/>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Keep the title short and the description actionable.</li>
+          <li>Match the variant to the severity of the message.</li>
+          <li>Use specific button labels that describe the action ("I Accept", "Got it").</li>
+          <li>Reserve non-dismissible alerts for legally or functionally mandatory acknowledgements.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Use alerts for routine feedback that doesn't need interruption.</li>
+          <li>Stack multiple alerts on the same trigger — show one at a time.</li>
+          <li>Make every alert non-dismissible; users will learn to resent them.</li>
+          <li>Put complex forms or long content inside an alert — use a Dialog instead.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">id</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any unique ID</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">title</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any text</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">description</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any text</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">variant</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">default, success, warning, danger, info</td>
+          <td class="px-4 py-2 font-mono text-xs">default</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">dismissible</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">true</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">size</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">sm, default, lg, xl, full</td>
+          <td class="px-4 py-2 font-mono text-xs">default</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">button_text</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any text</td>
+          <td class="px-4 py-2 font-mono text-xs">"OK"</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

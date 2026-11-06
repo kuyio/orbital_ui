@@ -1,0 +1,520 @@
+<AppFrame>
+  <div class="flex flex-col items-center gap-2 py-8 text-center md:py-16 lg:py-16 xl:gap-4 mx-auto">
+    <a href="/components">
+      <Badge variant="secondary">
+        <Icon name="circle" size="xs" class="text-blue-500 mr-1"/>
+        New Features: Progress Bar, Dark Mode, Themes
+        <Icon name="arrow-right" size="xs" class="ml-1"/>
+      </Badge>
+    </a>
+
+    <MarketingHeading class="max-w-4xl text-heavy">
+      A Modern Design System for Ruby on Rails
+    </MarketingHeading>
+
+    <Leade class="max-w-3xl">
+      A set of beautifully designed components that you can customize, extend, and build on. Start here then make them your own. Open Source. Open Code.
+    </Leade>
+
+    <div class="flex w-full items-center justify-center gap-2 pt-2">
+      <Button url="/quickstart">Get Started</Button>
+      <Button variant="secondary" url="/components">View Components</Button>
+    </div>
+  </div>
+
+  <div class="relative overflow-hidden p-8" style="background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--background) 90%, gray) 10%)">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 items-start max-w-[1600px] mx-auto h-[1200px]">
+      <!-- Column 1 -->
+      <div class="flex flex-col gap-8">
+        <Card>
+          <div class="flex flex-col gap-4">
+            <div class="flex justify-between">
+              <Button>Button<Icon name="arrow-right" size=sm/></Button>
+              <Button variant=secondary>Secondary</Button>
+              <Button variant=outline>Outline</Button>
+            </div>
+            <TextField name="full_name" placeholder="Name" labelHidden/>
+            <TextField name="message" placeholder="Message" multiline=2 labelHidden/>
+            <div class="flex gap-2">
+              <Badge>Badge</Badge>
+              <Badge variant=secondary>Secondary</Badge>
+              <Badge variant=outline>Outline</Badge>
+              <div class="flex-1"></div>
+              <CheckBox checked/>
+            </div>
+          </div>
+        </Card>
+
+        <Card>
+          <div class="flex flex-col gap-6">
+            <div class="flex w-full items-center justify-between">
+              <Heading size="sm">Payment Method</Heading>
+              <Tooltip text="We accept Visa, MasterCard, American Express, and Discover cards.">
+                <Icon name="info"/>
+              </Tooltip>
+            </div>
+            <Text tone="subdued">
+              All transactions are secure and encrypted. We do not store your credit card information.
+            </Text>
+            <TextField name="card_name" label="Name on card" placeholder="John Doe" />
+            <div class="grid grid-cols-5 gap-4">
+              <div class="col-span-4">
+                <TextField name="card_number" label="Card number" placeholder="1234 1234 1234 1234" />
+              </div>
+              <TextField name="card_ccv" label="CCV" placeholder="123" type="password" />
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <Select
+                name="expiry_month"
+                label="Month"
+                placeholder="MM"
+                fullwidth
+                options={[
+                  {label: "January", value: "01"},
+                  {label: "February", value: "02"},
+                  {label: "March", value: "03"},
+                  {label: "April", value: "04"},
+                  {label: "May", value: "05"},
+                  {label: "June", value: "06"},
+                  {label: "July", value: "07"},
+                  {label: "August", value: "08"},
+                  {label: "September", value: "09"},
+                  {label: "October", value: "10"},
+                  {label: "November", value: "11"},
+                  {label: "December", value: "12"}
+                ]}
+              />
+              <Select
+                name="expiry_year"
+                label="Year"
+                placeholder="YYYY"
+                fullwidth
+                options={[
+                  {label: "2024", value: "2024"},
+                  {label: "2025", value: "2025"},
+                  {label: "2026", value: "2026"},
+                  {label: "2027", value: "2027"},
+                  {label: "2028", value: "2028"}
+                ]}
+              />
+            </div>
+            <Separator/>
+            <Heading size="sm">Billing Address</Heading>
+            <CheckBox name="same_as_shipping" checked>
+              Same as shipping address
+            </CheckBox>
+
+            <div class="grid grid-cols-2 gap-4">
+              <Button variant="primary">Submit</Button>
+              <Button variant="outline">Cancel</Button>
+            </div>
+          </div>
+        </Card>
+
+        <Card>
+          <Card:Header>
+            <Header:Title>Claimable Balance</Header:Title>
+          </Card:Header>
+          <div class="flex flex-col gap-4">
+            <Heading size="3xl" as="div">$1,211.29</Heading>
+            <Badge variant="outline" class="w-fit">
+              <span class="inline-block w-2 h-2 rounded-full bg-yellow-400 mr-1.5"></span>
+              Pending Setup
+            </Badge>
+            <div class="flex flex-col mt-2 border rounded-lg divide-y">
+              <div class="flex justify-between px-4 py-3">
+                <Text size="sm" as="span">Net Royalties</Text>
+                <Text size="sm" weight="medium" as="span">$1,248.75</Text>
+              </div>
+              <div class="flex justify-between px-4 py-3">
+                <Text size="sm" as="span">Processing Fee</Text>
+                <Text size="sm" weight="medium" as="span">-$37.46</Text>
+              </div>
+              <div class="flex justify-between px-4 py-3 bg-muted/50">
+                <Text size="sm" weight="medium" as="span">Total Ready to Claim</Text>
+                <Text size="sm" weight="bold" as="span">$1,211.29 USD</Text>
+              </div>
+            </div>
+            <Text size="sm" tone="subdued" as="p" class="mt-2">
+              Once your bank is connected, balances over $10.00 are automatically eligible for monthly distribution on the 15th of each month.
+            </Text>
+          </div>
+        </Card>
+
+      </div>
+
+      <!-- Column 2 -->
+      <div class="flex flex-col gap-8">
+         <Card>
+          <Card:Header>
+            <Header:Title>Contribution History</Header:Title>
+            <Header:Description>Last 6 months of activity</Header:Description>
+          </Card:Header>
+          <div class="grid grid-cols-5 gap-2 h-32 px-2">
+            <div class="flex flex-col items-center justify-end gap-2">
+              <div class="w-full bg-neutral-300 rounded-lg flex-none" style="height: 48px"></div>
+              <Text size="xs" tone="subdued" as="span">Dec</Text>
+            </div>
+            <div class="flex flex-col items-center justify-end gap-2">
+              <div class="w-full bg-neutral-500 rounded-lg flex-none" style="height: 88px"></div>
+              <Text size="xs" tone="subdued" as="span">Jan</Text>
+            </div>
+            <div class="flex flex-col items-center justify-end gap-2">
+              <div class="w-full bg-neutral-500 rounded-lg flex-none" style="height: 54px"></div>
+              <Text size="xs" tone="subdued" as="span">Feb</Text>
+            </div>
+            <div class="flex flex-col items-center justify-end gap-2">
+              <div class="w-full bg-neutral-600 rounded-lg flex-none" style="height: 106px"></div>
+              <Text size="xs" tone="subdued" as="span">Mar</Text>
+            </div>
+            <div class="flex flex-col items-center justify-end gap-2">
+              <div class="w-full bg-neutral-800 rounded-lg flex-none" style="height: 62px"></div>
+              <Text size="xs" tone="subdued" as="span">Apr</Text>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-3 mt-6">
+            <div class="flex flex-col gap-1 bg-muted/50 rounded-lg p-3">
+              <Text size="xs" tone="subdued" weight="semibold" as="div" class="uppercase tracking-wider">Upcoming</Text>
+              <Heading size="sm" as="div">May 2024</Heading>
+              <Text size="sm" tone="subdued" as="div">Scheduled</Text>
+            </div>
+            <div class="flex flex-col gap-1 bg-muted/50 rounded-lg p-3">
+              <Text size="xs" tone="subdued" weight="semibold" as="div" class="uppercase tracking-wider">Savings Plan</Text>
+              <Heading size="sm" as="div">Accelerated</Heading>
+              <Text size="sm" tone="subdued" as="div">Recurring</Text>
+            </div>
+          </div>
+          <Card:Footer>
+            <Button class="w-full">View Full Report</Button>
+          </Card:Footer>
+        </Card>
+
+        <div class="flex col-2 gap-4">
+          <div class="w-46 border rounded-lg p-1 bg-card shadow-sm">
+            <Menu>
+              <Menu:Label>My Account</Menu:Label>
+              <Menu:Separator/>
+              <Menu:Item icon="user">Profile</Menu:Item>
+              <Menu:Item icon="credit-card" active>Billing</Menu:Item>
+              <Menu:Item icon="settings">Settings</Menu:Item>
+              <Menu:Separator/>
+              <Menu:Item destructive icon="log-out">Log out</Menu:Item>
+            </Menu>
+          </div>
+          <div class="w-46 border rounded-lg p-1 bg-card shadow-sm">
+            <Menu>
+              <Menu:Item icon="file" shortcut="N">New File</Menu:Item>
+              <Menu:Item icon="folder" shortcut="F">New Folder</Menu:Item>
+              <Menu:Item icon="copy" shortcut="C">Copy</Menu:Item>
+              <Menu:Separator/>
+              <Menu:Sub label="Share" icon="share-2">
+                <Sub:Item icon="mail">Email</Sub:Item>
+                <Sub:Item icon="message-circle">Slack</Sub:Item>
+                <Sub:Item icon="link">Copy Link</Sub:Item>
+              </Menu:Sub>
+              <Menu:Separator/>
+              <Menu:Item icon="settings" shortcut="S">Settings</Menu:Item>
+            </Menu>
+          </div>
+        </div>
+
+        <Card>
+          <div class="flex flex-col justify-center items-center gap-4 py-8 rounded-lg border border-dashed p-4">
+            <Button variant="ghost" size="icon">
+              <Spinner/>
+            </Button>
+            <div class="flex flex-col gap-3 items-center">
+              <Heading>Processing your request</Heading>
+              <Text tone="subdued" class="text-center">
+                Please wait while we process your request. This may take a few moments. Do not refresh or navigate away from this page.
+              </Text>
+            </div>
+            <Button variant="secondary">Cancel Transaction</Button>
+          </div>
+        </Card>
+
+
+        <Card>
+          <div class="flex flex-col gap-6">
+            <div class="flex items-center gap-2">
+              <Badge variant="secondary">
+                <Icon name="circle-check" size="sm" class="text-green-500 mr-1"/>
+                Successful
+              </Badge>
+              <Badge variant="outline">
+                <Icon name="clock" size="sm" class="text-gray-500 mr-1"/>
+                Scheduled
+              </Badge>
+              <Badge>
+                <Spinner size="sm" />
+                <span class="mx-1">Processing</span>
+              </Badge>
+            </div>
+            <TextField name="search" iconLeft="search" placeholder="Search..." labelHidden suffix="12 results"/>
+            <div class="flex items-center gap-2">
+              <Button variant="outline" size="icon"><Icon name="arrow-left" size=sm/></Button>
+              <ButtonGroup>
+                <Button variant="outline">1</Button>
+                <Button variant="outline">2</Button>
+                <Button variant="outline">3</Button>
+                <Button variant="outline">24</Button>
+              </ButtonGroup>
+              <ButtonGroup>
+                <Button variant="outline">More</Button>
+              </ButtonGroup>
+              <Button variant="outline" size="icon"><Icon name="arrow-right" size=sm/></Button>
+            </div>
+            <div class="flex items-center gap-2">
+              <ButtonGroup>
+                <Button variant="outline">
+                  <Icon name="bot"/>
+                  <Text>Copilot</Text>
+                </Button>
+                <Dropdown variant="outline">
+                  <div class="flex flex-col max-w-72">
+                    <div class="px-3 py-3">
+                      <Heading size="sm">Agent Tasks</Heading>
+                    </div>
+                    <Separator/>
+                    <div class="px-3 py-3 flex flex-col gap-3">
+                      <TextField name="tasks" labelHidden multiline=2 placeholder="Describe your task in natural language."/>
+                      <Text weight="bold">Start a new task with Copilot</Text>
+                      <Text tone="subdued">
+                        Describe your task in natural language. Copilot handles the processing in the background.
+                      </Text>
+                    </div>
+                  </div>
+                </Dropdown>
+              </ButtonGroup>
+            </div>
+          </div>
+        </Card>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="flex flex-col gap-8">
+        <Card>
+          <Card:Header>
+            <Header:Title>Savings Targets</Header:Title>
+            <Header:Description>
+              Active milestones for 2024 across your portfolio. Monitor how close you are to each savings goal.
+            </Header:Description>
+          </Card:Header>
+
+          <div class="flex flex-col p-4 gap-2 bg-muted/50 rounded-md">
+            <Text size=xs>Retirement</Text>
+            <Heading size="2xl">$410,000</Heading>
+            <ProgressBar value=273000 max=410000/>
+            <div class="flex justify-between">
+              <Text tone=subdued size=xs>65% achieved</Text>
+              <Text size=xs>$273,000</Text>
+            </div>
+          </div>
+
+          <div class="flex flex-col p-4 gap-2 bg-muted/50 rounded-md mt-4">
+            <Text size=xs>Real Estate</Text>
+            <Heading size="2xl">$85,000</Heading>
+            <ProgressBar value=27200 max=85000/>
+            <div class="flex justify-between">
+              <Text tone=subdued size=xs>32% achieved</Text>
+              <Text size=xs>$27,200</Text>
+            </div>
+          </div>
+
+        </Card>
+
+        <Card>
+          <div class="flex flex-col gap-8 items-center justify-center">
+            <Image asset="lift-off.svg" alt="Lift Off" class="w-52 h-52"/>
+            <Text align="center" class="leading-relaxed" tone="subdued">
+              This is just a demo of Orbital's components - there is no backend here to process payments or handle data. Click to show contact form.
+            </Text>
+            <Button modal url="/contact" class="w-full" variant="outline">Let's make it happen today!</Button>
+          </div>
+        </Card>
+
+        <Card>
+          <Card:Header>
+            <Header:Title>Set a new milestone</Header:Title>
+            <Header:Description>Define your financial target and we'll help you pace your savings.</Header:Description>
+          </Card:Header>
+          <div class="flex flex-col gap-4">
+            <TextField name="goal_name" label="Goal Name" placeholder="e.g. New Car, Home Downpayment"/>
+            <div class="grid grid-cols-2 gap-4">
+              <TextField name="target_amount" label="Target Amount" value="$15,000"/>
+              <TextField name="target_date" label="Target Date" value="Dec 2025"/>
+            </div>
+          </div>
+          <Card:Footer>
+            <div class="flex flex-col gap-2 w-full">
+              <Button class="w-full">Create Goal</Button>
+              <Button variant="outline" class="w-full">Cancel</Button>
+            </div>
+          </Card:Footer>
+        </Card>
+      </div>
+
+
+
+      <!-- Column 4 -->
+      <div class="flex flex-col gap-8">
+
+        <Card>
+          <div class="flex flex-col items-center text-center gap-4 py-6">
+            <div class="rounded-full bg-muted p-3">
+              <Icon name="plus" size="md" class="text-muted-foreground"/>
+            </div>
+            <Heading as="div">Distribute Track</Heading>
+            <Text tone="subdued" as="p">Upload your first master to start reaching listeners on Spotify, Apple Music, and more.</Text>
+            <Button variant="outline">Create a Release</Button>
+          </div>
+        </Card>
+
+        <Card>
+          <Card:Header>
+            <Header:Title>Menu states and variants</Header:Title>
+          </Card:Header>
+          <div class="grid grid-cols-2 gap-4">
+            <Dropdown variant="outline" label="Navigation Menu" fullwidth>
+              <Menu>
+                <Menu:Item active url="/dashboard" icon="house">
+                  Dashboard
+                </Menu:Item>
+                <Menu:Item url="/projects" icon="folder">
+                  Projects
+                </Menu:Item>
+                <Menu:Item url="/team" icon="users">
+                  Team
+                </Menu:Item>
+                <Menu:Item url="/settings" icon="settings">
+                  Settings
+                </Menu:Item>
+              </Menu>
+            </Dropdown>
+            <Dropdown variant="outline" label="View Options" fullwidth>
+              <Menu>
+                <Menu:Label>Display</Menu:Label>
+                <Menu:Item selected icon="list">
+                  List View
+                </Menu:Item>
+                <Menu:Item icon="layout-grid">
+                  Grid View
+                </Menu:Item>
+                <Menu:Item icon="table">
+                  Table View
+                </Menu:Item>
+                <Menu:Separator/>
+                <Menu:Label>Sort By</Menu:Label>
+                <Menu:Item selected>
+                  Name
+                </Menu:Item>
+                <Menu:Item>
+                  Date Modified
+                </Menu:Item>
+                <Menu:Item>
+                  Size
+                </Menu:Item>
+              </Menu>
+            </Dropdown>
+            <Dropdown variant="outline" label="Account Actions" fullwidth>
+              <Menu>
+                <Menu:Item icon="user" url="/profile">
+                  Profile Settings
+                </Menu:Item>
+                <Menu:Item icon="credit-card" url="/billing">
+                  Billing
+                </Menu:Item>
+                <Menu:Item icon="bell" disabled>
+                  Notifications (Coming Soon)
+                </Menu:Item>
+                <Menu:Separator/>
+                <Menu:Item destructive icon="trash-2" url="/delete-account">
+                  Delete Account
+                </Menu:Item>
+                <Menu:Item icon="log-out" url="/logout">
+                  Sign Out
+                </Menu:Item>
+              </Menu>
+            </Dropdown>
+            <Dropdown variant="outline" label="File Menu" fullwidth>
+              <Menu>
+                <Menu:Item icon="file" shortcut="⌘N">
+                  New File
+                </Menu:Item>
+                <Menu:Item icon="folder-open" shortcut="⌘O">
+                  Open...
+                </Menu:Item>
+                <Menu:Item icon="save" shortcut="⌘S">
+                  Save
+                </Menu:Item>
+                <Menu:Separator/>
+                <Menu:Item modal url="/share" icon="share">
+                  Share...
+                </Menu:Item>
+                <Menu:Item modal url="/export" icon="download">
+                  Export...
+                </Menu:Item>
+                <Menu:Separator/>
+                <Menu:Item destructive icon="trash-2">
+                  Delete
+                </Menu:Item>
+              </Menu>
+            </Dropdown>
+          </div>
+        </Card>
+
+
+        <Card>
+          <Card:Header>
+            <Header:Title>Notifications</Header:Title>
+            <Header:Description>Choose which email and push alerts you want to receive.</Header:Description>
+          </Card:Header>
+          <div class="flex flex-col divide-y">
+            <div class="flex items-start gap-3 py-4">
+              <CheckBox name="notif_transactions" label="Transaction alerts" help="Deposits, withdrawals and transfers." checked/>
+            </div>
+            <div class="flex items-start gap-3 py-4">
+              <CheckBox name="notif_security" label="Security alerts" help="Login attempts and account changes." checked/>
+            </div>
+            <div class="flex items-start gap-3 py-4">
+              <CheckBox name="notif_goals" label="Goal milestones" help="Updates at 25%, 50%, 75%, and 100%."/>
+            </div>
+            <div class="flex items-start gap-3 py-4">
+              <CheckBox name="notif_market" label="Market updates" help="Daily portfolio summary and price alerts."/>
+            </div>
+          </div>
+          <Card:Footer>
+            <Button class="w-full">Save Preferences</Button>
+          </Card:Footer>
+        </Card>
+
+
+
+        <Card>
+          <Card:Header>
+            <Header:Title>Account Access</Header:Title>
+            <Header:Description>
+              Update your credentials or re-authenticate.
+            </Header:Description>
+          </Card:Header>
+          <div class="flex flex-col gap-4">
+            <TextField name="email_address" value="artist@studio.inc" readonly/>
+            <div class="flex flex-col gap-1">
+              <div class="flex justify-between">
+                <Text size=sm>Current Password</Text>
+                <a href="#" class="text-blue-800 text-body-sm">Forgot?</a>
+              </div>
+              <TextField type="password" name="current_password" value="thisisapassword" labelHidden required />
+            </div>
+
+            <Button><Icon name="lock"/>Update Security</Button>
+          </div>
+        </Card>
+
+
+      </div>
+
+    </div>
+    <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, transparent 85%, var(--background) 100%)"></div>
+  </div>
+</AppFrame>

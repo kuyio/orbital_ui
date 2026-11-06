@@ -1,0 +1,296 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Popover</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A floating panel anchored to a trigger element, built on the native HTML Popover API
+    and positioned with Floating UI.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <Popover>
+      <Popover:Trigger>
+        <Button variant="outline">Open Popover</Button>
+      </Popover:Trigger>
+      <div class="w-64">
+        <Heading size="sm" as="div" class="mb-2">Popover Content</Heading>
+        <Text tone="subdued" as="p" size="sm">This is the popover body. Place any content here.</Text>
+      </div>
+    </Popover>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Popover>\n  <Popover:Trigger>\n    <Button variant=\"outline\">Toggle</Button>\n  </Popover:Trigger>\n  <div class=\"w-64\">\n    Content goes here.\n  </div>\n</Popover>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Popover wraps a trigger element and a floating panel. The <code>Popover:Trigger</code> slot
+      defines what the user clicks (or hovers) to open the panel. The default content slot holds the
+      panel body — it gets automatic padding, border, shadow, and background styling.
+    </p>
+  </Prose>
+  <div class="border rounded-lg bg-muted/50 overflow-hidden mt-4">
+    <CodeBlock code={"Popover\n├── Popover:Trigger  (click/hover target)\n└── (default content) (floating panel body)"}/>
+  </div>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use Popover when you need a general-purpose floating panel — forms, filters, settings,
+      or custom content that doesn't fit into a more specific component. The panel is non-modal:
+      it floats above the page without blocking interaction elsewhere.
+    </p>
+    <p>
+      For action lists and contextual menus, use a <a href="/components/dropdown">Dropdown</a>
+      with a <a href="/components/menu">Menu</a> instead — it provides keyboard navigation and
+      proper ARIA roles for free. For plain text hints, use a
+      <a href="/components/tooltip">Tooltip</a>. For rich hover previews with links and metadata,
+      use a <a href="/components/popcard">Popcard</a>.
+    </p>
+    <p>
+      If the content requires the user's full attention and should block the rest of the page, use a
+      <a href="/components/dialog">Dialog</a> instead.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      By default the panel opens on <strong>click</strong> and toggles on subsequent clicks. Set
+      <code>on="hover"</code> to open on mouse enter instead — a short delay before hiding allows
+      the cursor to move from the trigger into the panel without it disappearing.
+    </p>
+    <p>
+      The <code>position</code> prop uses compass directions to control where the panel appears:
+      <code>s</code> (below), <code>n</code> (above), <code>e</code>/<code>w</code> (sides), with
+      diagonal variants like <code>se</code> and <code>nw</code> for corner alignment. The default
+      is <code>auto</code>, which lets Floating UI choose based on available viewport space. The
+      panel also flips and shifts automatically to stay visible.
+    </p>
+    <p>
+      The panel renders in the browser's top layer using the native Popover API, so it won't be
+      clipped by parent <code>overflow</code> or <code>z-index</code> stacking contexts. Clicking
+      outside the panel dismisses it (light-dismiss behaviour).
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Positions</Heading>
+    <Prose class="mb-4">
+      <p>Control where the panel appears relative to its trigger. The panel automatically flips
+        if there isn't enough room in the requested direction.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-4">
+        <Popover position="n">
+          <Popover:Trigger>
+            <Button variant="outline" size="sm">North</Button>
+          </Popover:Trigger>
+          <div class="w-48">
+            <Text size="sm" as="p">Panel above the trigger.</Text>
+          </div>
+        </Popover>
+        <Popover position="s">
+          <Popover:Trigger>
+            <Button variant="outline" size="sm">South</Button>
+          </Popover:Trigger>
+          <div class="w-48">
+            <Text size="sm" as="p">Panel below the trigger.</Text>
+          </div>
+        </Popover>
+        <Popover position="e">
+          <Popover:Trigger>
+            <Button variant="outline" size="sm">East</Button>
+          </Popover:Trigger>
+          <div class="w-48">
+            <Text size="sm" as="p">Panel to the right.</Text>
+          </div>
+        </Popover>
+        <Popover position="w">
+          <Popover:Trigger>
+            <Button variant="outline" size="sm">West</Button>
+          </Popover:Trigger>
+          <div class="w-48">
+            <Text size="sm" as="p">Panel to the left.</Text>
+          </div>
+        </Popover>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Hover Trigger</Heading>
+    <Prose class="mb-4">
+      <p>Set <code>on="hover"</code> to show the panel on mouse enter. The panel stays open
+        while the cursor moves between trigger and content, and closes after a short delay
+        when the cursor leaves both.</p>
+    </Prose>
+    <Example source={'
+      <Popover on="hover" position="s">
+        <Popover:Trigger>
+          <Button variant="ghost">Hover me</Button>
+        </Popover:Trigger>
+        <div class="w-56">
+          <Text as="p" size="sm">This panel appeared on hover and will hide when you move away.</Text>
+        </div>
+      </Popover>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Rich Content</Heading>
+    <Prose class="mb-4">
+      <p>The panel can hold any content — forms, lists, mixed media. For more structured layouts,
+        compose with other Orbital components inside the panel.</p>
+    </Prose>
+    <Example source={'
+      <Popover position="s">
+        <Popover:Trigger>
+          <Button variant="outline">
+            <Icon name="sliders-horizontal" size="sm"/> Preferences
+          </Button>
+        </Popover:Trigger>
+        <div class="w-72 flex flex-col gap-3">
+          <Heading size="sm" as="div">Display Settings</Heading>
+          <Separator/>
+          <div class="flex items-center justify-between">
+            <Text size="sm" as="span">Compact mode</Text>
+            <CheckBox name="compact" label="Enabled"/>
+          </div>
+          <div class="flex items-center justify-between">
+            <Text size="sm" as="span">Show avatars</Text>
+            <CheckBox name="avatars" label="Enabled" checked/>
+          </div>
+          <Separator/>
+          <div class="flex justify-end">
+            <Button size="sm">Apply</Button>
+          </div>
+        </div>
+      </Popover>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use for self-contained interactions like quick settings, filters, or date pickers.</li>
+          <li>Keep the panel focused on a single task — one form, one set of options.</li>
+          <li>Give the trigger a clear visual affordance that more content is available.</li>
+          <li>Use <code>on="hover"</code> for preview content that doesn't require interaction.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Nest popovers inside other popovers — use a Dialog for complex flows.</li>
+          <li>Use Popover for action menus — use Dropdown + Menu for proper keyboard navigation.</li>
+          <li>Put large forms or scrolling content in a popover — use a Dialog instead.</li>
+          <li>Rely on hover popovers for essential interactions — they aren't accessible on touch devices.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden mb-4">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">on</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">click, hover</td>
+          <td class="px-4 py-2 font-mono text-xs">click</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">position</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">auto, n, ne, e, se, s, sw, w, nw</td>
+          <td class="px-4 py-2 font-mono text-xs">auto</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">id</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any unique string</td>
+          <td class="px-4 py-2 font-mono text-xs">auto-generated</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Slots</Heading>
+  <div class="border rounded-lg overflow-hidden mb-4">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Slot</th>
+          <th class="text-left px-4 py-2 font-medium">Description</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Popover:Trigger</td>
+          <td class="px-4 py-2">The element the user clicks or hovers to toggle the panel.</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">(default content)</td>
+          <td class="px-4 py-2">The floating panel body. Styled with popover background, border, shadow, and padding.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Events</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Event</th>
+          <th class="text-left px-4 py-2 font-medium">Description</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">orbital:popover:shown</td>
+          <td class="px-4 py-2">Fires after the panel opens and is positioned.</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">orbital:popover:hidden</td>
+          <td class="px-4 py-2">Fires after the panel closes.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

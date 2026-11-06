@@ -1,0 +1,62 @@
+{
+  "name": "orbital_ui",
+  "description": "The Orbital View Components library",
+  "license": "MIT",
+  "version": "0.0.1",
+  "author": {
+    "name": "KUY.io Inc.",
+    "email": "dev@kuy.io",
+    "url": "https://kuy.io/"
+  },
+  "targets": {
+    "js": {
+      "source": "frontend/javascript/index.js",
+      "distDir": "app/assets/javascripts/orbital_ui/",
+      "outputFormat": "global"
+    },
+    "css": {
+      "source": "frontend/stylesheets/index.css",
+      "distDir": "app/assets/stylesheets/orbital_ui/"
+    }
+  },
+  "exports": {
+    "./theme": "./app/assets/stylesheets/orbital_ui/theme.css",
+    "./themes/blue": "./app/assets/stylesheets/orbital_ui/themes/blue.css",
+    "./themes/green": "./app/assets/stylesheets/orbital_ui/themes/green.css",
+    "./themes/rose": "./app/assets/stylesheets/orbital_ui/themes/rose.css",
+    "./themes/violet": "./app/assets/stylesheets/orbital_ui/themes/violet.css",
+    "./themes/orange": "./app/assets/stylesheets/orbital_ui/themes/orange.css"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "watch": "parcel watch --no-hmr --no-cache",
+    "build": "parcel build --no-cache",
+    "generate:icons": "bun bin/generate-icons",
+    "build:dummy": "bun run build:dummy:js && bun run build:dummy:css",
+    "build:dummy:js": "bun test/dummy/bun.config.js",
+    "build:dummy:css": "postcss test/dummy/app/assets/stylesheets/application.css -o test/dummy/app/assets/builds/application.css",
+    "watch:dummy:js": "bun test/dummy/bun.config.js --watch",
+    "watch:dummy:css": "postcss test/dummy/app/assets/stylesheets/application.css -o test/dummy/app/assets/builds/application.css --watch"
+  },
+  "dependencies": {
+    "@floating-ui/dom": "^1.8.0",
+    "@hotwired/stimulus": "^3.2.2"
+  },
+  "devDependencies": {
+    "@hotwired/turbo-rails": "^8.0.23",
+    "@parcel/transformer-sass": "2.16.4",
+    "@tailwindcss/postcss": "^4.3.4",
+    "@types/bun": "latest",
+    "baseline-browser-mapping": "^2.11.35",
+    "caniuse-lite": "^1.0.30001823",
+    "lucide-static": "^1.70.0",
+    "parcel": "^2.16.4",
+    "postcss": "^8.5.32",
+    "postcss-cli": "^12.0.0",
+    "tailwindcss": "^4.3.4",
+    "tw-animate": "^1.0.3"
+  },
+  "peerDependencies": {
+    "typescript": "^7.0.2"
+  }
+}

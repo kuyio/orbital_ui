@@ -1,0 +1,13 @@
+@layer components {
+  .Orbital-Separator {
+    @apply bg-border shrink-0;
+  }
+
+  .Orbital-Separator[data-orientation="horizontal"] {
+    @apply h-px w-full;
+  }
+
+  .Orbital-Separator[data-orientation="vertical"] {
+    @apply h-full w-px;
+  }
+}

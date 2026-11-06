@@ -1,0 +1,177 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Button Group</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A container that visually connects related buttons into a single cohesive control,
+    merging their borders and rounding only the outer edges.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <ButtonGroup>
+      <Button variant="outline">Left</Button>
+      <Button variant="outline">Center</Button>
+      <Button variant="outline">Right</Button>
+    </ButtonGroup>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<ButtonGroup>\n  <Button variant=\"outline\">Previous</Button>\n  <Button variant=\"outline\">Next</Button>\n</ButtonGroup>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Wrap any number of <code>&lt;Button&gt;</code> components in a <code>&lt;ButtonGroup&gt;</code>.
+      The group strips inner border radii so the buttons appear as a single connected bar. Use the
+      same variant on all children for a clean result.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Button groups are ideal when two or more actions are closely related and should be perceived as
+      a single control. Common examples include pagination controls, view switchers (list / grid),
+      text alignment toolbars, and segmented filters.
+    </p>
+    <p>
+      Avoid grouping buttons that represent unrelated actions. If the buttons serve different purposes
+      or have different levels of importance, lay them out individually so the visual hierarchy remains
+      clear.
+    </p>
+    <p>
+      For a single primary action with a dropdown of alternatives, consider a split button pattern
+      (a Button Group with two items: the main action and a chevron-down trigger).
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      The group is purely visual — it merges borders and rounds only the first and last child's outer
+      edges. Each button retains its own click handler, variant, and state independently.
+    </p>
+    <p>
+      In <strong>horizontal</strong> mode (the default), buttons are laid out in a row. In
+      <strong>vertical</strong> mode, they stack top to bottom with the top and bottom edges rounded.
+    </p>
+    <p>
+      The group works with any button variant, but <strong>outline</strong> produces the cleanest
+      result because its visible borders make the connected styling most apparent.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Vertical</Heading>
+    <Prose class="mb-4">
+      <p>Stack buttons vertically for sidebar controls, mobile layouts, or when horizontal space is
+        limited.</p>
+    </Prose>
+    <Example source={'
+      <ButtonGroup orientation="vertical">
+        <Button variant="outline">Top</Button>
+        <Button variant="outline">Middle</Button>
+        <Button variant="outline">Bottom</Button>
+      </ButtonGroup>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Pagination</Heading>
+    <Prose class="mb-4">
+      <p>A classic pagination control. Icon-only buttons for the arrows keep the group compact, while
+        numbered buttons in the middle let the user jump to a specific page.</p>
+    </Prose>
+    <Example source={'
+      <ButtonGroup>
+        <Button variant="outline"><Icon name="chevron-left" size="sm"/></Button>
+        <Button variant="outline">1</Button>
+        <Button variant="outline">2</Button>
+        <Button variant="outline">3</Button>
+        <Button variant="outline"><Icon name="chevron-right" size="sm"/></Button>
+      </ButtonGroup>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Toolbar</Heading>
+    <Prose class="mb-4">
+      <p>Group icon-only buttons into a compact toolbar for formatting controls, media playback,
+        or similar dense action sets.</p>
+    </Prose>
+    <Example source={'
+      <ButtonGroup>
+        <Button variant="outline" size="icon"><Icon name="bold" size="sm"/></Button>
+        <Button variant="outline" size="icon"><Icon name="italic" size="sm"/></Button>
+        <Button variant="outline" size="icon"><Icon name="underline" size="sm"/></Button>
+      </ButtonGroup>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use the same variant for all buttons in the group.</li>
+          <li>Keep groups small — two to five buttons is the sweet spot.</li>
+          <li>Use icon-only buttons with tooltips for dense toolbars.</li>
+          <li>Prefer outline variant for the clearest connected appearance.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Mix different variants within the same group.</li>
+          <li>Group unrelated actions — use individual buttons instead.</li>
+          <li>Nest a ButtonGroup inside another ButtonGroup.</li>
+          <li>Use more than six or seven buttons — it becomes unwieldy on small screens.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">orientation</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">horizontal, vertical</td>
+          <td class="px-4 py-2 font-mono text-xs">horizontal</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

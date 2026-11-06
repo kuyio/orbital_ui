@@ -1,0 +1,44 @@
+@layer components {
+  /* Select wrapper - inherits from Field styles */
+  .Orbital-Select {
+    @apply relative w-full;
+  }
+
+  .Orbital-Select--fullwidth {
+    @apply w-full;
+  }
+
+  /* Hidden input for form submission */
+  .Orbital-Select-Input {
+    @apply sr-only;
+  }
+
+  /* Trigger button styling */
+  .Orbital-Select-Trigger {
+    @apply justify-between w-full;
+  }
+
+  /* Error state - red border on button */
+  .Orbital-Select[data-error="true"] .Orbital-Select-Trigger {
+    @apply border-red-500;
+  }
+
+  /* Placeholder text - subdued/muted */
+  .Orbital-Select-Placeholder {
+    @apply text-muted-foreground;
+  }
+
+  /* Selected label - normal text color */
+  .Orbital-Select-Label {
+    @apply text-card-foreground;
+  }
+
+  /* Ensure button spans full width when fullwidth is enabled */
+  .Orbital-Select--fullwidth .Orbital-Button {
+    @apply w-full;
+  }
+
+  .Orbital-Select-Trigger {
+    @apply font-normal;
+  }
+}

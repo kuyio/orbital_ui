@@ -1,0 +1,234 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Popcard</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A hover-triggered floating card for previewing content — like a rich tooltip with structured
+    layout, links, and interactive elements.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <Popcard>
+      <Popcard:Trigger>
+        <div class="flex items-center gap-2 cursor-pointer">
+          <Text as="span" class="underline underline-offset-4">@samtaylor</Text>
+        </div>
+      </Popcard:Trigger>
+      <div class="flex flex-col gap-3">
+        <div class="flex items-center gap-3">
+          <Avatar name="Sam Taylor" initials="ST" size="lg"/>
+          <div>
+            <Heading size="sm" as="div">Sam Taylor</Heading>
+            <Text tone="subdued" size="sm" as="div">@samtaylor</Text>
+          </div>
+        </div>
+        <Text size="sm" as="p">Building Orbital — a component library with great DX for Rails apps.</Text>
+        <div class="flex gap-4">
+          <Text size="xs" tone="subdued" as="span"><strong>42</strong> repositories</Text>
+          <Text size="xs" tone="subdued" as="span"><strong>128</strong> followers</Text>
+        </div>
+      </div>
+    </Popcard>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Popcard>\n  <Popcard:Trigger>\n    <Button variant=\"link\">Hover me</Button>\n  </Popcard:Trigger>\n  <div class=\"p-4\">\n    Rich preview content here.\n  </div>\n</Popcard>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Popcard wraps a trigger element and a floating card. The trigger slot defines what the
+      user hovers over, and the default content slot holds the card body. The card is positioned
+      automatically using Floating UI.
+    </p>
+  </Prose>
+  <div class="border rounded-lg bg-muted/50 overflow-hidden mt-4">
+    <CodeBlock code={"Popcard\n├── Popcard:Trigger  (hover/click target)\n└── (default content) (floating card body)"}/>
+  </div>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use Popcards for preview content that appears on hover — user profiles, link previews,
+      status details, or any context that helps the user decide whether to click through. The
+      card can contain text, images, links, and buttons.
+    </p>
+    <p>
+      For plain text hints without interactive elements, use a
+      <a href="/components/tooltip">Tooltip</a> instead — it's lighter and more appropriate
+      for simple labels. For action lists, use a
+      <a href="/components/dropdown">Dropdown</a> with a Menu.
+    </p>
+    <p>
+      Popcards are non-modal — they don't block interaction with the rest of the page and
+      dismiss automatically when the cursor leaves. For content that requires user action
+      before closing, use a <a href="/components/dialog">Dialog</a>.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      By default, the card appears on <strong>hover</strong> with a short delay before hiding,
+      allowing the cursor to move from the trigger into the card without it disappearing. Set
+      <code>on="click"</code> for click-triggered popcards instead.
+    </p>
+    <p>
+      The card is positioned using compass directions: <code>n</code> (above), <code>s</code>
+      (below), <code>e</code> (right), <code>w</code> (left), with diagonal variants
+      <code>ne</code>, <code>nw</code>, <code>se</code>, <code>sw</code> for corner alignment.
+      The default is <code>n</code> (above the trigger, centered). Set <code>auto</code> to
+      let Floating UI choose based on available space.
+    </p>
+    <p>
+      The card renders using the native Popover API, so it appears in the top layer and won't
+      be clipped by parent overflow or z-index stacking contexts.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Link Preview</Heading>
+    <Prose class="mb-4">
+      <p>Show a preview card when hovering over a link. Useful for documentation pages, wikis,
+        or any content with cross-references.</p>
+    </Prose>
+    <Example source={'
+      <Popcard position="s">
+        <Popcard:Trigger>
+          <a href="/components/button" class="underline underline-offset-4 text-primary">Button component</a>
+        </Popcard:Trigger>
+        <div class="flex flex-col gap-2">
+          <Heading size="sm" as="div">Button</Heading>
+          <Text size="sm" tone="subdued" as="p">An interactive element that triggers an action or navigates to a destination.</Text>
+          <div class="flex gap-2 mt-1">
+            <Badge variant="outline">6 variants</Badge>
+            <Badge variant="outline">4 sizes</Badge>
+          </div>
+        </div>
+      </Popcard>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Click Triggered</Heading>
+    <Prose class="mb-4">
+      <p>Set <code>on="click"</code> for popcards that should stay open until clicked elsewhere.
+        Useful on touch devices where hover isn't available.</p>
+    </Prose>
+    <Example source={'
+      <Popcard on="click">
+        <Popcard:Trigger>
+          <Button variant="outline"><Icon name="info" size="sm"/> Details</Button>
+        </Popcard:Trigger>
+        <div class="flex flex-col gap-2">
+          <Heading size="sm" as="div">Project Status</Heading>
+          <Text size="sm" as="p">Last deployed 2 hours ago. All systems operational.</Text>
+          <div class="flex items-center gap-2 mt-1">
+            <Badge variant="default" class="gap-1.5"><Icon name="circle-check" size="sm"/> Healthy</Badge>
+          </div>
+        </div>
+      </Popcard>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use for supplementary context that helps users decide whether to click.</li>
+          <li>Keep the card content concise — a heading, a sentence or two, and optional metadata.</li>
+          <li>Make the trigger visually suggest that more content is available (underline, dotted border).</li>
+          <li>Use <code>on="click"</code> for touch-friendly interfaces.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Put critical information only in a popcard — users may never hover over it.</li>
+          <li>Use popcards for actions — use a Dropdown with a Menu instead.</li>
+          <li>Make the card too large — if you need a full form, use a Dialog.</li>
+          <li>Trigger popcards on elements that don't look interactive.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden mb-4">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">on</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">hover, click</td>
+          <td class="px-4 py-2 font-mono text-xs">hover</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">position</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">auto, n, ne, e, se, s, sw, w, nw</td>
+          <td class="px-4 py-2 font-mono text-xs">n</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">id</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any unique string</td>
+          <td class="px-4 py-2 font-mono text-xs">auto-generated</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Slots</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Slot</th>
+          <th class="text-left px-4 py-2 font-medium">Description</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Popcard:Trigger</td>
+          <td class="px-4 py-2">The element the user hovers or clicks to show the card.</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">(default content)</td>
+          <td class="px-4 py-2">The floating card body. Styled with card background, border, shadow, and padding.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,137 @@
+@layer components {
+  .Orbital-Stack {
+    @apply flex flex-col;
+  }
+
+  /* Gap scale — store as custom property, apply as gap */
+  .Orbital-Stack[data-gap="0"] {
+    --stack-gap: 0px;
+  }
+  .Orbital-Stack[data-gap="0.5"] {
+    --stack-gap: 0.125rem;
+  }
+  .Orbital-Stack[data-gap="1"] {
+    --stack-gap: 0.25rem;
+  }
+  .Orbital-Stack[data-gap="1.5"] {
+    --stack-gap: 0.375rem;
+  }
+  .Orbital-Stack[data-gap="2"] {
+    --stack-gap: 0.5rem;
+  }
+  .Orbital-Stack[data-gap="3"] {
+    --stack-gap: 0.75rem;
+  }
+  .Orbital-Stack[data-gap="4"] {
+    --stack-gap: 1rem;
+  }
+  .Orbital-Stack[data-gap="5"] {
+    --stack-gap: 1.25rem;
+  }
+  .Orbital-Stack[data-gap="6"] {
+    --stack-gap: 1.5rem;
+  }
+  .Orbital-Stack[data-gap="8"] {
+    --stack-gap: 2rem;
+  }
+  .Orbital-Stack[data-gap="10"] {
+    --stack-gap: 2.5rem;
+  }
+  .Orbital-Stack[data-gap="12"] {
+    --stack-gap: 3rem;
+  }
+  .Orbital-Stack[data-gap="16"] {
+    --stack-gap: 4rem;
+  }
+
+  .Orbital-Stack {
+    gap: var(--stack-gap, 1rem);
+  }
+
+  /* Align (cross-axis) */
+  .Orbital-Stack[data-align="start"] {
+    @apply items-start;
+  }
+  .Orbital-Stack[data-align="center"] {
+    @apply items-center;
+  }
+  .Orbital-Stack[data-align="end"] {
+    @apply items-end;
+  }
+  .Orbital-Stack[data-align="stretch"] {
+    @apply items-stretch;
+  }
+
+  /* Justify (main-axis) */
+  .Orbital-Stack[data-justify="start"] {
+    @apply justify-start;
+  }
+  .Orbital-Stack[data-justify="center"] {
+    @apply justify-center;
+  }
+  .Orbital-Stack[data-justify="end"] {
+    @apply justify-end;
+  }
+  .Orbital-Stack[data-justify="between"] {
+    @apply justify-between;
+  }
+  .Orbital-Stack[data-justify="around"] {
+    @apply justify-around;
+  }
+  .Orbital-Stack[data-justify="evenly"] {
+    @apply justify-evenly;
+  }
+
+  /* Padding — same scale as gap */
+  .Orbital-Stack[data-padding="0.5"] {
+    @apply p-0.5;
+  }
+  .Orbital-Stack[data-padding="1"] {
+    @apply p-1;
+  }
+  .Orbital-Stack[data-padding="1.5"] {
+    @apply p-1.5;
+  }
+  .Orbital-Stack[data-padding="2"] {
+    @apply p-2;
+  }
+  .Orbital-Stack[data-padding="3"] {
+    @apply p-3;
+  }
+  .Orbital-Stack[data-padding="4"] {
+    @apply p-4;
+  }
+  .Orbital-Stack[data-padding="5"] {
+    @apply p-5;
+  }
+  .Orbital-Stack[data-padding="6"] {
+    @apply p-6;
+  }
+  .Orbital-Stack[data-padding="8"] {
+    @apply p-8;
+  }
+  .Orbital-Stack[data-padding="10"] {
+    @apply p-10;
+  }
+  .Orbital-Stack[data-padding="12"] {
+    @apply p-12;
+  }
+  .Orbital-Stack[data-padding="16"] {
+    @apply p-16;
+  }
+
+  /* Dividers — centered line between children using a pseudo-element */
+  .Orbital-Stack[data-dividers] > * + * {
+    position: relative;
+  }
+
+  .Orbital-Stack[data-dividers] > * + *::before {
+    content: "";
+    position: absolute;
+    top: calc(-0.5 * var(--stack-gap, 1rem) - 0.5px);
+    left: 0;
+    right: 0;
+    border-top: 1px solid var(--color-border);
+    pointer-events: none;
+  }
+}

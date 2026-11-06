@@ -1,0 +1,171 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Spinner</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    An animated loading indicator with accessible screen reader text.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <Spinner/>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Spinner/>\n\n<Spinner size=\"lg\"/>\n\n<Button disabled><Spinner size=\"sm\"/> Loading...</Button>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Spinner renders an animated icon wrapped in a <code>role="status"</code> container with
+      a visually hidden "Loading..." label for screen readers. Drop it in anywhere you need to
+      indicate that content is loading or an action is in progress.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use Spinner for short, indeterminate waits — form submissions, data fetching, or Turbo
+      frame loads. It signals that something is happening without predicting how long it will take.
+    </p>
+    <p>
+      For longer operations where you can estimate progress, consider a progress bar instead.
+      For full-page loading states, place the spinner centered in the content area rather than
+      inline with other elements.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      The spinner sets <code>role="status"</code>, <code>aria-live="polite"</code>, and
+      <code>aria-busy="true"</code> on its container, so screen readers announce that content
+      is loading. A visually hidden <code>"Loading..."</code> label provides the announcement text.
+    </p>
+    <p>
+      The animation is CSS-driven — no JavaScript required. It runs continuously until the
+      spinner is removed from the DOM.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Sizes</Heading>
+    <Prose class="mb-4">
+      <p>Match the spinner size to its context — <code>sm</code> for inline use in buttons,
+        <code>md</code> for standalone indicators, <code>lg</code> for page-level loading states.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex items-center gap-6">
+        <Spinner size="sm"/>
+        <Spinner size="md"/>
+        <Spinner size="lg"/>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">In a Button</Heading>
+    <Prose class="mb-4">
+      <p>Pair a small spinner with a disabled button to show a loading state. The button prevents
+        double-submission while the spinner provides visual feedback.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex items-center gap-4">
+        <Button disabled><Spinner size="sm"/> Processing...</Button>
+        <Button variant="outline" disabled><Spinner size="sm"/> Saving</Button>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Centered Loading State</Heading>
+    <Prose class="mb-4">
+      <p>Center the spinner in a container to indicate that the entire area is loading.</p>
+    </Prose>
+    <Example source={'
+      <div class="w-full border border-dashed rounded-lg h-40 flex items-center justify-center">
+        <div class="flex flex-col items-center gap-2">
+          <Spinner size="lg"/>
+          <Text size="sm" tone="subdued" as="p">Loading content...</Text>
+        </div>
+      </div>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use <code>size="sm"</code> when placing a spinner inside a button or inline text.</li>
+          <li>Add a short text label near the spinner when the context isn't obvious.</li>
+          <li>Disable interactive elements while their spinner is active to prevent double-submission.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Show multiple spinners in the same view — one loading indicator per region is enough.</li>
+          <li>Use a spinner for operations that complete instantly — the flash of a spinner is worse than no indicator.</li>
+          <li>Leave a spinner visible indefinitely — add a timeout or error state for failed loads.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">size</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2 font-mono text-xs">sm, md, lg</td>
+          <td class="px-4 py-2 font-mono text-xs">md</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">tone</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2 font-mono text-xs">primary, secondary, accent</td>
+          <td class="px-4 py-2 font-mono text-xs">primary</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">kind</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2 font-mono text-xs">notch, dots</td>
+          <td class="px-4 py-2 font-mono text-xs">notch</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

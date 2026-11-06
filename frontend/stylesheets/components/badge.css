@@ -1,0 +1,95 @@
+@layer components {
+  .Orbital-Badge {
+    @apply inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium;
+    @apply transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+
+  .Orbital-Badge[data-variant="default"] {
+    @apply border-transparent bg-primary text-primary-foreground hover:bg-primary/80;
+  }
+
+  .Orbital-Badge[data-variant="secondary"] {
+    @apply border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+
+  .Orbital-Badge[data-variant="destructive"] {
+    @apply border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80;
+  }
+
+  .Orbital-Badge[data-variant="outline"] {
+    @apply text-card-foreground;
+  }
+
+  .Orbital-Badge[data-variant="ghost"] {
+    @apply border-transparent bg-transparent hover:bg-accent hover:text-accent-foreground;
+  }
+
+  .Orbital-Badge-Dot {
+    @apply inline-block w-2 h-2 rounded-full ml-1.5;
+  }
+
+  .Orbital-Badge > .Orbital-Icon {
+    @apply -ml-0.5 mr-1;
+  }
+
+  .Orbital-Badge-Dot[data-tone="default"] {
+    background-color: currentColor;
+  }
+
+  .Orbital-Badge-Dot[data-tone="success"] {
+    @apply bg-tone-success;
+  }
+
+  .Orbital-Badge-Dot[data-tone="warning"] {
+    @apply bg-tone-warning;
+  }
+
+  .Orbital-Badge-Dot[data-tone="danger"] {
+    @apply bg-tone-danger;
+  }
+
+  .Orbital-Badge-Dot[data-tone="info"] {
+    @apply bg-tone-info;
+  }
+
+  .Orbital-Badge-Dot[data-tone="subdued"] {
+    @apply bg-muted-foreground;
+  }
+
+  /* Filled badges invert the background — dots need the opposite theme's tones */
+  :is(.Orbital-Badge[data-variant="default"], .Orbital-Badge[data-variant="destructive"]) {
+    & .Orbital-Badge-Dot[data-tone="success"] {
+      background-color: #22c55e;
+    }
+    & .Orbital-Badge-Dot[data-tone="warning"] {
+      background-color: #eab308;
+    }
+    & .Orbital-Badge-Dot[data-tone="danger"] {
+      background-color: #ef4444;
+    }
+    & .Orbital-Badge-Dot[data-tone="info"] {
+      background-color: #6db3ff;
+    }
+    & .Orbital-Badge-Dot[data-tone="subdued"] {
+      background-color: #a1a1aa;
+    }
+  }
+
+  .dark :is(.Orbital-Badge[data-variant="default"], .Orbital-Badge[data-variant="destructive"]) {
+    & .Orbital-Badge-Dot[data-tone="success"] {
+      background-color: #16a34a;
+    }
+    & .Orbital-Badge-Dot[data-tone="warning"] {
+      background-color: #ca8a04;
+    }
+    & .Orbital-Badge-Dot[data-tone="danger"] {
+      background-color: #dc2626;
+    }
+    & .Orbital-Badge-Dot[data-tone="info"] {
+      background-color: #2b7fff;
+    }
+    & .Orbital-Badge-Dot[data-tone="subdued"] {
+      background-color: #71717a;
+    }
+  }
+}

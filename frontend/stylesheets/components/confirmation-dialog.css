@@ -1,0 +1,25 @@
+@layer components {
+  /* Confirmation dialog styles */
+  .Orbital-ConfirmationDialog-Spinner {
+    @apply inline-flex mr-2;
+  }
+
+  /* Loading state for submit button */
+  .Orbital-Button[disabled] {
+    @apply opacity-70 cursor-not-allowed;
+  }
+
+  /* Spinner animation */
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+}

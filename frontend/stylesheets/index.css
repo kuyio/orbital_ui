@@ -1,0 +1,110 @@
+/* Scan only the gem, so the docs in test/dummy stay out of the shipped CSS. */
+@import "tailwindcss" source(none);
+
+/* Import component styles */
+@import "./components/accordion.css";
+@import "./components/avatar.css";
+@import "./components/badge.css";
+@import "./components/button.css";
+@import "./components/button-group.css";
+@import "./components/card.css";
+@import "./components/checkbox.css";
+@import "./components/expander.css";
+@import "./components/grid.css";
+@import "./components/heading.css";
+@import "./components/icon.css";
+@import "./components/image.css";
+@import "./components/spinner.css";
+@import "./components/kbd.css";
+@import "./components/navigation-menu.css";
+@import "./components/progress.css";
+@import "./components/prose.css";
+@import "./components/separator.css";
+@import "./components/stack.css";
+@import "./components/inline-stack.css";
+@import "./components/text.css";
+@import "./components/text-field.css";
+@import "./components/typography.css";
+
+/* Dialog components */
+@import "./components/alert.css";
+@import "./components/confirmation-dialog.css";
+@import "./components/delete-dialog.css";
+@import "./components/dialog.css";
+@import "./components/modal.css";
+
+/* Popover components */
+@import "./components/popover.css";
+@import "./components/dropdown.css";
+@import "./components/menu.css";
+@import "./components/tooltip.css";
+@import "./components/popcard.css";
+@import "./components/select.css";
+
+/* Theme: default values, dark mode, and Tailwind @theme integration.
+   Shipped as orbital_ui/theme.css for host apps to import directly. */
+@import "../../app/assets/stylesheets/orbital_ui/theme.css";
+
+@source "../../app/components";
+@source "../../lib";
+@source "../javascript";
+
+/* Typography scales (used by component @apply rules) */
+@theme {
+  --text-body-xs: 11px;
+  --text-body-xs--line-height: 16px;
+  --text-body-sm: 12px;
+  --text-body-sm--line-height: 16px;
+  --text-body-md: 14px;
+  --text-body-md--line-height: 20px;
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 24px;
+  --text-body-xl: 18px;
+  --text-body-xl--line-height: 28px;
+
+  --text-heading-xs: 12px;
+  --text-heading-xs--line-height: 16px;
+  --text-heading-sm: 14px;
+  --text-heading-sm--line-height: 20px;
+  --text-heading-md: 16px;
+  --text-heading-md--line-height: 24px;
+  --text-heading-lg: 18px;
+  --text-heading-lg--line-height: 24px;
+  --text-heading-xl: 20px;
+  --text-heading-xl--line-height: 28px;
+  --text-heading-2xl: 24px;
+  --text-heading-2xl--line-height: 32px;
+  --text-heading-3xl: 30px;
+  --text-heading-3xl--line-height: 36px;
+  --text-heading-4xl: 36px;
+  --text-heading-4xl--line-height: 40px;
+}
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted) transparent;
+  }
+
+  *:hover {
+    scrollbar-color: var(--muted-foreground) transparent;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  html :where(*, ::after, ::before) {
+    border-color: var(--color-border);
+    border-style: solid;
+    border-width: 0;
+  }
+
+  input {
+    transition-property:
+      color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+}

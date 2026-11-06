@@ -1,0 +1,130 @@
+@layer components {
+  .Orbital-InlineStack {
+    @apply flex flex-row;
+  }
+
+  /* Gap scale — store as custom property, apply as gap */
+  .Orbital-InlineStack[data-gap="0"] {
+    --inline-stack-gap: 0px;
+  }
+  .Orbital-InlineStack[data-gap="0.5"] {
+    --inline-stack-gap: 0.125rem;
+  }
+  .Orbital-InlineStack[data-gap="1"] {
+    --inline-stack-gap: 0.25rem;
+  }
+  .Orbital-InlineStack[data-gap="1.5"] {
+    --inline-stack-gap: 0.375rem;
+  }
+  .Orbital-InlineStack[data-gap="2"] {
+    --inline-stack-gap: 0.5rem;
+  }
+  .Orbital-InlineStack[data-gap="3"] {
+    --inline-stack-gap: 0.75rem;
+  }
+  .Orbital-InlineStack[data-gap="4"] {
+    --inline-stack-gap: 1rem;
+  }
+  .Orbital-InlineStack[data-gap="5"] {
+    --inline-stack-gap: 1.25rem;
+  }
+  .Orbital-InlineStack[data-gap="6"] {
+    --inline-stack-gap: 1.5rem;
+  }
+  .Orbital-InlineStack[data-gap="8"] {
+    --inline-stack-gap: 2rem;
+  }
+  .Orbital-InlineStack[data-gap="10"] {
+    --inline-stack-gap: 2.5rem;
+  }
+  .Orbital-InlineStack[data-gap="12"] {
+    --inline-stack-gap: 3rem;
+  }
+  .Orbital-InlineStack[data-gap="16"] {
+    --inline-stack-gap: 4rem;
+  }
+
+  .Orbital-InlineStack {
+    gap: var(--inline-stack-gap, 1rem);
+  }
+
+  /* Align (cross-axis) */
+  .Orbital-InlineStack[data-align="start"] {
+    @apply items-start;
+  }
+  .Orbital-InlineStack[data-align="center"] {
+    @apply items-center;
+  }
+  .Orbital-InlineStack[data-align="end"] {
+    @apply items-end;
+  }
+  .Orbital-InlineStack[data-align="stretch"] {
+    @apply items-stretch;
+  }
+
+  /* Justify (main-axis) */
+  .Orbital-InlineStack[data-justify="start"] {
+    @apply justify-start;
+  }
+  .Orbital-InlineStack[data-justify="center"] {
+    @apply justify-center;
+  }
+  .Orbital-InlineStack[data-justify="end"] {
+    @apply justify-end;
+  }
+  .Orbital-InlineStack[data-justify="between"] {
+    @apply justify-between;
+  }
+  .Orbital-InlineStack[data-justify="around"] {
+    @apply justify-around;
+  }
+  .Orbital-InlineStack[data-justify="evenly"] {
+    @apply justify-evenly;
+  }
+
+  /* Padding — same scale as gap */
+  .Orbital-InlineStack[data-padding="0.5"] {
+    @apply p-0.5;
+  }
+  .Orbital-InlineStack[data-padding="1"] {
+    @apply p-1;
+  }
+  .Orbital-InlineStack[data-padding="1.5"] {
+    @apply p-1.5;
+  }
+  .Orbital-InlineStack[data-padding="2"] {
+    @apply p-2;
+  }
+  .Orbital-InlineStack[data-padding="3"] {
+    @apply p-3;
+  }
+  .Orbital-InlineStack[data-padding="4"] {
+    @apply p-4;
+  }
+  .Orbital-InlineStack[data-padding="5"] {
+    @apply p-5;
+  }
+  .Orbital-InlineStack[data-padding="6"] {
+    @apply p-6;
+  }
+  .Orbital-InlineStack[data-padding="8"] {
+    @apply p-8;
+  }
+  .Orbital-InlineStack[data-padding="10"] {
+    @apply p-10;
+  }
+  .Orbital-InlineStack[data-padding="12"] {
+    @apply p-12;
+  }
+  .Orbital-InlineStack[data-padding="16"] {
+    @apply p-16;
+  }
+
+  /* Wrap */
+  .Orbital-InlineStack[data-wrap] {
+    @apply flex-wrap;
+  }
+  .Orbital-InlineStack[data-wrap="reverse"] {
+    @apply flex-wrap-reverse;
+  }
+}

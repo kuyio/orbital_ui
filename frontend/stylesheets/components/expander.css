@@ -1,0 +1,10 @@
+.Orbital-Expander {
+  content: "";
+  flex-grow: 1;
+  width: 100%;
+}
+
+.Orbital-Expander--vertical {
+  height: 100%;
+  flex-grow: 1;
+}

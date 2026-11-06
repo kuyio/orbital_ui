@@ -1,0 +1,335 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">InlineStack</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A horizontal flex container for laying out children in a row with consistent spacing, alignment, and optional wrapping.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <InlineStack gap="2" align="center">
+      <Button>Save</Button>
+      <Button variant="outline">Cancel</Button>
+    </InlineStack>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<InlineStack gap=\"2\" align=\"center\">\n  <Button>Save</Button>\n  <Button variant=\"outline\">Cancel</Button>\n</InlineStack>\n\n<InlineStack justify=\"between\">\n  <Text as=\"span\">Label</Text>\n  <Text as=\"span\">Value</Text>\n</InlineStack>\n\n<InlineStack gap=\"3\" wrap>\n  <Badge>React</Badge>\n  <Badge>Ruby</Badge>\n  <Badge>Tailwind</Badge>\n</InlineStack>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      InlineStack renders a horizontal flex container with a configurable gap between children.
+      It replaces the common <code>flex items-center gap-*</code> pattern with a semantic
+      component. Use <code>align</code> for cross-axis alignment, <code>justify</code>
+      for main-axis distribution, and <code>wrap</code> to allow children to flow onto
+      multiple lines.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use InlineStack any time you need to arrange elements horizontally with consistent spacing —
+      button groups, icon rows, tag lists, navigation items, or any horizontal grouping.
+    </p>
+    <p>
+      If you need a vertical layout, use <code>Stack</code>. If you need a grid
+      layout with rows and columns, use CSS grid directly.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      InlineStack renders a <code>&lt;div&gt;</code> with <code>display: flex</code> and
+      <code>flex-direction: row</code>. Spacing is applied via the CSS <code>gap</code>
+      property. When <code>wrap</code> is enabled, children flow onto additional lines
+      when the container runs out of horizontal space.
+    </p>
+    <p>
+      All extra HTML attributes — <code>class</code>, <code>id</code>, <code>data-*</code>,
+      <code>aria-*</code> — are forwarded to the root element. Custom classes are merged
+      with the component class, not replaced.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Gap Sizes</Heading>
+    <Prose class="mb-4">
+      <p>Control spacing between children with the <code>gap</code> prop using
+        Tailwind's spacing scale.</p>
+    </Prose>
+    <Example source={'
+      <Stack gap="6">
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">gap="1"</Text>
+          <InlineStack gap="1" class="border rounded-lg p-3">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+          </InlineStack>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">gap="4"</Text>
+          <InlineStack gap="4" class="border rounded-lg p-3">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+          </InlineStack>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">gap="8"</Text>
+          <InlineStack gap="8" class="border rounded-lg p-3">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+          </InlineStack>
+        </div>
+      </Stack>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Alignment</Heading>
+    <Prose class="mb-4">
+      <p>Use <code>align</code> to control cross-axis (vertical) alignment of children.</p>
+    </Prose>
+    <Example source={'
+      <Stack gap="6">
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">align="start"</Text>
+          <InlineStack gap="2" align="start" class="border rounded-lg p-3">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs flex items-center">Short</div>
+            <div class="bg-primary/10 rounded px-3 py-3 text-xs flex items-center">Tall</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs flex items-center">Short</div>
+          </InlineStack>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">align="center"</Text>
+          <InlineStack gap="2" align="center" class="border rounded-lg p-3">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs flex items-center">Short</div>
+            <div class="bg-primary/10 rounded px-3 py-3 text-xs flex items-center">Tall</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs flex items-center">Short</div>
+          </InlineStack>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">align="stretch"</Text>
+          <InlineStack gap="2" align="stretch" class="border rounded-lg p-3">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs flex items-center">Short</div>
+            <div class="bg-primary/10 rounded px-3 py-3 text-xs flex items-center">Tall</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs flex items-center">Short</div>
+          </InlineStack>
+        </div>
+      </Stack>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Justify</Heading>
+    <Prose class="mb-4">
+      <p>Use <code>justify</code> to distribute children along the main (horizontal) axis.</p>
+    </Prose>
+    <Example source={'
+      <Stack gap="6">
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">justify="start"</Text>
+          <InlineStack gap="2" justify="start" class="border rounded-lg p-3">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">A</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">B</div>
+          </InlineStack>
+        </div>
+        <div class="w-54">
+          <Text size="xs" tone="subdued" as="div" class="mb-2">justify="center"</Text>
+          <InlineStack gap="2" justify="center" class="border rounded-lg p-3">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">A</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">B</div>
+          </InlineStack>
+        </div>
+        <div class="w-54">
+          <Text size="xs" tone="subdued" as="div" class="mb-2">justify="between"</Text>
+          <InlineStack gap="2" justify="between" class="border rounded-lg p-3">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">A</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">B</div>
+          </InlineStack>
+        </div>
+        <div class="w-54">
+          <Text size="xs" tone="subdued" as="div" class="mb-2">justify="end"</Text>
+          <InlineStack gap="2" justify="end" class="border rounded-lg p-3">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">A</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">B</div>
+          </InlineStack>
+        </div>
+      </Stack>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Wrap</Heading>
+    <Prose class="mb-4">
+      <p>Enable <code>wrap</code> to let children flow onto multiple lines when the
+        container runs out of space. Use <code>wrap="reverse"</code> for reverse wrapping.</p>
+    </Prose>
+    <Example source={'
+      <Stack gap="6">
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">wrap</Text>
+          <InlineStack gap="2" wrap class="border rounded-lg p-3 max-w-xs">
+            <Badge>React</Badge>
+            <Badge>Ruby on Rails</Badge>
+            <Badge>Tailwind CSS</Badge>
+            <Badge>Stimulus</Badge>
+            <Badge>PostgreSQL</Badge>
+            <Badge>Redis</Badge>
+          </InlineStack>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">wrap="reverse"</Text>
+          <InlineStack gap="2" wrap="reverse" class="border rounded-lg p-3 max-w-xs">
+            <Badge>React</Badge>
+            <Badge>Ruby on Rails</Badge>
+            <Badge>Tailwind CSS</Badge>
+            <Badge>Stimulus</Badge>
+            <Badge>PostgreSQL</Badge>
+            <Badge>Redis</Badge>
+          </InlineStack>
+        </div>
+      </Stack>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">With Padding</Heading>
+    <Prose class="mb-4">
+      <p>Use <code>padding</code> to add internal spacing to the container.</p>
+    </Prose>
+    <Example source={'
+      <InlineStack gap="2" align="center" padding="4" class="border rounded-lg bg-card">
+        <Avatar initials="JD" size="sm"/>
+        <div>
+          <Text size="sm" weight="medium" as="div">Jane Doe</Text>
+          <Text size="xs" tone="subdued" as="div">jane@example.com</Text>
+        </div>
+      </InlineStack>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Composing with Stack</Heading>
+    <Prose class="mb-4">
+      <p>Stack handles vertical flow, InlineStack handles horizontal flow.
+        Together they replace nested flex divs with readable, semantic markup.</p>
+    </Prose>
+    <Example source={'
+      <Stack gap="4" class="border rounded-lg p-4 max-w-md">
+        <InlineStack gap="3" align="center">
+          <Avatar initials="JD" size="sm"/>
+          <Stack gap="0">
+            <Text size="sm" weight="medium" as="div">Jane Doe</Text>
+            <Text size="xs" tone="subdued" as="div">Product Designer</Text>
+          </Stack>
+        </InlineStack>
+        <Separator/>
+        <Stack gap="2">
+          <Text size="sm" as="div">Shared a new design file with the team.</Text>
+          <InlineStack gap="2" justify="between" align="center">
+            <Text size="xs" tone="subdued" as="span">2 minutes ago</Text>
+            <InlineStack gap="2">
+              <Button size="sm" variant="outline">Dismiss</Button>
+              <Button size="sm">View</Button>
+            </InlineStack>
+          </InlineStack>
+        </Stack>
+      </Stack>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use InlineStack instead of <code>flex items-center gap-*</code> divs.</li>
+          <li>Use <code>wrap</code> for tag lists and badge groups that may overflow.</li>
+          <li>Combine with <code>Stack</code> for full page layouts.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Nest InlineStacks unnecessarily — a single one with the right gap is usually enough.</li>
+          <li>Use InlineStack for vertical layouts — use <code>Stack</code> instead.</li>
+          <li>Use InlineStack as a grid replacement — use CSS grid for two-dimensional layouts.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">gap</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2 font-mono text-xs">0, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10, 12, 16</td>
+          <td class="px-4 py-2 font-mono text-xs">"4"</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">align</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">start, center, end, stretch</td>
+          <td class="px-4 py-2 font-mono text-xs">stretch</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">justify</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">start, center, end, between, around, evenly</td>
+          <td class="px-4 py-2 font-mono text-xs">start</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">padding</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2 font-mono text-xs">0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10, 12, 16</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">wrap</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2 font-mono text-xs">(bare), "reverse"</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

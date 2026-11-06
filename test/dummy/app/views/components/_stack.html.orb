@@ -1,0 +1,298 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Stack</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A vertical flex container for stacking children with consistent spacing, alignment, and optional dividers.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <Stack gap="4">
+      <TextField label="Email" placeholder="you@example.com"/>
+      <TextField label="Password" placeholder="••••••••"/>
+      <Button>Sign in</Button>
+    </Stack>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Stack gap=\"4\">\n  <TextField label=\"Email\"/>\n  <TextField label=\"Password\"/>\n  <Button>Submit</Button>\n</Stack>\n\n<Stack gap=\"2\" align=\"center\">\n  <Heading size=\"lg\" as=\"h2\">Title</Heading>\n  <Text tone=\"subdued\" as=\"p\">Subtitle</Text>\n</Stack>\n\n<Stack gap=\"4\" justify=\"between\" class=\"h-full\">\n  <div>Main content</div>\n  <Button>Action</Button>\n</Stack>\n\n<Stack gap=\"4\" dividers>\n  <div>Item one</div>\n  <div>Item two</div>\n  <div>Item three</div>\n</Stack>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Stack renders a vertical flex container with a configurable gap between children.
+      It replaces the common <code>flex flex-col gap-*</code> pattern with a semantic
+      component. Use <code>align</code> for cross-axis alignment, <code>justify</code>
+      for main-axis distribution, and <code>dividers</code> to add separator lines
+      between children.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use Stack any time you need to arrange elements vertically with consistent spacing —
+      form fields, card bodies, page sections, settings lists, or any vertical grouping.
+    </p>
+    <p>
+      If you need a horizontal layout, use a standard flex row for now. If you need a grid
+      layout with rows and columns, use CSS grid directly.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      Stack renders a <code>&lt;div&gt;</code> with <code>display: flex</code> and
+      <code>flex-direction: column</code>. Spacing is applied via the CSS <code>gap</code>
+      property. When <code>dividers</code> is enabled, a border is rendered between each
+      child using CSS <code>divide-y</code>.
+    </p>
+    <p>
+      All extra HTML attributes — <code>class</code>, <code>id</code>, <code>data-*</code>,
+      <code>aria-*</code> — are forwarded to the root element. Custom classes are merged
+      with the component class, not replaced.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Gap Sizes</Heading>
+    <Prose class="mb-4">
+      <p>Control spacing between children with the <code>gap</code> prop using
+        Tailwind's spacing scale.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex gap-8">
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">gap="1"</Text>
+          <Stack gap="1" class="border rounded-lg p-3">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+          </Stack>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">gap="4"</Text>
+          <Stack gap="4" class="border rounded-lg p-3">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+          </Stack>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">gap="8"</Text>
+          <Stack gap="8" class="border rounded-lg p-3">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Item</div>
+          </Stack>
+        </div>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Alignment</Heading>
+    <Prose class="mb-4">
+      <p>Use <code>align</code> to control cross-axis alignment of children.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex gap-8">
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">align="start"</Text>
+          <Stack gap="2" align="start" class="border rounded-lg p-3 w-48">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Short</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Longer item</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Med</div>
+          </Stack>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">align="center"</Text>
+          <Stack gap="2" align="center" class="border rounded-lg p-3 w-48">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Short</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Longer item</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Med</div>
+          </Stack>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">align="end"</Text>
+          <Stack gap="2" align="end" class="border rounded-lg p-3 w-48">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Short</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Longer item</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">Med</div>
+          </Stack>
+        </div>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Justify</Heading>
+    <Prose class="mb-4">
+      <p>Use <code>justify</code> to distribute children along the main axis.
+        Useful with a fixed-height container.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex gap-8">
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">justify="start"</Text>
+          <Stack gap="2" justify="start" class="border rounded-lg p-3 w-32 h-48">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">A</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">B</div>
+          </Stack>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">justify="center"</Text>
+          <Stack gap="2" justify="center" class="border rounded-lg p-3 w-32 h-48">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">A</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">B</div>
+          </Stack>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">justify="between"</Text>
+          <Stack gap="2" justify="between" class="border rounded-lg p-3 w-32 h-48">
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">A</div>
+            <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">B</div>
+          </Stack>
+        </div>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Dividers</Heading>
+    <Prose class="mb-4">
+      <p>Enable <code>dividers</code> to render separator lines between each child.
+        Replaces the <code>divide-y</code> pattern used for option lists and settings.</p>
+    </Prose>
+    <Example source={'
+      <Stack gap="4" dividers class="w-full max-w-sm">
+        <div class="flex items-center justify-between py-1">
+          <div>
+            <Text size="sm" weight="medium" as="div">Transaction alerts</Text>
+            <Text size="xs" tone="subdued" as="div">Deposits, withdrawals, and transfers</Text>
+          </div>
+          <CheckBox checked={true}/>
+        </div>
+        <div class="flex items-center justify-between py-1">
+          <div>
+            <Text size="sm" weight="medium" as="div">Security alerts</Text>
+            <Text size="xs" tone="subdued" as="div">Login attempts and password changes</Text>
+          </div>
+          <CheckBox checked={true}/>
+        </div>
+        <div class="flex items-center justify-between py-1">
+          <div>
+            <Text size="sm" weight="medium" as="div">Marketing</Text>
+            <Text size="xs" tone="subdued" as="div">Product updates and promotions</Text>
+          </div>
+          <CheckBox/>
+        </div>
+      </Stack>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">With Padding</Heading>
+    <Prose class="mb-4">
+      <p>Use <code>padding</code> to add internal spacing to the container.</p>
+    </Prose>
+    <Example source={'
+      <Stack gap=3 padding=16 class="border rounded-lg bg-card w-full max-w-xs">
+        <Heading size="sm" as="h3">Account Settings</Heading>
+        <TextField label="Display name" placeholder="Your name"/>
+        <TextField label="Email" placeholder="you@example.com"/>
+        <Button>Save changes</Button>
+      </Stack>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use Stack instead of <code>flex flex-col gap-*</code> divs.</li>
+          <li>Use <code>dividers</code> for settings lists and option groups.</li>
+          <li>Combine with <code>Card</code> for padded, bordered content sections.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Nest Stacks unnecessarily — a single Stack with the right gap is usually enough.</li>
+          <li>Use Stack for horizontal layouts — use a flex row instead.</li>
+          <li>Set both <code>dividers</code> and very small gaps — the divider lines need space to be visible.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">gap</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2 font-mono text-xs">0, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10, 12, 16</td>
+          <td class="px-4 py-2 font-mono text-xs">"4"</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">align</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">start, center, end, stretch</td>
+          <td class="px-4 py-2 font-mono text-xs">stretch</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">justify</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">start, center, end, between, around, evenly</td>
+          <td class="px-4 py-2 font-mono text-xs">start</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">padding</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2 font-mono text-xs">0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10, 12, 16</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">dividers</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

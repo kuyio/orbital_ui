@@ -1,0 +1,45 @@
+@layer components {
+  .Orbital-Icon {
+    @apply flex items-center justify-center;
+  }
+
+  .Orbital-Icon[data-size="xs"] {
+    @apply h-4 w-4;
+  }
+
+  .Orbital-Icon[data-size="xs"] > * {
+    @apply h-2 w-2;
+  }
+
+  .Orbital-Icon[data-size="sm"] {
+    @apply h-4 w-4;
+  }
+
+  .Orbital-Icon[data-size="sm"] > * {
+    @apply h-3 w-3;
+  }
+
+  .Orbital-Icon[data-size="md"] {
+    @apply h-5 w-5;
+  }
+
+  .Orbital-Icon[data-size="md"] > * {
+    @apply h-4 w-4;
+  }
+
+  .Orbital-Icon[data-size="lg"] {
+    @apply h-7 w-7;
+  }
+
+  .Orbital-Icon[data-size="lg"] > * {
+    @apply h-6 w-6;
+  }
+
+  .Orbital-Icon[data-size="xl"] {
+    @apply h-9 w-9;
+  }
+
+  .Orbital-Icon[data-size="xl"] > * {
+    @apply h-8 w-8;
+  }
+}

@@ -1,0 +1,213 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Navigation Menu</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A horizontal navigation bar for top-level page links. Renders as a semantic
+    <code class="text-xs bg-muted px-1 py-0.5 rounded">&lt;nav&gt;</code> element.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example resizable source={'
+    <NavigationMenu class="h-10">
+      <NavigationMenu:Brand>
+        <div class="flex items-center gap-1 mr-2">
+          <Icon name="rocket" size="md"/>
+          <Heading size="lg" as="span">Acme</Heading>
+        </div>
+      </NavigationMenu:Brand>
+      <NavigationMenu:Mobile>
+        <Menu>
+          <Menu:Item url="/" icon="house">Home</Menu:Item>
+          <Menu:Separator/>
+          <Menu:Item url="/products/analytics" icon="chart-bar">Analytics</Menu:Item>
+          <Menu:Item url="/products/automation" icon="bot">Automation</Menu:Item>
+          <Menu:Item url="/products/security" icon="shield">Security</Menu:Item>
+          <Menu:Separator/>
+          <Menu:Item url="/pricing" icon="tag">Pricing</Menu:Item>
+          <Menu:Item url="/docs" icon="book-open">Docs</Menu:Item>
+          <Menu:Separator/>
+          <Menu:Item url="https://github.com" icon="github">GitHub</Menu:Item>
+          <Menu:Item url="/sign-in" icon="log-in">Sign In</Menu:Item>
+        </Menu>
+      </NavigationMenu:Mobile>
+      <Button url="/" variant="ghost">Home</Button>
+      <Dropdown label="Products" variant="ghost">
+        <Menu>
+          <Menu:Item url="/products/analytics" icon="chart-bar">Analytics</Menu:Item>
+          <Menu:Item url="/products/automation" icon="bot">Automation</Menu:Item>
+          <Menu:Item url="/products/security" icon="shield">Security</Menu:Item>
+        </Menu>
+      </Dropdown>
+      <Button url="/pricing" variant="ghost">Pricing</Button>
+      <Button url="/docs" variant="ghost">Docs</Button>
+      <Expander/>
+      <Button url="https://github.com" variant="secondary" size="icon">
+        <Icon name="github"/>
+      </Button>
+      <Button url="/sign-in">Sign In</Button>
+    </NavigationMenu>
+  '} align="start"/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<NavigationMenu>\n  <NavigationMenu:Brand>\n    <Icon name=\"rocket\" size=\"md\"/>\n    <Heading size=\"lg\" as=\"span\">Acme</Heading>\n  </NavigationMenu:Brand>\n  <Button url=\"/\" variant=\"ghost\">Home</Button>\n  <Button url=\"/docs\" variant=\"ghost\">Docs</Button>\n</NavigationMenu>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      NavigationMenu renders a semantic <code>&lt;nav&gt;</code> with horizontal flex layout.
+      Use the <code>Brand</code> slot for a logo that stays visible at all screen sizes. Place
+      <a href="/components/button">Button</a> components as links — the <code>ghost</code>
+      variant gives a clean, text-like appearance.
+    </p>
+  </Prose>
+  <div class="border rounded-lg bg-muted/50 overflow-hidden mt-4">
+    <CodeBlock code={"NavigationMenu\n├── NavigationMenu:Brand   (always visible — logo, wordmark)\n├── NavigationMenu:Mobile  (optional — hamburger menu content)\n├── (default content)      (desktop nav items)\n│   ├── Button / Dropdown / Expander / Separator\n│   └── ... \n└── [auto] Hamburger toggle (appears when Mobile slot is provided)"}/>
+  </div>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use NavigationMenu for the primary horizontal navigation of your application — typically
+      placed in the header alongside a logo. It provides semantic <code>&lt;nav&gt;</code>
+      markup that screen readers and search engines use to identify navigation landmarks.
+    </p>
+    <p>
+      For vertical navigation in sidebars, use a plain list of links or a
+      <a href="/components/menu">Menu</a> component. For action lists that appear in popovers,
+      use a <a href="/components/dropdown">Dropdown</a> with a Menu.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      The component uses CSS container queries to switch between desktop and mobile layouts.
+      When the nav container is wider than 768px, the default content renders as a horizontal
+      flex bar. When narrower, the content hides and a hamburger toggle appears.
+    </p>
+    <p>
+      The <code>Brand</code> slot renders outside the collapsible area — it stays visible at
+      all sizes. The <code>Mobile</code> slot defines what appears in the hamburger popover.
+      If no Mobile slot is provided, no hamburger renders and the nav is desktop-only.
+    </p>
+    <p>
+      The mobile popover uses the native Popover API and CSS anchor positioning to attach
+      itself to the hamburger button. Clicking outside or pressing Escape closes it.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">With Active State</Heading>
+    <Prose class="mb-4">
+      <p>Highlight the current page by using the <code>secondary</code> variant on the active
+        link while keeping the rest as <code>ghost</code>.</p>
+    </Prose>
+    <Example source={'
+      <NavigationMenu>
+        <Button url="/" variant="ghost">Home</Button>
+        <Button url="/components" variant="secondary">Components</Button>
+        <Button url="/blocks" variant="ghost">Blocks</Button>
+        <Button url="/themes" variant="ghost">Themes</Button>
+      </NavigationMenu>
+    '} align="start"/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">With Icons</Heading>
+    <Prose class="mb-4">
+      <p>Add icons to navigation links for extra visual cues, especially useful when the
+        navigation doubles as a dashboard sidebar on wider screens.</p>
+    </Prose>
+    <Example source={'
+      <NavigationMenu>
+        <Button url="/" variant="ghost"><Icon name="house" size="sm"/> Home</Button>
+        <Button url="/components" variant="ghost"><Icon name="box" size="sm"/> Components</Button>
+        <Button url="/blocks" variant="ghost"><Icon name="layout-grid" size="sm"/> Blocks</Button>
+        <Button url="/themes" variant="ghost"><Icon name="palette" size="sm"/> Themes</Button>
+      </NavigationMenu>
+    '} align="start"/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Mobile Menu</Heading>
+    <Prose class="mb-4">
+      <p>Provide a <code>NavigationMenu:Mobile</code> slot with a <a href="/components/menu">Menu</a>
+        to get an automatic hamburger button on narrow screens. The mobile menu is completely
+        independent from the desktop nav — you control exactly what appears in each.</p>
+    </Prose>
+    <div class="border rounded-lg bg-card overflow-hidden">
+      <CodeBlock code={"<NavigationMenu>\n  <NavigationMenu:Brand>\n    <Icon name=\"rocket\" size=\"md\"/>\n    <Heading size=\"lg\" as=\"span\">Acme</Heading>\n  </NavigationMenu:Brand>\n\n  <NavigationMenu:Mobile>\n    <Menu>\n      <Menu:Item url=\"/\" icon=\"house\">Home</Menu:Item>\n      <Menu:Item url=\"/docs\" icon=\"book-open\">Docs</Menu:Item>\n      <Menu:Separator/>\n      <Menu:Item url=\"/sign-in\" icon=\"log-in\">Sign In</Menu:Item>\n    </Menu>\n  </NavigationMenu:Mobile>\n\n  <Button url=\"/\" variant=\"ghost\">Home</Button>\n  <Button url=\"/docs\" variant=\"ghost\">Docs</Button>\n  <Expander/>\n  <Button url=\"/sign-in\" variant=\"outline\">Sign In</Button>\n</NavigationMenu>"}/>
+    </div>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Keep navigation items to five or fewer for scannability.</li>
+          <li>Use short, descriptive labels — one or two words per link.</li>
+          <li>Visually indicate the current page with a different variant.</li>
+          <li>Provide a mobile alternative since the component hides on small screens.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Use NavigationMenu for vertical sidebar navigation.</li>
+          <li>Put more than one NavigationMenu on a page — one primary nav is enough.</li>
+          <li>Mix action buttons (submit, delete) with navigation links.</li>
+          <li>Rely solely on icons without labels — text labels are essential for clarity.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Slot</th>
+          <th class="text-left px-4 py-2 font-medium">Description</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">NavigationMenu:Brand</td>
+          <td class="px-4 py-2">Always-visible branding area (logo, wordmark). Renders outside the collapsible content.</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">NavigationMenu:Mobile</td>
+          <td class="px-4 py-2">Content for the hamburger popover. When provided, a hamburger toggle appears on narrow screens. Typically contains a Menu component.</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">(default content)</td>
+          <td class="px-4 py-2">Desktop navigation items. Hidden when the container is narrower than 768px. Accepts Buttons, Dropdowns, Expanders, Separators, etc.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

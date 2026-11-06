@@ -1,0 +1,216 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Heading</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A semantic heading element with configurable size, weight, alignment, and tone. Separates
+    visual size from HTML semantics so you can style independently of document outline.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <Heading size="xl" as="h2">The quick brown fox</Heading>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Heading size=\"2xl\" as=\"h1\">Page Title</Heading>\n\n<Heading size=\"lg\" as=\"h2\" tone=\"subdued\">Section heading</Heading>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      The <code>as</code> prop controls the HTML element (<code>h1</code>–<code>h6</code>,
+      <code>div</code>, <code>span</code>), while <code>size</code> controls the visual appearance.
+      This lets you maintain a correct document outline without being constrained by how each heading
+      level looks.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use Heading for all title and section heading text. It provides a consistent typographic scale
+      across the application and ensures headings share the same weight, tracking, and line-height
+      conventions.
+    </p>
+    <p>
+      For body text, labels, and descriptions, use the <a href="/components/text">Text</a> component
+      instead. Heading is designed for short, high-prominence text that introduces a section or page.
+    </p>
+    <p>
+      Always set <code>as</code> to a semantically appropriate element. Screen readers and search
+      engines rely on heading levels to understand page structure — a visually large heading that
+      renders as a <code>&lt;span&gt;</code> provides no structural information.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      Heading renders as an inline element (<code>&lt;span&gt;</code>) by default, making it safe
+      to use inside flex layouts, buttons, and other inline contexts without unwanted block breaks.
+      Set <code>as="h1"</code> through <code>as="h6"</code> for block-level headings with proper
+      semantics.
+    </p>
+    <p>
+      The size scale uses CSS custom properties, so the entire typographic scale can be overridden
+      by the host application's theme without touching component code.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Sizes</Heading>
+    <Prose class="mb-4">
+      <p>Eight sizes from <strong>xs</strong> (12px) to <strong>4xl</strong> (36px) cover everything
+        from small labels to hero headings.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-4 w-full">
+        <Heading size="4xl" as="div">Heading 4xl</Heading>
+        <Heading size="3xl" as="div">Heading 3xl</Heading>
+        <Heading size="2xl" as="div">Heading 2xl</Heading>
+        <Heading size="xl" as="div">Heading xl</Heading>
+        <Heading size="lg" as="div">Heading lg</Heading>
+        <Heading size="md" as="div">Heading md</Heading>
+        <Heading size="sm" as="div">Heading sm</Heading>
+        <Heading size="xs" as="div">Heading xs</Heading>
+      </div>
+    '} align="start"/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Weights</Heading>
+    <Prose class="mb-4">
+      <p>Five font weights for emphasis control. The default is <strong>semibold</strong>, which
+        works well for most heading contexts. Use <strong>light</strong> or <strong>normal</strong>
+        for subtle headings alongside heavier ones.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-3 w-full">
+        <Heading size="lg" as="div" weight="light">Light weight</Heading>
+        <Heading size="lg" as="div" weight="normal">Normal weight</Heading>
+        <Heading size="lg" as="div" weight="medium">Medium weight</Heading>
+        <Heading size="lg" as="div" weight="semibold">Semibold weight</Heading>
+        <Heading size="lg" as="div" weight="bold">Bold weight</Heading>
+      </div>
+    '} align="start"/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Tone</Heading>
+    <Prose class="mb-4">
+      <p>Use <strong>subdued</strong> for secondary headings that should recede visually, like
+        subtitles or section descriptions paired with a primary heading.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-1 w-full">
+        <Heading size="xl" as="div">Default tone</Heading>
+        <Heading size="xl" as="div" tone="subdued">Subdued tone</Heading>
+      </div>
+    '} align="start"/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Alignment</Heading>
+    <Prose class="mb-4">
+      <p>Control text alignment within the heading. Useful for hero sections, centered page titles,
+        or right-aligned headings in RTL-aware layouts.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-3 w-full">
+        <Heading size="lg" as="div" align="left">Left aligned</Heading>
+        <Heading size="lg" as="div" align="center">Center aligned</Heading>
+        <Heading size="lg" as="div" align="right">Right aligned</Heading>
+      </div>
+    '} align="start"/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Set <code>as</code> to the correct semantic heading level (h1–h6).</li>
+          <li>Use one <code>h1</code> per page, with sections using <code>h2</code> and below.</li>
+          <li>Pair a large heading with a subdued subtitle for visual hierarchy.</li>
+          <li>Keep heading text short — one line is ideal.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Skip heading levels (h1 → h3) — it breaks the document outline.</li>
+          <li>Use Heading for body text — use <a href="/components/text">Text</a> instead.</li>
+          <li>Leave <code>as</code> as the default <code>span</code> for page headings.</li>
+          <li>Use size alone to convey importance — semantics matter for accessibility.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">size</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2 font-mono text-xs">xs, sm, md, lg, xl, 2xl, 3xl, 4xl</td>
+          <td class="px-4 py-2 font-mono text-xs">md</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">weight</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">light, normal, medium, semibold, bold</td>
+          <td class="px-4 py-2 font-mono text-xs">semibold</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">align</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">left, center, right</td>
+          <td class="px-4 py-2 font-mono text-xs">left</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">tone</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">default, subdued</td>
+          <td class="px-4 py-2 font-mono text-xs">default</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">as</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">h1, h2, h3, h4, h5, h6, div, span</td>
+          <td class="px-4 py-2 font-mono text-xs">span</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

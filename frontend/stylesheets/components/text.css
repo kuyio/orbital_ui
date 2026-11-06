@@ -1,0 +1,43 @@
+@layer components {
+  .Orbital-Text {
+    font-size: var(--text-body-md);
+    line-height: var(--text-body-md--line-height);
+  }
+
+  .Orbital-Text .Orbital-Text {
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  .Orbital-Text[data-tone="subdued"] {
+    @apply text-muted-foreground;
+  }
+
+  .Orbital-Text[data-tone="success"] {
+    @apply text-tone-success;
+  }
+
+  .Orbital-Text[data-tone="warning"] {
+    @apply text-tone-warning;
+  }
+
+  .Orbital-Text[data-tone="danger"] {
+    @apply text-tone-danger;
+  }
+
+  .Orbital-Text[data-tone="info"] {
+    @apply text-tone-info;
+  }
+
+  .Orbital-Text[data-tone="magic"] {
+    @apply text-tone-magic;
+  }
+
+  .Orbital-Text[data-align="center"] {
+    @apply text-center;
+  }
+
+  .Orbital-Text[data-align="right"] {
+    @apply text-right;
+  }
+}

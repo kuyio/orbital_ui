@@ -1,0 +1,262 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Accordion</Heading>
+  <Text size=lg tone="subdued" as="h2">
+    A vertically stacked set of collapsible content sections, useful for organizing related information
+    into digestible chunks without overwhelming the page.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example align="start" source={'
+    <Accordion>
+      <Accordion:Item value="item-1">
+        <Item:Trigger><Icon name="accessibility"/>Is it accessible?</Item:Trigger>
+        Yes. It adheres to the WAI-ARIA design pattern.
+      </Accordion:Item>
+      <Accordion:Item value="item-2">
+        <Item:Trigger><Icon name="paintbrush"/>Is it styled?</Item:Trigger>
+        Yes. It ships with default styles using Tailwind CSS.
+      </Accordion:Item>
+      <Accordion:Item value="item-3">
+        <Item:Trigger><Icon name="clapperboard" />Is it animated?</Item:Trigger>
+        Yes. It uses CSS transitions for smooth expand and collapse.
+      </Accordion:Item>
+    </Accordion>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Accordion>\n  <Accordion:Item value=\"unique-key\">\n    <Item:Trigger>Section title</Item:Trigger>\n    Section content goes here.\n  </Accordion:Item>\n</Accordion>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      The component uses a nested slot structure. Each item requires a unique
+      <code>value</code> prop that identifies it within the accordion.
+    </p>
+  </Prose>
+  <div class="border rounded-lg bg-muted/50 overflow-hidden mt-4">
+    <CodeBlock code={"Accordion\n├── Accordion:Item\n│   ├── Item:Trigger\n│   └── (default content)\n└── Accordion:Item\n    ├── Item:Trigger\n    └── (default content)"}/>
+  </div>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Accordions work best when users need to scan multiple sections and selectively dive into one or
+      two at a time. Common use cases include FAQ pages, settings panels, and filter groups in sidebars.
+    </p>
+    <p>
+      Avoid accordions when the content is short enough to display all at once, or when users are
+      likely to need all sections open simultaneously. In those cases, plain headings with visible
+      content will reduce clicks and cognitive load.
+    </p>
+    <p>
+      For just two options that toggle between each other, consider a
+      <a href="/components/tabs">Tabs</a> component instead.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      Multiple sections can be open at the same time. Opening one section does not close others,
+      letting users compare content across sections side by side.
+    </p>
+    <p>
+      Expanding and collapsing is animated with a smooth height transition. The chevron icon rotates
+      to indicate the current state of each section.
+    </p>
+    <p>
+      The entire trigger row is clickable, not just the text. This provides a generous hit target,
+      especially on touch devices.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Default Expanded</Heading>
+    <Prose class="mb-4">
+      <p>
+        Use the <code>expanded</code> attribute to pre-open a section on page load. This is useful
+        when the first section contains the most relevant information, or when you want to hint at the
+        kind of content hidden in the other sections.
+      </p>
+    </Prose>
+    <Example align="start" source={'
+      <Accordion>
+        <Accordion:Item value="open" expanded>
+          <Item:Trigger>This section starts open</Item:Trigger>
+          Content is visible immediately without user interaction.
+        </Accordion:Item>
+        <Accordion:Item value="closed">
+          <Item:Trigger>This section starts closed</Item:Trigger>
+          Click to reveal this content.
+        </Accordion:Item>
+      </Accordion>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">With Icons</Heading>
+    <Prose class="mb-4">
+      <p>
+        Place an icon inside the trigger slot to give each section a visual anchor. Icons help users
+        scan the list faster and find the section they need without reading every label.
+      </p>
+    </Prose>
+    <Example align="start" source={'
+      <Accordion>
+        <Accordion:Item value="profile">
+          <Item:Trigger><Icon name="user"/>Profile</Item:Trigger>
+          Manage your name, avatar, and personal details.
+        </Accordion:Item>
+        <Accordion:Item value="notifications">
+          <Item:Trigger><Icon name="bell"/>Notifications</Item:Trigger>
+          Choose which events trigger email or push notifications.
+        </Accordion:Item>
+        <Accordion:Item value="security">
+          <Item:Trigger><Icon name="lock"/>Security</Item:Trigger>
+          Update your password and configure two-factor authentication.
+        </Accordion:Item>
+      </Accordion>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Rich Content</Heading>
+    <Prose class="mb-4">
+      <p>
+        Accordion content is not limited to plain text. You can nest any components inside the
+        body, including form fields, lists, or other interactive elements.
+      </p>
+    </Prose>
+    <Example align="start" source={'
+      <Accordion>
+        <Accordion:Item value="shipping" expanded>
+          <Item:Trigger><Icon name="truck"/>Shipping Information</Item:Trigger>
+          <div class="flex flex-col gap-3">
+            <TextField name="address" label="Street address" fullwidth/>
+            <div class="grid grid-cols-2 gap-3">
+              <TextField name="city" label="City" fullwidth/>
+              <TextField name="zip" label="ZIP code" fullwidth/>
+            </div>
+          </div>
+        </Accordion:Item>
+        <Accordion:Item value="billing">
+          <Item:Trigger><Icon name="credit-card"/>Billing Details</Item:Trigger>
+          <Text tone="subdued">Enter your payment information here.</Text>
+        </Accordion:Item>
+      </Accordion>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Keep trigger labels short and descriptive.</li>
+          <li>Use consistent naming patterns across sections.</li>
+          <li>Pre-expand the most important section when the page loads.</li>
+          <li>Group related items under a single accordion rather than scattering them.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Nest accordions inside other accordions.</li>
+          <li>Hide critical information that users must see to complete a task.</li>
+          <li>Use an accordion for a single item — just show the content directly.</li>
+          <li>Put entire page sections inside an accordion; use page navigation instead.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Accordion</Heading>
+  <div class="border rounded-lg overflow-hidden mb-4">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="px-4 py-2 text-muted-foreground" colspan="4">No props — accepts Accordion:Item children via slots.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Accordion:Item</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">value</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any unique string</td>
+          <td class="px-4 py-2 font-mono text-xs">required</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">expanded</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Item:Trigger</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Slot</th>
+          <th class="text-left px-4 py-2 font-medium">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Item:Trigger</td>
+          <td class="px-4 py-2">The clickable header content. Accepts text, icons, or any inline elements.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

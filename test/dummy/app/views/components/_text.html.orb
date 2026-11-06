@@ -1,0 +1,225 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Text</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A body text element with configurable size, weight, alignment, and semantic tone.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <Text as="p">The quick brown fox jumps over the lazy dog.</Text>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Text as=\"p\" size=\"lg\">Large body text.</Text>\n\n<Text tone=\"subdued\" as=\"p\">Secondary description text.</Text>\n\n<Text tone=\"danger\" weight=\"medium\">Error message</Text>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Text renders a styled inline or block text element. Use the <code>as</code> prop to choose
+      the HTML tag — <code>span</code> (default) for inline use, <code>p</code> for paragraphs,
+      <code>div</code> for block containers. Size, weight, tone, and alignment are all independent
+      and combinable.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use Text for all body copy — descriptions, labels, help text, status messages, and any
+      running text that isn't a heading. It ensures consistent sizing from the typography scale
+      and semantic tones from the color system.
+    </p>
+    <p>
+      For headings and titles, use <a href="/components/heading">Heading</a> instead — it uses
+      a separate size scale and renders heading tags (<code>h1</code>–<code>h6</code>). For
+      long-form content with mixed elements (paragraphs, lists, links), use
+      <a href="/components/prose">Prose</a> which styles standard HTML automatically.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      Text applies styles via data attributes — <code>data-tone</code> for color and
+      <code>data-align</code> for text alignment — keeping the class list minimal. The size
+      maps to the <code>text-body-*</code> scale defined in the theme, and weight maps to
+      standard Tailwind font-weight utilities.
+    </p>
+    <p>
+      The default tag is <code>span</code>, which means Text is inline by default. Set
+      <code>as="p"</code> or <code>as="div"</code> when you need block-level behaviour.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Sizes</Heading>
+    <Prose class="mb-4">
+      <p>Five sizes from the body text scale. The default is <code>md</code>.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-3">
+        <Text size="xl" as="div">Extra large text (xl)</Text>
+        <Text size="lg" as="div">Large text (lg)</Text>
+        <Text size="md" as="div">Medium text (md)</Text>
+        <Text size="sm" as="div">Small text (sm)</Text>
+        <Text size="xs" as="div">Extra small text (xs)</Text>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Tones</Heading>
+    <Prose class="mb-4">
+      <p>Semantic tones communicate meaning through color. Use <code>subdued</code> for secondary
+        information and the status tones for feedback messages.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-3">
+        <Text as="div">Default tone</Text>
+        <Text tone="subdued" as="div">Subdued tone</Text>
+        <Text tone="success" as="div">Success tone</Text>
+        <Text tone="warning" as="div">Warning tone</Text>
+        <Text tone="danger" as="div">Danger tone</Text>
+        <Text tone="info" as="div">Info tone</Text>
+        <Text tone="magic" as="div">Magic tone</Text>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Weights</Heading>
+    <Prose class="mb-4">
+      <p>Five font weights. Use <code>medium</code> or <code>semibold</code> for emphasis
+        within body text without reaching for a heading.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-3">
+        <Text as="div" weight="light">Light weight</Text>
+        <Text as="div" weight="normal">Normal weight</Text>
+        <Text as="div" weight="medium">Medium weight</Text>
+        <Text as="div" weight="semibold">Semibold weight</Text>
+        <Text as="div" weight="bold">Bold weight</Text>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Alignment</Heading>
+    <Prose class="mb-4">
+      <p>Control text alignment with the <code>align</code> prop. Works on block-level elements
+        (<code>as="p"</code> or <code>as="div"</code>).</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-3 w-full">
+        <Text as="p" align="left">Left-aligned text (default).</Text>
+        <Text as="p" align="center">Center-aligned text.</Text>
+        <Text as="p" align="right">Right-aligned text.</Text>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Combining Props</Heading>
+    <Prose class="mb-4">
+      <p>Size, weight, tone, and alignment are all independent — combine them freely.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-3">
+        <Text as="p" size="lg" weight="semibold">Large semibold intro text.</Text>
+        <Text as="p" size="sm" tone="subdued">Small subdued description for supplementary context.</Text>
+        <Text as="p" size="sm" tone="danger" weight="medium">Required field — please provide a value.</Text>
+        <Text as="p" size="xs" tone="success" weight="medium">Changes saved successfully.</Text>
+      </div>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use <code>tone="subdued"</code> for helper text, timestamps, and secondary info.</li>
+          <li>Match the <code>as</code> tag to the semantic role — <code>p</code> for paragraphs, <code>span</code> for inline labels.</li>
+          <li>Stick to one or two sizes per section to maintain visual hierarchy.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Use Text for headings — use Heading for proper document structure and accessibility.</li>
+          <li>Rely on tone alone to communicate meaning — pair colors with icons or labels for accessibility.</li>
+          <li>Mix too many sizes and weights in the same block — it creates visual noise.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">size</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">xs, sm, md, lg, xl</td>
+          <td class="px-4 py-2 font-mono text-xs">md</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">weight</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">light, normal, medium, semibold, bold</td>
+          <td class="px-4 py-2 font-mono text-xs">normal</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">align</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">left, center, right</td>
+          <td class="px-4 py-2 font-mono text-xs">left</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">tone</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">default, subdued, success, warning, danger, info, magic</td>
+          <td class="px-4 py-2 font-mono text-xs">default</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">as</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any HTML tag</td>
+          <td class="px-4 py-2 font-mono text-xs">span</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

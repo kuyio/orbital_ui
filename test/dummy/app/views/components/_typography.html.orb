@@ -1,0 +1,226 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Typography</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    Semantic typography components that map to the correct HTML elements with consistent,
+    opinionated styling for each variant.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <div class="flex flex-col gap-2">
+      <Typography variant="h2">The Joke Tax Chronicles</Typography>
+      <Typography variant="p">Once upon a time, in a far-off land, there was a very lazy king.</Typography>
+    </div>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Typography variant=\"h1\">Page Title</Typography>\n<Typography variant=\"lead\">A lead paragraph.</Typography>\n<Typography variant=\"muted\">Muted footnote text.</Typography>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Typography renders a single element with a predefined style based on its <code>variant</code>.
+      Each variant maps to a specific HTML tag and CSS treatment — <code>h1</code> renders an
+      <code>&lt;h1&gt;</code>, <code>lead</code> renders a <code>&lt;p&gt;</code> with larger
+      muted text, <code>blockquote</code> renders a <code>&lt;blockquote&gt;</code> with a left
+      border, and so on.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use Typography when you want a quick, opinionated text element with both the right HTML
+      tag and visual style chosen for you. It's ideal for content pages, marketing layouts, and
+      anywhere you want consistent typographic hierarchy without composing
+      <a href="/components/heading">Heading</a> and <a href="/components/text">Text</a> manually.
+    </p>
+    <p>
+      If you need fine-grained control over size, weight, and tone independently, use
+      <a href="/components/heading">Heading</a> and <a href="/components/text">Text</a> directly.
+      For long-form content with mixed HTML elements (paragraphs, lists, links, code), use
+      <a href="/components/prose">Prose</a> which styles children automatically.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      The <code>variant</code> prop determines both the HTML tag and the visual style. The
+      mapping is fixed:
+    </p>
+  </Prose>
+  <div class="border rounded-lg overflow-hidden mt-4">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Variant</th>
+          <th class="text-left px-4 py-2 font-medium">HTML Tag</th>
+          <th class="text-left px-4 py-2 font-medium">Description</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">h1</td>
+          <td class="px-4 py-2 font-mono text-xs">&lt;h1&gt;</td>
+          <td class="px-4 py-2">Page title — largest heading</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">h2</td>
+          <td class="px-4 py-2 font-mono text-xs">&lt;h2&gt;</td>
+          <td class="px-4 py-2">Section heading</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">h3</td>
+          <td class="px-4 py-2 font-mono text-xs">&lt;h3&gt;</td>
+          <td class="px-4 py-2">Subsection heading</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">h4</td>
+          <td class="px-4 py-2 font-mono text-xs">&lt;h4&gt;</td>
+          <td class="px-4 py-2">Minor heading</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">p</td>
+          <td class="px-4 py-2 font-mono text-xs">&lt;p&gt;</td>
+          <td class="px-4 py-2">Standard paragraph</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">blockquote</td>
+          <td class="px-4 py-2 font-mono text-xs">&lt;blockquote&gt;</td>
+          <td class="px-4 py-2">Callout or citation with left border</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">list</td>
+          <td class="px-4 py-2 font-mono text-xs">&lt;ul&gt;</td>
+          <td class="px-4 py-2">Unordered list</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">lead</td>
+          <td class="px-4 py-2 font-mono text-xs">&lt;p&gt;</td>
+          <td class="px-4 py-2">Introductory paragraph — larger, muted</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">large</td>
+          <td class="px-4 py-2 font-mono text-xs">&lt;div&gt;</td>
+          <td class="px-4 py-2">Large emphasized text</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">small</td>
+          <td class="px-4 py-2 font-mono text-xs">&lt;small&gt;</td>
+          <td class="px-4 py-2">Fine print</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">muted</td>
+          <td class="px-4 py-2 font-mono text-xs">&lt;p&gt;</td>
+          <td class="px-4 py-2">Secondary text — smaller, muted color</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">All Variants</Heading>
+    <Prose class="mb-4">
+      <p>Every available typography variant with its rendered output.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-4">
+        <Typography variant="h1">Heading 1</Typography>
+        <Typography variant="h2">Heading 2</Typography>
+        <Typography variant="h3">Heading 3</Typography>
+        <Typography variant="h4">Heading 4</Typography>
+        <Typography variant="p">A paragraph of body text with default styling.</Typography>
+        <Typography variant="blockquote">A blockquote for callouts or citations.</Typography>
+        <Typography variant="lead">Lead text for introductory paragraphs.</Typography>
+        <Typography variant="large">Large text for emphasis.</Typography>
+        <Typography variant="small">Small text for fine print.</Typography>
+        <Typography variant="muted">Muted text for secondary information.</Typography>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Article Layout</Heading>
+    <Prose class="mb-4">
+      <p>Compose variants to build a content page with proper typographic hierarchy.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-4 max-w-lg">
+        <Typography variant="h1">Getting Started</Typography>
+        <Typography variant="lead">Everything you need to know to start building with Orbital.</Typography>
+        <Typography variant="h2">Installation</Typography>
+        <Typography variant="p">Add the gem to your Gemfile and run bundle install. The library ships with all components, styles, and JavaScript controllers.</Typography>
+        <Typography variant="blockquote">Orbital requires Ruby 3.2+ and Rails 7.1+.</Typography>
+        <Typography variant="muted">Last updated July 2026.</Typography>
+      </div>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use Typography for content pages where you want quick, consistent hierarchy.</li>
+          <li>Follow heading order (<code>h1</code> &rarr; <code>h2</code> &rarr; <code>h3</code>) for accessibility.</li>
+          <li>Use <code>lead</code> for the introductory paragraph of a page or section.</li>
+          <li>Use <code>muted</code> for timestamps, footnotes, and secondary metadata.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Mix Typography with Heading/Text for the same content — pick one approach per page.</li>
+          <li>Skip heading levels (<code>h1</code> &rarr; <code>h3</code>) — it breaks document outline.</li>
+          <li>Use heading variants just for visual size — choose the variant for its semantic meaning.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">variant</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">h1, h2, h3, h4, p, blockquote, list, lead, large, small, muted</td>
+          <td class="px-4 py-2 font-mono text-xs">p</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

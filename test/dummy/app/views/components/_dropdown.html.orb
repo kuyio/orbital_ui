@@ -1,0 +1,252 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Dropdown</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A button that toggles a floating popover panel, commonly paired with a Menu for action lists
+    and contextual options.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <Dropdown label="Options">
+      <Menu>
+        <Menu:Item>Profile</Menu:Item>
+        <Menu:Item>Settings</Menu:Item>
+        <Menu:Separator/>
+        <Menu:Item destructive>Log out</Menu:Item>
+      </Menu>
+    </Dropdown>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Dropdown label=\"Actions\">\n  <Menu>\n    <Menu:Item url=\"/edit\">Edit</Menu:Item>\n    <Menu:Item>Duplicate</Menu:Item>\n    <Menu:Separator/>\n    <Menu:Item destructive>Delete</Menu:Item>\n  </Menu>\n</Dropdown>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      A Dropdown combines a trigger button with a floating panel. Pass a <code>label</code> to use
+      the built-in button, or provide a <code>Dropdown:Trigger</code> slot for a custom trigger
+      element. The panel content is typically a <a href="/components/menu">Menu</a> component.
+    </p>
+  </Prose>
+  <div class="border rounded-lg bg-muted/50 overflow-hidden mt-4">
+    <CodeBlock code={"Dropdown\n├── Trigger (built-in button, or Dropdown:Trigger slot)\n└── Panel (popover)\n    └── Menu / any content"}/>
+  </div>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use dropdowns for actions or options that don't need to be visible at all times. They keep the
+      interface clean by hiding secondary actions behind a single trigger — common in toolbars, table
+      rows, card headers, and navigation bars.
+    </p>
+    <p>
+      If the user needs to pick a value for a form field, use a
+      <a href="/components/select">Select</a> component instead. Dropdowns are for actions and
+      navigation, not form input.
+    </p>
+    <p>
+      For content that appears on hover and contains only text (no interactive elements), consider a
+      <a href="/components/tooltip">Tooltip</a>. For richer hover content with links or buttons, use a
+      <a href="/components/popcard">Popcard</a>.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      The dropdown panel is non-modal — it floats above the page content but does not block interaction
+      with the rest of the page. Clicking outside the panel or pressing Escape closes it.
+    </p>
+    <p>
+      By default the panel opens on <strong>click</strong>. Set <code>on="hover"</code> to open on
+      mouse enter instead, useful for navigation menus or preview cards.
+    </p>
+    <p>
+      The <code>position</code> prop uses compass directions to control where the panel appears:
+      <code>s</code> (below, default), <code>n</code> (above), <code>e</code>/<code>w</code>
+      (sides), with diagonal variants like <code>se</code> and <code>sw</code> for corner alignment.
+      Set <code>auto</code> to let Floating UI choose based on available space.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Custom Trigger</Heading>
+    <Prose class="mb-4">
+      <p>Use the <code>Dropdown:Trigger</code> slot to replace the default button with any element.
+        Common patterns include icon-only buttons for overflow menus and avatar buttons for user menus.</p>
+    </Prose>
+    <Example source={'
+      <Dropdown>
+        <Dropdown:Trigger>
+          <Button variant="ghost" size="icon"><Icon name="ellipsis-vertical"/></Button>
+        </Dropdown:Trigger>
+        <Menu>
+          <Menu:Item>Edit</Menu:Item>
+          <Menu:Item>Duplicate</Menu:Item>
+          <Menu:Separator/>
+          <Menu:Item destructive>Delete</Menu:Item>
+        </Menu>
+      </Dropdown>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Button Variants</Heading>
+    <Prose class="mb-4">
+      <p>The built-in trigger button inherits the <code>variant</code> prop. Match it to the visual
+        context — use <strong>ghost</strong> in toolbars, <strong>outline</strong> in forms, or
+        <strong>default</strong> for primary actions with a dropdown.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-3">
+        <Dropdown label="Default">
+          <Menu><Menu:Item>Action</Menu:Item></Menu>
+        </Dropdown>
+        <Dropdown label="Secondary" variant="secondary">
+          <Menu><Menu:Item>Action</Menu:Item></Menu>
+        </Dropdown>
+        <Dropdown label="Outline" variant="outline">
+          <Menu><Menu:Item>Action</Menu:Item></Menu>
+        </Dropdown>
+        <Dropdown label="Ghost" variant="ghost">
+          <Menu><Menu:Item>Action</Menu:Item></Menu>
+        </Dropdown>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">With Icons and Shortcuts</Heading>
+    <Prose class="mb-4">
+      <p>Menu items support icons and keyboard shortcut hints. These make action lists scannable
+        and help power users discover shortcuts.</p>
+    </Prose>
+    <Example source={'
+      <Dropdown label="Edit">
+        <Menu>
+          <Menu:Item icon="scissors" shortcut="⌘X">Cut</Menu:Item>
+          <Menu:Item icon="copy" shortcut="⌘C">Copy</Menu:Item>
+          <Menu:Item icon="clipboard-paste" shortcut="⌘V">Paste</Menu:Item>
+          <Menu:Separator/>
+          <Menu:Item icon="trash-2" shortcut="⌫" destructive>Delete</Menu:Item>
+        </Menu>
+      </Dropdown>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Group related actions together and use separators between groups.</li>
+          <li>Put destructive actions last, separated from safe actions.</li>
+          <li>Use a clear trigger label or a recognizable icon (kebab, chevron).</li>
+          <li>Keep menus short — seven items or fewer per group.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Nest dropdowns inside other dropdowns — use a flat list or a dialog.</li>
+          <li>Hide the only way to perform a critical action inside a dropdown.</li>
+          <li>Use dropdowns for form input — use Select instead.</li>
+          <li>Put long lists (20+ items) in a dropdown — use a searchable command palette.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Dropdown</Heading>
+  <div class="border rounded-lg overflow-hidden mb-4">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">label</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any text</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">on</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">click, hover</td>
+          <td class="px-4 py-2 font-mono text-xs">click</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">position</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">auto, n, ne, e, se, s, sw, w, nw</td>
+          <td class="px-4 py-2 font-mono text-xs">s</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">variant</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2">Any Button variant</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">fullwidth</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Slots</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Slot</th>
+          <th class="text-left px-4 py-2 font-medium">Description</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Dropdown:Trigger</td>
+          <td class="px-4 py-2">Custom trigger element. Replaces the built-in button when provided.</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">(default content)</td>
+          <td class="px-4 py-2">The popover panel content, typically a Menu component.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+.xpo/issues.db merge=union
+
+# Mark compiled assets as generated.
+app/assets/javascripts/orbital_ui/index.js* linguist-generated
+app/assets/stylesheets/orbital_ui/index.css* linguist-generated
+lib/orbital_ui/icons.rb linguist-generated

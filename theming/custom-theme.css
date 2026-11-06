@@ -1,0 +1,216 @@
+/* ==================================================
+   ORBITAL THEME CUSTOMIZATION EXAMPLE
+   ==================================================
+   
+   This file demonstrates how to customize the Orbital
+   component library's theme by overriding CSS variables.
+   
+   USAGE:
+   ------
+   1. Import Orbital's CSS first in your application
+   2. Import this file (or define your own overrides) after
+   
+   Example in HTML:
+   <link rel="stylesheet" href="path/to/orbital_ui/index.css">
+   <link rel="stylesheet" href="custom-theme.css">
+   
+   Example in CSS:
+   @import "orbital_ui/index.css";
+   @import "./custom-theme.css";
+*/
+
+/* ==================================================
+   PINK THEME EXAMPLE
+   ================================================== */
+
+:root {
+  /* === PRIMARY COLOR ===
+   * Used by: buttons, badges, links, form inputs, focus rings
+   */
+  --primary: hotpink;
+  --primary-foreground: white;
+  
+  /* === SECONDARY COLOR ===
+   * Used by: secondary buttons, badges, input hover states
+   */
+  --secondary: #ffb3d9;
+  --secondary-foreground: #1a0010;
+  
+  /* === DESTRUCTIVE/ERROR COLOR ===
+   * Used by: destructive buttons, error states
+   */
+  --destructive: #ff1744;
+  --destructive-foreground: white;
+  
+  /* === MUTED COLORS ===
+   * Used by: subdued text, muted backgrounds
+   */
+  --muted: #ffe6f5;
+  --muted-foreground: #c2185b;
+  
+  /* === ACCENT COLORS ===
+   * Used by: hover states, ghost button hovers
+   */
+  --accent: #ffc1e3;
+  --accent-foreground: #880e4f;
+  
+  /* === CARD/POPOVER BACKGROUNDS ===
+   * Used by: card components, popovers with distinct appearance
+   */
+  --card: #fff0f7;
+  --card-foreground: #1a0010;
+  --popover: #ffffff;
+  --popover-foreground: #1a0010;
+  
+  /* === BORDERS & INPUTS ===
+   * Used by: component borders, input borders
+   */
+  --border: #ffb3d9;
+  --input: #ffcce5;
+  --ring: hotpink;
+  
+  /* === SEMANTIC FEEDBACK COLORS ===
+   * Used by: Text component for status/feedback messages
+   */
+  --tone-success: #2e7d32;
+  --tone-warning: #f57c00;
+  --tone-danger: #c62828;
+  --tone-magic: #8e24aa;
+  --tone-info: #0277bd;
+  
+  /* === LAYOUT & SIZING ===
+   * Adjust border radius for rounder components
+   */
+  --radius: 1rem;
+  
+  /* === TYPOGRAPHY ===
+   * Adjust font weights (optional)
+   */
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/* ==================================================
+   CUSTOM DARK MODE (Optional)
+   ==================================================
+   
+   Override dark mode with pink theme variants.
+   Host app adds class="dark" to <html> or <body>.
+*/
+
+.dark {
+  --primary: #ff69b4;
+  --primary-foreground: #1a0010;
+  --secondary: #4a1830;
+  --secondary-foreground: #ffb3d9;
+  --muted: #3d1428;
+  --muted-foreground: #ff8ec7;
+  --accent: #5a1e38;
+  --accent-foreground: #ffc1e3;
+  --destructive: #ff1744;
+  --destructive-foreground: white;
+  --card: #2a0f1e;
+  --card-foreground: #ffe6f5;
+  --popover: #2a0f1e;
+  --popover-foreground: #ffe6f5;
+  --border: #4a1830;
+  --input: #4a1830;
+  --ring: #ff69b4;
+  
+  /* Brighter semantic colors for dark backgrounds */
+  --tone-success: #4caf50;
+  --tone-warning: #ffa726;
+  --tone-danger: #ef5350;
+  --tone-magic: #ab47bc;
+  --tone-info: #29b6f6;
+}
+
+/* ==================================================
+   MINIMAL OVERRIDE EXAMPLE
+   ==================================================
+   
+   If you only want to change a few colors, you can
+   define just those variables. Others will use the
+   default values from Orbital.
+*/
+
+/*
+:root {
+  --primary: #your-brand-color;
+  --primary-foreground: white;
+  --radius: 0.25rem;
+}
+*/
+
+/* ==================================================
+   AVAILABLE VARIABLES REFERENCE
+   ==================================================
+   
+   Color Variables:
+   ----------------
+   --primary                   Main brand color
+   --primary-foreground        Text on primary background
+   --secondary                 Secondary actions
+   --secondary-foreground      Text on secondary background
+   --destructive               Error/destructive actions
+   --destructive-foreground    Text on destructive background
+   --muted                     Muted backgrounds
+   --muted-foreground          Subdued text
+   --accent                    Accent/hover states
+   --accent-foreground         Text on accent background
+   --card                      Card backgrounds
+   --card-foreground           Card text
+   --popover                   Popover backgrounds
+   --popover-foreground        Popover text
+   --border                    Border colors
+   --input                     Input border colors
+   --ring                      Focus ring colors
+   
+   Semantic Feedback:
+   ------------------
+   --tone-success              Success messages
+   --tone-warning              Warning messages
+   --tone-danger               Danger/error messages
+   --tone-magic                Special/magic messages
+   --tone-info                 Info messages
+   
+   Layout:
+   -------
+   --radius                    Border radius (default: 0.5rem)
+   
+   Typography:
+   -----------
+   --font-weight-normal        Normal weight (default: 350)
+   --font-weight-medium        Medium weight (default: 450)
+   --font-weight-semibold      Semibold weight (default: 550)
+   --font-weight-bold          Bold weight (default: 600)
+   
+   --text-body-xs              Body text XS (default: 11px)
+   --text-body-xs--line-height Body XS line height (default: 16px)
+   --text-body-sm              Body text SM (default: 12px)
+   --text-body-sm--line-height Body SM line height (default: 16px)
+   --text-body-md              Body text MD (default: 14px)
+   --text-body-md--line-height Body MD line height (default: 20px)
+   --text-body-lg              Body text LG (default: 16px)
+   --text-body-lg--line-height Body LG line height (default: 24px)
+   --text-body-xl              Body text XL (default: 18px)
+   --text-body-xl--line-height Body XL line height (default: 28px)
+   
+   --text-heading-xs              Heading XS (default: 12px)
+   --text-heading-xs--line-height Heading XS line height (default: 16px)
+   --text-heading-sm              Heading SM (default: 14px)
+   --text-heading-sm--line-height Heading SM line height (default: 20px)
+   --text-heading-md              Heading MD (default: 16px)
+   --text-heading-md--line-height Heading MD line height (default: 24px)
+   --text-heading-lg              Heading LG (default: 18px)
+   --text-heading-lg--line-height Heading LG line height (default: 24px)
+   --text-heading-xl              Heading XL (default: 20px)
+   --text-heading-xl--line-height Heading XL line height (default: 28px)
+   --text-heading-2xl             Heading 2XL (default: 24px)
+   --text-heading-2xl--line-height Heading 2XL line height (default: 32px)
+   --text-heading-3xl             Heading 3XL (default: 30px)
+   --text-heading-3xl--line-height Heading 3XL line height (default: 36px)
+   --text-heading-4xl             Heading 4XL (default: 36px)
+   --text-heading-4xl--line-height Heading 4XL line height (default: 40px)
+*/

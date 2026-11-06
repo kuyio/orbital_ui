@@ -1,0 +1,35 @@
+@layer components {
+  .Orbital-ButtonGroup {
+    @apply flex items-stretch;
+  }
+
+  /* Horizontal orientation - target Button directly and Button inside wrappers (like Dropdown) */
+  .Orbital-ButtonGroup[data-orientation="horizontal"] > .Orbital-Button:not(:first-child),
+  .Orbital-ButtonGroup[data-orientation="horizontal"] > :not(:first-child) .Orbital-Button,
+  .Orbital-ButtonGroup[data-orientation="horizontal"] > .Orbital-Dropdown-Container:not(:first-child) {
+    @apply rounded-l-none border-l-0;
+  }
+
+  .Orbital-ButtonGroup[data-orientation="horizontal"] > .Orbital-Button:not(:last-child),
+  .Orbital-ButtonGroup[data-orientation="horizontal"] > :not(:last-child) .Orbital-Button,
+  .Orbital-ButtonGroup[data-orientation="horizontal"] > .Orbital-Dropdown-Container:not(:last-child) {
+    @apply rounded-r-none;
+  }
+
+  /* Vertical orientation */
+  .Orbital-ButtonGroup[data-orientation="vertical"] {
+    @apply flex-col;
+  }
+
+  .Orbital-ButtonGroup[data-orientation="vertical"] > .Orbital-Button:not(:first-child),
+  .Orbital-ButtonGroup[data-orientation="vertical"] > :not(:first-child) .Orbital-Button,
+  .Orbital-ButtonGroup[data-orientation="vertical"] > .Orbital-Dropdown-Container:not(:first-child) {
+    @apply rounded-t-none border-t-0;
+  }
+
+  .Orbital-ButtonGroup[data-orientation="vertical"] > .Orbital-Button:not(:last-child),
+  .Orbital-ButtonGroup[data-orientation="vertical"] > :not(:last-child) .Orbital-Button,
+  .Orbital-ButtonGroup[data-orientation="vertical"] > .Orbital-Dropdown-Container:not(:last-child) {
+    @apply rounded-b-none;
+  }
+}

@@ -1,0 +1,201 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Kbd</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    Styled keyboard key indicators for displaying shortcuts, hotkeys, and key combinations
+    in documentation and UI.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <KbdGroup>
+      <Kbd>⌘</Kbd>
+      <Kbd>K</Kbd>
+    </KbdGroup>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Kbd>⌘</Kbd>\n\n<KbdGroup>\n  <Kbd>Ctrl</Kbd>\n  <Kbd>C</Kbd>\n</KbdGroup>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Use <code>&lt;Kbd&gt;</code> for a single key and <code>&lt;KbdGroup&gt;</code> to combine
+      multiple keys into a shortcut. The group visually connects the keys to indicate they should
+      be pressed together.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use Kbd whenever you reference a keyboard key or shortcut in your UI — in dropdown menu
+      items, tooltips, help text, documentation pages, or command palette hints. The styled
+      keycap makes keys visually distinct from surrounding text.
+    </p>
+    <p>
+      For shortcuts displayed inside <a href="/components/menu">Menu</a> items, use the menu
+      item's <code>shortcut</code> prop instead of manually placing Kbd components — it handles
+      alignment and styling automatically.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      Kbd is purely visual — it renders a styled inline element that looks like a physical keycap.
+      It does not bind any keyboard event listeners. The styling uses a subtle border, background,
+      and shadow to mimic the appearance of a keyboard key.
+    </p>
+    <p>
+      KbdGroup wraps its children with reduced spacing so multiple keys appear connected, visually
+      communicating "press these together."
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Common Shortcuts</Heading>
+    <Prose class="mb-4">
+      <p>Pair a text label with a KbdGroup to document shortcuts. This pattern is common in
+        settings pages, help dialogs, and keyboard shortcut cheat sheets.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-8">
+        <div class="flex items-center gap-2">
+          <Text size="sm" as="span">Copy</Text>
+          <KbdGroup><Kbd>⌘</Kbd><Kbd>C</Kbd></KbdGroup>
+        </div>
+        <div class="flex items-center gap-2">
+          <Text size="sm" as="span">Paste</Text>
+          <KbdGroup><Kbd>⌘</Kbd><Kbd>V</Kbd></KbdGroup>
+        </div>
+        <div class="flex items-center gap-2">
+          <Text size="sm" as="span">Save</Text>
+          <KbdGroup><Kbd>⌘</Kbd><Kbd>S</Kbd></KbdGroup>
+        </div>
+        <div class="flex items-center gap-2">
+          <Text size="sm" as="span">Undo</Text>
+          <KbdGroup><Kbd>⌘</Kbd><Kbd>Z</Kbd></KbdGroup>
+        </div>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Single Keys</Heading>
+    <Prose class="mb-4">
+      <p>Individual keys without grouping. Useful for documenting navigation keys, modifier keys,
+        or single-key shortcuts.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-3">
+        <Kbd>Enter</Kbd>
+        <Kbd>Esc</Kbd>
+        <Kbd>Tab</Kbd>
+        <Kbd>Space</Kbd>
+        <Kbd>↑</Kbd>
+        <Kbd>↓</Kbd>
+        <Kbd>←</Kbd>
+        <Kbd>→</Kbd>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Inline with Text</Heading>
+    <Prose class="mb-4">
+      <p>Kbd elements sit inline, so they work naturally inside paragraphs and help text.</p>
+    </Prose>
+    <div class="border rounded-lg bg-card overflow-hidden">
+      <div class="p-8">
+        <Text as="p">Press <Kbd>Esc</Kbd> to close the dialog, or <KbdGroup><Kbd>⌘</Kbd><Kbd>Enter</Kbd></KbdGroup> to submit.</Text>
+      </div>
+      <CodeBlock code={"<Text as=\"p\">\n  Press <Kbd>Esc</Kbd> to close the dialog,\n  or <KbdGroup><Kbd>⌘</Kbd><Kbd>Enter</Kbd></KbdGroup> to submit.\n</Text>"} collapsible/>
+    </div>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use platform-appropriate symbols: <Kbd>⌘</Kbd> for Mac, <Kbd>Ctrl</Kbd> for Windows.</li>
+          <li>Group modifier + key combinations with KbdGroup.</li>
+          <li>Keep key labels short — single characters or short names.</li>
+          <li>Use consistently wherever shortcuts are mentioned in the UI.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Use Kbd for non-keyboard input like mouse buttons or touch gestures.</li>
+          <li>Put long text inside a Kbd — it's designed for key names, not sentences.</li>
+          <li>Forget to document shortcuts somewhere discoverable (help page, tooltip).</li>
+          <li>Show shortcuts that don't actually work in the application.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Kbd</Heading>
+  <div class="border rounded-lg overflow-hidden mb-4">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="px-4 py-2 text-muted-foreground" colspan="4">No props — renders content as a styled key indicator.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">KbdGroup</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="px-4 py-2 text-muted-foreground" colspan="4">No props — groups Kbd children together.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

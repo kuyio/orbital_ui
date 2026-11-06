@@ -1,0 +1,61 @@
+@layer components {
+  .Orbital-Avatar {
+    @apply inline-flex items-center justify-center shrink-0;
+    @apply bg-secondary text-secondary-foreground;
+    @apply overflow-hidden;
+  }
+
+  .Orbital-Avatar[data-shape="round"] {
+    @apply rounded-full;
+  }
+
+  .Orbital-Avatar[data-shape="square"] {
+    @apply rounded-md;
+  }
+
+  .Orbital-Avatar[data-size="xs"] {
+    @apply h-6 w-6;
+  }
+  .Orbital-Avatar[data-size="sm"] {
+    @apply h-8 w-8;
+  }
+  .Orbital-Avatar[data-size="md"] {
+    @apply h-10 w-10;
+  }
+  .Orbital-Avatar[data-size="lg"] {
+    @apply h-12 w-12;
+  }
+  .Orbital-Avatar[data-size="xl"] {
+    @apply h-16 w-16;
+  }
+
+  .Orbital-Avatar-Image {
+    @apply h-full w-full object-cover;
+  }
+
+  .Orbital-Avatar-Initials {
+    @apply flex items-center justify-center h-full w-full;
+    @apply font-medium text-secondary-foreground select-none;
+  }
+
+  .Orbital-Avatar[data-size="xs"] .Orbital-Avatar-Initials {
+    @apply text-xs;
+  }
+  .Orbital-Avatar[data-size="sm"] .Orbital-Avatar-Initials {
+    @apply text-xs;
+  }
+  .Orbital-Avatar[data-size="md"] .Orbital-Avatar-Initials {
+    @apply text-sm;
+  }
+  .Orbital-Avatar[data-size="lg"] .Orbital-Avatar-Initials {
+    @apply text-base;
+  }
+  .Orbital-Avatar[data-size="xl"] .Orbital-Avatar-Initials {
+    @apply text-lg;
+  }
+
+  .Orbital-Avatar-Icon {
+    @apply flex items-center justify-center h-full w-full;
+    @apply text-secondary-foreground;
+  }
+}

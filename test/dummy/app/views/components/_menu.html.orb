@@ -1,0 +1,348 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Menu</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A list of actions or options with keyboard navigation, icons, shortcuts, and item states.
+    Typically used inside a <a href="/components/dropdown" class="underline underline-offset-4 hover:text-primary">Dropdown</a>.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <div class="w-56 border rounded-lg p-1">
+      <Menu>
+        <Menu:Label>My Account</Menu:Label>
+        <Menu:Separator/>
+        <Menu:Item icon="user">Profile</Menu:Item>
+        <Menu:Item icon="credit-card">Billing</Menu:Item>
+        <Menu:Item icon="settings" shortcut="⌘S">Settings</Menu:Item>
+        <Menu:Separator/>
+        <Menu:Item destructive icon="log-out">Log out</Menu:Item>
+      </Menu>
+    </div>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Menu>\n  <Menu:Label>Group Title</Menu:Label>\n  <Menu:Item url=\"/action\">Action</Menu:Item>\n  <Menu:Separator/>\n  <Menu:Item destructive>Danger Action</Menu:Item>\n</Menu>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      A Menu is a container that renders a list of interactive items as slots. It supports four
+      slot types: <code>Item</code> for actions, <code>Label</code> for group headings,
+      <code>Separator</code> for visual dividers, and <code>Sub</code> for nested sub-menus.
+    </p>
+  </Prose>
+  <div class="border rounded-lg bg-muted/50 overflow-hidden mt-4">
+    <CodeBlock code={"Menu\n├── Menu:Label     (group heading)\n├── Menu:Separator (visual divider)\n├── Menu:Item      (action / link)\n│   ├── icon       (optional leading icon)\n│   ├── content    (label text)\n│   └── shortcut   (optional trailing hint)\n└── Menu:Sub       (nested sub-menu)"}/>
+  </div>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Menu is the content layer for action lists. It is almost always used inside a
+      <a href="/components/dropdown">Dropdown</a> or a right-click context menu. On its own,
+      it renders as a plain vertical list — the Dropdown provides the trigger and popover wrapper.
+    </p>
+    <p>
+      For form input where the user selects a value, use a
+      <a href="/components/select">Select</a> component instead. Menus are for actions and
+      navigation, not data entry.
+    </p>
+    <p>
+      For a horizontal set of navigation links, consider a
+      <a href="/components/navigation-menu">NavigationMenu</a> component instead.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      The Menu component registers a Stimulus controller that enables full keyboard navigation.
+      Arrow keys move focus between items, Enter or Space activates the focused item, and Home/End
+      jump to the first or last item.
+    </p>
+    <p>
+      Items with a <code>url</code> render as <code>&lt;a&gt;</code> tags for native link behaviour.
+      Without a URL, they render as <code>&lt;button&gt;</code> elements. Disabled items are skipped
+      by keyboard navigation and ignore clicks.
+    </p>
+    <p>
+      The <code>selected</code> state shows a checkmark icon, useful for indicating the current
+      choice in a list of options. The <code>active</code> state highlights an item, typically
+      used for the currently focused or hovered item.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Item States</Heading>
+    <Prose class="mb-4">
+      <p>Items support multiple states that can be combined. <strong>Active</strong> highlights the
+        item, <strong>selected</strong> adds a checkmark, <strong>disabled</strong> greys it out,
+        and <strong>destructive</strong> colours it red.</p>
+    </Prose>
+    <Example source={'
+      <div class="w-56 border rounded-lg p-1">
+        <Menu>
+          <Menu:Item>Default</Menu:Item>
+          <Menu:Item active>Active</Menu:Item>
+          <Menu:Item selected>Selected</Menu:Item>
+          <Menu:Item disabled>Disabled</Menu:Item>
+          <Menu:Item destructive>Destructive</Menu:Item>
+        </Menu>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">With Icons and Shortcuts</Heading>
+    <Prose class="mb-4">
+      <p>Icons provide a visual anchor for each action. Shortcuts are right-aligned hints that
+        help power users discover keyboard shortcuts without leaving the menu.</p>
+    </Prose>
+    <Example source={'
+      <div class="w-56 border rounded-lg p-1">
+        <Menu>
+          <Menu:Item icon="scissors" shortcut="⌘X">Cut</Menu:Item>
+          <Menu:Item icon="copy" shortcut="⌘C">Copy</Menu:Item>
+          <Menu:Item icon="clipboard-paste" shortcut="⌘V">Paste</Menu:Item>
+          <Menu:Item icon="undo-2" shortcut="⌘Z">Undo</Menu:Item>
+          <Menu:Item icon="redo-2" shortcut="⇧⌘Z">Redo</Menu:Item>
+        </Menu>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Grouped with Labels</Heading>
+    <Prose class="mb-4">
+      <p>Use <code>Menu:Label</code> and <code>Menu:Separator</code> to organise items into logical
+        groups. Labels act as non-interactive headings within the menu.</p>
+    </Prose>
+    <Example source={'
+      <div class="w-56 border rounded-lg p-1">
+        <Menu>
+          <Menu:Label>Navigation</Menu:Label>
+          <Menu:Item icon="house">Home</Menu:Item>
+          <Menu:Item icon="layout-dashboard">Dashboard</Menu:Item>
+          <Menu:Separator/>
+          <Menu:Label>Account</Menu:Label>
+          <Menu:Item icon="user">Profile</Menu:Item>
+          <Menu:Item icon="settings">Settings</Menu:Item>
+          <Menu:Separator/>
+          <Menu:Item destructive icon="log-out">Log out</Menu:Item>
+        </Menu>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Sub-menus</Heading>
+    <Prose class="mb-4">
+      <p>Use <code>Menu:Sub</code> for hierarchical navigation. The sub-menu expands to the right
+        of the parent item on click or keyboard focus.</p>
+    </Prose>
+    <Example source={'
+      <div class="w-56 border rounded-lg p-1">
+        <Menu>
+          <Menu:Item icon="file">New File</Menu:Item>
+          <Menu:Item icon="folder">New Folder</Menu:Item>
+          <Menu:Separator/>
+          <Menu:Sub label="Share" icon="share-2">
+            <Sub:Item icon="mail">Email</Sub:Item>
+            <Sub:Item icon="message-circle">Slack</Sub:Item>
+            <Sub:Item icon="link">Copy Link</Sub:Item>
+          </Menu:Sub>
+          <Menu:Separator/>
+          <Menu:Item icon="settings">Settings</Menu:Item>
+        </Menu>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">In a Dropdown</Heading>
+    <Prose class="mb-4">
+      <p>The most common pattern: wrap a Menu inside a <a href="/components/dropdown">Dropdown</a>
+        to get a trigger button with a floating popover. Focus moves into the menu when it opens,
+        and keyboard navigation works immediately.</p>
+    </Prose>
+    <Example source={'
+      <Dropdown label="Actions" variant="outline">
+        <Menu>
+          <Menu:Item icon="pen">Edit</Menu:Item>
+          <Menu:Item icon="copy">Duplicate</Menu:Item>
+          <Menu:Sub label="Export" icon="download">
+            <Sub:Item icon="file">CSV</Sub:Item>
+            <Sub:Item icon="file-text">PDF</Sub:Item>
+            <Sub:Item icon="file-code">JSON</Sub:Item>
+          </Menu:Sub>
+          <Menu:Separator/>
+          <Menu:Item icon="trash-2" destructive>Delete</Menu:Item>
+        </Menu>
+      </Dropdown>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Group related items with labels and separators.</li>
+          <li>Place destructive actions last, separated from safe actions.</li>
+          <li>Use consistent icons across the menu — all or none, not a mix.</li>
+          <li>Keep menus short — seven items or fewer per group.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Nest sub-menus more than one level deep — it becomes hard to navigate.</li>
+          <li>Use a Menu outside of a Dropdown or popover — it lacks its own trigger.</li>
+          <li>Put form controls (checkboxes, text fields) inside menu items.</li>
+          <li>Show shortcuts that don't work in the current context.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Menu</Heading>
+  <div class="border rounded-lg overflow-hidden mb-4">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">orientation</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">vertical, horizontal</td>
+          <td class="px-4 py-2 font-mono text-xs">vertical</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Menu:Item</Heading>
+  <div class="border rounded-lg overflow-hidden mb-4">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">url</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any URL</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">icon</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any icon name</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">shortcut</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any text</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">disabled</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">selected</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">active</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">destructive</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">modal</td>
+          <td class="px-4 py-2">String / Boolean</td>
+          <td class="px-4 py-2">ID string, or true with url</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Menu Slots</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Slot</th>
+          <th class="text-left px-4 py-2 font-medium">Description</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Menu:Item</td>
+          <td class="px-4 py-2">An interactive action or link.</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Menu:Label</td>
+          <td class="px-4 py-2">A non-interactive group heading.</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Menu:Separator</td>
+          <td class="px-4 py-2">A visual divider between groups.</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Menu:Sub</td>
+          <td class="px-4 py-2">A nested sub-menu triggered by hovering or focusing its parent item.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

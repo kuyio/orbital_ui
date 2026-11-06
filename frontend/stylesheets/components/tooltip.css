@@ -1,0 +1,45 @@
+@layer components {
+  /* Tooltip container */
+  .Orbital-Tooltip {
+    @apply inline-block;
+  }
+
+  /* Tooltip styles */
+  .Orbital-Tooltip-Content {
+    @apply bg-popover text-popover-foreground;
+    @apply px-3 py-1.5 text-sm rounded-md shadow-md;
+    @apply max-w-xs;
+    @apply border border-border;
+
+    /* Positioned by Floating UI */
+    position: absolute;
+
+    /* Remove default popover padding */
+    padding: 0.375rem 0.75rem;
+
+    /* Tighter animation for tooltips */
+    @starting-style {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 100ms ease-out,
+      transform 100ms ease-out,
+      display 100ms ease-out allow-discrete,
+      overlay 100ms ease-out allow-discrete;
+  }
+
+  /* Open state */
+  .Orbital-Tooltip-Content:popover-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Word wrapping */
+  .Orbital-Tooltip-Content {
+    @apply break-words;
+  }
+}

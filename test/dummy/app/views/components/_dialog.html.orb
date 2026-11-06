@@ -1,0 +1,372 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Dialog</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A modal overlay for focused interactions like forms, confirmations, and multi-step workflows.
+    Includes ConfirmationDialog and DeleteDialog presets for common patterns.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <Button modal="dialog-demo">Edit Profile</Button>
+    <Dialog id="dialog-demo" dismissible>
+      <Dialog:Header>
+        <Heading size="lg" as="div">Edit Profile</Heading>
+      </Dialog:Header>
+      <Dialog:Body>
+        <div class="flex flex-col gap-4">
+          <TextField name="name" label="Name" placeholder="Your name" fullwidth/>
+          <TextField name="bio" label="Bio" placeholder="Tell us about yourself" multiline=3 fullwidth/>
+        </div>
+      </Dialog:Body>
+      <Dialog:Footer>
+        <div class="flex justify-end gap-2">
+          <Button variant="outline" data-action="orbital-modal#close">Cancel</Button>
+          <Button>Save</Button>
+        </div>
+      </Dialog:Footer>
+    </Dialog>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Button modal=\"my-dialog\">Open</Button>\n<Dialog id=\"my-dialog\" dismissible>\n  <Dialog:Header>Title</Dialog:Header>\n  <Dialog:Body>Content</Dialog:Body>\n  <Dialog:Footer>Actions</Dialog:Footer>\n</Dialog>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      A Dialog is triggered by a <code>Button</code> with a <code>modal</code> prop pointing to the
+      dialog's <code>id</code>. The dialog renders as a hidden fixed overlay and appears when the
+      trigger is clicked. All three slots — header, body, and footer — are optional.
+    </p>
+  </Prose>
+  <div class="border rounded-lg bg-muted/50 overflow-hidden mt-4">
+    <CodeBlock code={"Button (modal=\"my-dialog\")\n└── opens ─→ Dialog (id=\"my-dialog\")\n                ├── Dialog:Header\n                ├── Dialog:Body\n                └── Dialog:Footer"}/>
+  </div>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use a Dialog for tasks that require focused attention: editing a record, filling out a form,
+      reviewing details, or completing a multi-step flow. The modal overlay ensures the user finishes
+      or explicitly dismisses the task before returning to the main content.
+    </p>
+    <p>
+      For simple yes/no confirmations, use a <a href="/components/confirmation-dialog">ConfirmationDialog</a>
+      instead of building a Dialog from scratch. For one-line messages that just need an "OK", use an
+      <a href="/components/alert">Alert</a>.
+    </p>
+    <p>
+      Dialogs can also be loaded asynchronously via Turbo. Combine a <code>Button</code> with both
+      <code>modal</code> and <code>url</code> props to fetch dialog content from the server on demand.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      When opened, the dialog displays a backdrop overlay, locks page scroll, and traps focus inside
+      the panel. The user can dismiss it via the close button, Escape key, or clicking the backdrop
+      (unless <code>dismissible</code> is set to <code>false</code>).
+    </p>
+    <p>
+      <strong>Inline dialogs</strong> are rendered in the page markup and shown/hidden via the modal
+      controller. <strong>Async dialogs</strong> are loaded into a Turbo Frame — wrap the server
+      response in a <code>&lt;ModalFrame&gt;</code> with <code>open</code> set to auto-open on load.
+      When closed, the Turbo Frame is automatically emptied.
+    </p>
+    <p>
+      The <code>size</code> prop controls the maximum width of the panel. The dialog will shrink to
+      fit its content but never exceed the specified size.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Confirmation Dialog</Heading>
+    <Prose class="mb-4">
+      <p>A preset for confirm/cancel decisions. Provide an <code>action_url</code> and <code>method</code>
+        to submit a form when the user confirms. Without an <code>action_url</code>, the confirm button
+        is a plain button you can wire up with Stimulus or JavaScript.</p>
+    </Prose>
+    <Example source={'
+      <Button modal="confirm-demo">Archive Item</Button>
+      <ConfirmationDialog
+        id="confirm-demo"
+        title="Are you sure?"
+        description="This action will archive the item. You can restore it later."
+        cancel_text="Cancel"
+        confirm_text="Archive"
+      />
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Delete Dialog</Heading>
+    <Prose class="mb-4">
+      <p>A destructive confirmation preset. Uses <code>method="delete"</code> by default and styles
+        the confirm button with the destructive variant. Use for irreversible actions.</p>
+    </Prose>
+    <Example source={'
+      <Button variant="destructive" modal="delete-demo">Delete Item</Button>
+      <DeleteDialog
+        id="delete-demo"
+        title="Delete this item?"
+        description="This will permanently remove the item and all its data."
+      />
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Sizes</Heading>
+    <Prose class="mb-4">
+      <p>Five size options control the maximum width of the dialog panel. Use <strong>sm</strong> for
+        simple confirmations, <strong>default</strong> for forms, <strong>lg</strong> or <strong>xl</strong>
+        for complex content, and <strong>full</strong> for near-fullscreen overlays.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-3">
+        <Button variant="outline" modal="dialog-sm">Small</Button>
+        <Dialog id="dialog-sm" dismissible size="sm">
+          <Dialog:Header><Heading size="lg" as="div">Small Dialog</Heading></Dialog:Header>
+          <Dialog:Body><Text as="p">Max width: 24rem</Text></Dialog:Body>
+          <Dialog:Footer><Button data-action="orbital-modal#close">Close</Button></Dialog:Footer>
+        </Dialog>
+
+        <Button variant="outline" modal="dialog-lg">Large</Button>
+        <Dialog id="dialog-lg" dismissible size="lg">
+          <Dialog:Header><Heading size="lg" as="div">Large Dialog</Heading></Dialog:Header>
+          <Dialog:Body><Text as="p">Max width: 42rem. Good for complex forms or content with side-by-side columns.</Text></Dialog:Body>
+          <Dialog:Footer><Button data-action="orbital-modal#close">Close</Button></Dialog:Footer>
+        </Dialog>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Async (Turbo)</Heading>
+    <Prose class="mb-4">
+      <p>Load dialog content from the server on demand. The button triggers a Turbo Frame request;
+        the server responds with a <code>&lt;ModalFrame&gt;</code> wrapping the dialog. This keeps
+        initial page weight low and ensures dialog content is always fresh.</p>
+    </Prose>
+    <div class="border rounded-lg bg-card overflow-hidden">
+      <CodeBlock code={"<!-- Trigger -->\n<Button modal url=\"/contact\">Contact Us</Button>\n\n<!-- Server response (contact.html.orb) -->\n<ModalFrame>\n  <Dialog open dismissible>\n    <Dialog:Header>Contact Us</Dialog:Header>\n    <Dialog:Body>...</Dialog:Body>\n    <Dialog:Footer>...</Dialog:Footer>\n  </Dialog>\n</ModalFrame>"}/>
+    </div>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use a clear, descriptive title that explains what the dialog is for.</li>
+          <li>Place the primary action on the right side of the footer.</li>
+          <li>Include a way to cancel or close — never trap the user without an exit.</li>
+          <li>Use ConfirmationDialog or DeleteDialog for standard confirm/cancel patterns.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Open a dialog from inside another dialog — it creates confusing stacking.</li>
+          <li>Put long scrolling content inside a dialog — use a full page instead.</li>
+          <li>Use dialogs for non-essential information that could be shown inline.</li>
+          <li>Auto-open dialogs on page load without a strong reason (e.g. cookie consent).</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Dialog</Heading>
+  <div class="border rounded-lg overflow-hidden mb-4">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">id</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any unique ID</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">open</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">dismissible</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">true</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">size</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">sm, default, lg, xl, full</td>
+          <td class="px-4 py-2 font-mono text-xs">default</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Dialog Slots</Heading>
+  <div class="border rounded-lg overflow-hidden mb-4">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Slot</th>
+          <th class="text-left px-4 py-2 font-medium">Description</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Dialog:Header</td>
+          <td class="px-4 py-2">Title area at the top of the dialog.</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Dialog:Body</td>
+          <td class="px-4 py-2">Main content area. Falls back to default content if not provided.</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">Dialog:Footer</td>
+          <td class="px-4 py-2">Bottom section for action buttons.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">ConfirmationDialog</Heading>
+  <div class="border rounded-lg overflow-hidden mb-4">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">title</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any text</td>
+          <td class="px-4 py-2 font-mono text-xs">"Are you sure?"</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">description</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any text</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">cancel_text</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any text</td>
+          <td class="px-4 py-2 font-mono text-xs">"Cancel"</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">confirm_text</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any text</td>
+          <td class="px-4 py-2 font-mono text-xs">"Confirm"</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">action_url</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any URL</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">method</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">get, post, patch, put, delete</td>
+          <td class="px-4 py-2 font-mono text-xs">post</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">loading</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">DeleteDialog</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">title</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any text</td>
+          <td class="px-4 py-2 font-mono text-xs">"Delete item?"</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">description</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any text</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">action_url</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any URL</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">method</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">get, post, patch, put, delete</td>
+          <td class="px-4 py-2 font-mono text-xs">delete</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">destructive</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">true</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

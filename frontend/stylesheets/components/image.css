@@ -1,0 +1,5 @@
+@layer components {
+  .Orbital-Image {
+    @apply inline-block;
+  }
+}

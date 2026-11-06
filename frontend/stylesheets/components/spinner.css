@@ -1,0 +1,17 @@
+@layer components {
+  .Orbital-Spinner[data-kind="notch"] {
+    @apply animate-spin;
+  }
+
+  .Orbital-Spinner[data-size="sm"] {
+    @apply h-4 w-4;
+  }
+
+  .Orbital-Spinner[data-size="md"] {
+    @apply h-5 w-5;
+  }
+
+  .Orbital-Spinner[data-size="lg"] {
+    @apply h-7 w-7;
+  }
+}

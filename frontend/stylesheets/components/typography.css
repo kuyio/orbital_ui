@@ -1,0 +1,53 @@
+@layer components {
+  .Orbital-Typography[data-variant="h1"] {
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+  }
+
+  .Orbital-Typography[data-variant="h2"] {
+    @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+  }
+
+  .Orbital-Typography[data-variant="h3"] {
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+  }
+
+  .Orbital-Typography[data-variant="h4"] {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+  }
+
+  .Orbital-Typography[data-variant="blockquote"] {
+    @apply mt-6 border-l-2 pl-6 italic;
+  }
+
+  .Orbital-Typography[data-variant="list"] {
+    @apply my-6 ml-6 list-disc;
+  }
+
+  .Orbital-Typography[data-variant="list"] > li {
+    @apply mt-2;
+  }
+
+  .Orbital-Typography[data-variant="lead"] {
+    @apply text-xl text-muted-foreground;
+  }
+
+  .Orbital-Typography[data-variant="large"] {
+    @apply text-lg font-semibold;
+  }
+
+  .Orbital-Typography[data-variant="small"] {
+    @apply text-sm font-medium leading-none;
+  }
+
+  .Orbital-Typography[data-variant="muted"] {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .Orbital-Typography[data-variant="p"] {
+    @apply leading-7;
+  }
+
+  .Orbital-Typography[data-variant="p"]:not(:first-child) {
+    @apply mt-6;
+  }
+}

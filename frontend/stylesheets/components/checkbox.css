@@ -1,0 +1,45 @@
+@layer components {
+  .Orbital-CheckBox {
+    @apply grid gap-1.5 leading-none;
+  }
+
+  .Orbital-CheckBox-Label {
+    @apply flex items-center gap-2 cursor-pointer select-none;
+  }
+
+  .Orbital-CheckBox-Control {
+    @apply flex relative items-center gap-2 cursor-pointer;
+  }
+
+  .Orbital-CheckBox-Input {
+    @apply sr-only;
+  }
+
+  .Orbital-CheckBox-Indicator {
+    @apply relative h-4 w-4 rounded-sm border border-gray-800 bg-white;
+  }
+
+  .Orbital-CheckBox-Input:checked + .Orbital-CheckBox-Indicator {
+    @apply bg-primary;
+  }
+
+  .Orbital-CheckBox-Icon {
+    @apply absolute left-0 p-1 text-white hidden;
+  }
+
+  .Orbital-CheckBox-Input:checked ~ .Orbital-CheckBox-Icon {
+    @apply inline-flex;
+  }
+
+  .Orbital-CheckBox-Input:disabled ~ .Orbital-CheckBox-Icon {
+    @apply opacity-75;
+  }
+
+  .Orbital-CheckBox-Input:disabled + .Orbital-CheckBox-Indicator {
+    @apply opacity-75 cursor-not-allowed;
+  }
+
+  .Orbital-CheckBox:has(.Orbital-CheckBox-Input:disabled) .Orbital-CheckBox-Label {
+    @apply opacity-75 cursor-not-allowed;
+  }
+}

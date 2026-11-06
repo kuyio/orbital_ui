@@ -1,0 +1,42 @@
+@layer components {
+  /* Alert-specific styles */
+  .Orbital-Alert-Content {
+    @apply flex gap-4 items-start;
+  }
+
+  .Orbital-Alert-Icon {
+    @apply flex-shrink-0;
+    @apply rounded-full;
+    @apply p-2;
+  }
+
+  /* Variant icon colors */
+  .Orbital-Alert-Icon[data-variant="success"] {
+    @apply bg-tone-success/10 text-tone-success;
+  }
+
+  .Orbital-Alert-Icon[data-variant="warning"] {
+    @apply bg-tone-warning/10 text-tone-warning;
+  }
+
+  .Orbital-Alert-Icon[data-variant="danger"] {
+    @apply bg-tone-danger/10 text-tone-danger;
+  }
+
+  .Orbital-Alert-Icon[data-variant="info"] {
+    @apply bg-tone-info/10 text-tone-info;
+  }
+
+  .Orbital-Alert-Text {
+    @apply flex-1;
+  }
+
+  /* Size alert dialogs appropriately */
+  .Orbital-Dialog[data-variant="success"],
+  .Orbital-Dialog[data-variant="warning"],
+  .Orbital-Dialog[data-variant="danger"],
+  .Orbital-Dialog[data-variant="info"],
+  .Orbital-Dialog[data-variant="default"] {
+    @apply max-w-md;
+  }
+}

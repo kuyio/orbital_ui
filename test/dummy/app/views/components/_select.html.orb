@@ -1,0 +1,371 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Select</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A form field for choosing a single value from a list of options, built on top of
+    Dropdown and Menu for consistent styling and keyboard navigation.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <div class="max-w-sm w-full">
+      <Select
+        name="country"
+        label="Country"
+        placeholder="Select a country..."
+        options={[
+          {label: "United States", value: "us"},
+          {label: "Canada", value: "ca"},
+          {label: "United Kingdom", value: "uk"}
+        ]}
+      />
+    </div>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Select\n  name=\"country\"\n  label=\"Country\"\n  placeholder=\"Select a country...\"\n  options={[\n    {label: \"United States\", value: \"us\"},\n    {label: \"Canada\", value: \"ca\"},\n    {label: \"United Kingdom\", value: \"uk\"}\n  ]}\n/>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Select renders a labeled trigger button that opens a floating menu of options. When the user
+      picks an option, its value is written to a hidden <code>&lt;input&gt;</code> field so it
+      submits with the form. Pass <code>options</code> as an array of <code>{label, value}</code>
+      hashes and <code>name</code> for the form field name.
+    </p>
+  </Prose>
+  <div class="border rounded-lg bg-muted/50 overflow-hidden mt-4">
+    <CodeBlock code={"Select\n├── Label          (from label prop)\n├── Dropdown\n│   ├── Trigger    (styled button with chevron)\n│   └── Menu       (floating option list)\n├── Hidden input   (carries the selected value)\n└── Help / Error   (optional feedback text)"}/>
+  </div>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use Select for form fields where the user must choose exactly one value from a predefined
+      list. It replaces the native <code>&lt;select&gt;</code> element with a styled, consistent
+      alternative that matches the rest of the Orbital design system.
+    </p>
+    <p>
+      For action menus (edit, delete, share) use a <a href="/components/dropdown">Dropdown</a>
+      with a <a href="/components/menu">Menu</a> instead — those represent commands, not form
+      values. For free-text input with optional suggestions, use a
+      <a href="/components/text-field">TextField</a>.
+    </p>
+    <p>
+      If you have fewer than three options and they're all visible at once, consider using radio
+      buttons or a segmented control for faster scanning.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      Clicking the trigger opens a floating menu positioned below by default. The currently selected
+      option is highlighted. Selecting an option closes the menu, updates the trigger label, and
+      writes the value to the hidden input. Clicking outside or pressing Escape closes the menu
+      without changing the value.
+    </p>
+    <p>
+      The dropdown uses the same Popover/Floating UI system as other Orbital floating components,
+      so it automatically flips when near viewport edges. Set <code>position="n"</code> to open
+      upward instead.
+    </p>
+    <p>
+      The hidden input participates in standard HTML form submission — no JavaScript needed on the
+      server side. Use <code>name</code> to set the form parameter key and <code>selected</code>
+      to set an initial value.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Pre-selected Value</Heading>
+    <Prose class="mb-4">
+      <p>Use the <code>selected</code> prop to set an initial value. The trigger label updates
+        to show the matching option's label text.</p>
+    </Prose>
+    <Example source={'
+      <div class="max-w-sm w-full">
+        <Select
+          name="language"
+          label="Preferred Language"
+          selected="en"
+          options={[
+            {label: "English", value: "en"},
+            {label: "Spanish", value: "es"},
+            {label: "French", value: "fr"},
+            {label: "German", value: "de"},
+            {label: "Italian", value: "it"}
+          ]}
+        />
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">With Disabled Options</Heading>
+    <Prose class="mb-4">
+      <p>Individual options can be disabled by adding <code>disabled: true</code> to the option
+        hash. Disabled options are visible but not selectable.</p>
+    </Prose>
+    <Example source={'
+      <div class="max-w-sm w-full">
+        <Select
+          name="plan"
+          label="Subscription Plan"
+          placeholder="Choose a plan..."
+          help="Some plans are currently unavailable"
+          options={[
+            {label: "Free Plan", value: "free"},
+            {label: "Pro Plan", value: "pro"},
+            {label: "Enterprise Plan", value: "enterprise", disabled: true},
+            {label: "Team Plan", value: "team"},
+            {label: "Ultimate Plan", value: "ultimate", disabled: true}
+          ]}
+        />
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Error State</Heading>
+    <Prose class="mb-4">
+      <p>Pass an <code>error</code> string to display validation feedback. The trigger border
+        turns red and the error message appears below the field, replacing any help text.</p>
+    </Prose>
+    <Example source={'
+      <div class="max-w-sm w-full">
+        <Select
+          name="category"
+          label="Category"
+          placeholder="Select a category..."
+          error="Please select a category to continue"
+          options={[
+            {label: "Technology", value: "tech"},
+            {label: "Business", value: "business"},
+            {label: "Science", value: "science"},
+            {label: "Arts", value: "arts"}
+          ]}
+        />
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Full Width</Heading>
+    <Prose class="mb-4">
+      <p>Set <code>fullwidth</code> to expand the select to fill its container. The dropdown
+        menu matches the trigger width.</p>
+    </Prose>
+    <Example source={'
+      <Select
+        name="timezone"
+        label="Time Zone"
+        placeholder="Select your timezone..."
+        fullwidth
+        options={[
+          {label: "Pacific Time (PT)", value: "pt"},
+          {label: "Mountain Time (MT)", value: "mt"},
+          {label: "Central Time (CT)", value: "ct"},
+          {label: "Eastern Time (ET)", value: "et"},
+          {label: "Greenwich Mean Time (GMT)", value: "gmt"}
+        ]}
+      />
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Position</Heading>
+    <Prose class="mb-4">
+      <p>The dropdown opens below by default. Set <code>position="n"</code> to open upward —
+        useful when the select is near the bottom of the viewport.</p>
+    </Prose>
+    <Example source={'
+      <div class="grid grid-cols-2 gap-4 w-full max-w-lg">
+        <Select
+          name="position_top"
+          label="Open Upwards"
+          placeholder="Select..."
+          position="n"
+          options={[
+            {label: "Option 1", value: "1"},
+            {label: "Option 2", value: "2"},
+            {label: "Option 3", value: "3"}
+          ]}
+        />
+        <Select
+          name="position_bottom"
+          label="Open Downwards"
+          placeholder="Select..."
+          position="s"
+          options={[
+            {label: "Option 1", value: "1"},
+            {label: "Option 2", value: "2"},
+            {label: "Option 3", value: "3"}
+          ]}
+        />
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Disabled</Heading>
+    <Prose class="mb-4">
+      <p>Set <code>disabled</code> to prevent interaction entirely. The trigger is visually
+        muted and does not respond to clicks.</p>
+    </Prose>
+    <Example source={'
+      <div class="max-w-sm w-full">
+        <Select
+          name="disabled_select"
+          label="Unavailable Option"
+          placeholder="Cannot select..."
+          disabled
+          help="This select is currently disabled"
+          options={[
+            {label: "Option 1", value: "1"},
+            {label: "Option 2", value: "2"}
+          ]}
+        />
+      </div>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Always provide a visible label — use <code>labelHidden</code> only when a nearby heading makes the purpose obvious.</li>
+          <li>Use descriptive placeholder text that hints at what to choose.</li>
+          <li>Include <code>help</code> text when the choice has implications the user should understand.</li>
+          <li>Set <code>fullwidth</code> in form layouts where all fields span the full width.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Use Select for actions — use a Dropdown with a Menu instead.</li>
+          <li>Put more than 15-20 options in a Select — consider a searchable autocomplete.</li>
+          <li>Disable most options in the list — rethink the available choices.</li>
+          <li>Omit the <code>name</code> prop — without it the value won't submit with the form.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">options</td>
+          <td class="px-4 py-2">Array</td>
+          <td class="px-4 py-2 font-mono text-xs">[{label:, value:, disabled:}]</td>
+          <td class="px-4 py-2 font-mono text-xs">[]</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">selected</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Value of the selected option</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">placeholder</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">"Select..."</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">name</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Form field name</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">id</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any unique string</td>
+          <td class="px-4 py-2 font-mono text-xs">auto-generated</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">label</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">labelHidden</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">help</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">error</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">disabled</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">required</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">position</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">auto, n, ne, e, se, s, sw, w, nw</td>
+          <td class="px-4 py-2 font-mono text-xs">s</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">fullwidth</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

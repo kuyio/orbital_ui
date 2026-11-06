@@ -1,0 +1,184 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Separator</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A visual divider between content sections, available in horizontal and vertical orientations.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <div class="w-full max-w-md">
+      <Text as="p" class="mb-4">Content above</Text>
+      <Separator/>
+      <Text as="p" class="mt-4">Content below</Text>
+    </div>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Separator/>\n\n<Separator orientation=\"vertical\"/>\n\n<Separator decorative={false}/>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Separator renders a thin line — horizontal by default — to visually divide content. It
+      requires no children or configuration for the common case. Set
+      <code>orientation="vertical"</code> for side-by-side layouts.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use Separator to create visual breaks between groups of related content — between sections
+      on a page, between items in a sidebar, or between controls in a toolbar. It communicates
+      grouping without needing extra headings or whitespace.
+    </p>
+    <p>
+      If you need a divider between menu items, use <code>Menu:Separator</code> instead — it
+      carries the correct spacing for menu layouts. For card boundaries, the card's own border
+      is usually sufficient.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      By default, Separator is <strong>decorative</strong> — it renders with <code>role="none"</code>
+      so screen readers skip it. Set <code>decorative={false}</code> to give it
+      <code>role="separator"</code>, which tells assistive technology there's a meaningful boundary
+      between two sections. Use the semantic role when the separator marks a real content division,
+      not just visual spacing.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Vertical</Heading>
+    <Prose class="mb-4">
+      <p>Use <code>orientation="vertical"</code> inside flex rows to divide side-by-side content.
+        The separator stretches to fill its parent's height.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex items-center gap-4 h-8">
+        <Text as="span">Left</Text>
+        <Separator orientation="vertical"/>
+        <Text as="span">Center</Text>
+        <Separator orientation="vertical"/>
+        <Text as="span">Right</Text>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">In a Stacked Layout</Heading>
+    <Prose class="mb-4">
+      <p>Separate groups of content in a vertical list or sidebar-style layout.</p>
+    </Prose>
+    <Example source={'
+      <div class="w-full max-w-xs flex flex-col gap-3">
+        <div>
+          <Heading size="sm" as="div">Account</Heading>
+          <Text size="sm" tone="subdued" as="p">Manage your account settings.</Text>
+        </div>
+        <Separator/>
+        <div>
+          <Heading size="sm" as="div">Notifications</Heading>
+          <Text size="sm" tone="subdued" as="p">Configure how you receive alerts.</Text>
+        </div>
+        <Separator/>
+        <div>
+          <Heading size="sm" as="div">Privacy</Heading>
+          <Text size="sm" tone="subdued" as="p">Control your data and visibility.</Text>
+        </div>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">In a Toolbar</Heading>
+    <Prose class="mb-4">
+      <p>Vertical separators group related actions in toolbars and button rows.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex items-center gap-2 h-8">
+        <Button variant="ghost" size="icon"><Icon name="bold" size="sm"/></Button>
+        <Button variant="ghost" size="icon"><Icon name="italic" size="sm"/></Button>
+        <Button variant="ghost" size="icon"><Icon name="underline" size="sm"/></Button>
+        <Separator orientation="vertical"/>
+        <Button variant="ghost" size="icon"><Icon name="align-left" size="sm"/></Button>
+        <Button variant="ghost" size="icon"><Icon name="align-center" size="sm"/></Button>
+        <Button variant="ghost" size="icon"><Icon name="align-right" size="sm"/></Button>
+      </div>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use to reinforce grouping that's already communicated by spacing or headings.</li>
+          <li>Set <code>decorative={false}</code> when the separator marks a meaningful content boundary.</li>
+          <li>Use vertical separators in flex rows with a fixed height on the parent.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Overuse separators — too many lines add visual noise instead of clarity.</li>
+          <li>Use a separator where whitespace alone communicates the break clearly enough.</li>
+          <li>Use separators inside components that already provide their own dividers (menus, tables).</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">orientation</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">horizontal, vertical</td>
+          <td class="px-4 py-2 font-mono text-xs">horizontal</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">decorative</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">true</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

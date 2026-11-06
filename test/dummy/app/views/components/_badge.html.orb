@@ -1,0 +1,228 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Badge</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A small visual indicator for status, labels, or counts. Badges draw attention to new or
+    important information without interrupting the user's flow.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <Badge>Badge</Badge>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Badge variant=\"default\">New</Badge>\n<Badge variant=\"secondary\">In Progress</Badge>\n<Badge variant=\"destructive\">Overdue</Badge>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Badges are inline elements that sit next to text, inside buttons, or alongside other components.
+      Use the <code>variant</code> prop to communicate the semantic meaning of the badge.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Badges work best for small, glanceable metadata: status labels on list items, category tags,
+      notification counts, or "new" indicators. They communicate state without taking up much space.
+    </p>
+    <p>
+      Avoid badges for long text or full sentences — they are meant to be scanned, not read. If the
+      information requires an explanation or action, consider an
+      <a href="/components/alert">Alert</a> or inline message instead.
+    </p>
+    <p>
+      Badges are not buttons. If clicking should trigger an action, use a
+      <a href="/components/button">Button</a> with a small size instead.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      Badges are purely visual — they carry no interactive behaviour by default. They render as
+      a <code>&lt;span&gt;</code> with <code>inline-flex</code> layout, so they align naturally with
+      surrounding text and icons.
+    </p>
+    <p>
+      The pill shape (fully rounded corners) is intentional: it distinguishes badges from buttons
+      and other rectangular UI elements at a glance.
+    </p>
+  </Prose>
+</div>
+
+<!-- Variants -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Variants</Heading>
+    <Prose class="mb-4">
+      <p>Five visual styles to match different contexts. Use <strong>default</strong> for primary emphasis,
+        <strong>secondary</strong> for neutral metadata, <strong>destructive</strong> for errors or urgency,
+        <strong>outline</strong> for subtle labels, and <strong>ghost</strong> for minimal presence.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-3">
+        <Badge variant="default">Default</Badge>
+        <Badge variant="secondary">Secondary</Badge>
+        <Badge variant="destructive">Destructive</Badge>
+        <Badge variant="ghost">Ghost</Badge>
+        <Badge variant="outline">Outline</Badge>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Status Dots</Heading>
+    <Prose class="mb-4">
+      <p>Use the <code>dot</code> prop to render a small colored circle after the badge text.
+        The dot color adapts to the badge variant — on filled badges it uses lighter tones
+        for contrast, on outline and secondary badges the tone color is visible directly.</p>
+    </Prose>
+    <Example source={'
+      <Stack gap="4">
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">default (primary)</Text>
+          <InlineStack gap="2" wrap>
+            <Badge dot="default">Default</Badge>
+            <Badge dot="success">Active</Badge>
+            <Badge dot="warning">Pending</Badge>
+            <Badge dot="danger">Failed</Badge>
+            <Badge dot="info">Syncing</Badge>
+            <Badge dot="subdued">Archived</Badge>
+          </InlineStack>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">secondary</Text>
+          <InlineStack gap="2" wrap>
+            <Badge variant="secondary" dot="default">Default</Badge>
+            <Badge variant="secondary" dot="success">Active</Badge>
+            <Badge variant="secondary" dot="warning">Pending</Badge>
+            <Badge variant="secondary" dot="danger">Failed</Badge>
+            <Badge variant="secondary" dot="info">Syncing</Badge>
+            <Badge variant="secondary" dot="subdued">Archived</Badge>
+          </InlineStack>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">outline</Text>
+          <InlineStack gap="2" wrap>
+            <Badge variant="outline" dot="default">Default</Badge>
+            <Badge variant="outline" dot="success">Active</Badge>
+            <Badge variant="outline" dot="warning">Pending</Badge>
+            <Badge variant="outline" dot="danger">Failed</Badge>
+            <Badge variant="outline" dot="info">Syncing</Badge>
+            <Badge variant="outline" dot="subdued">Archived</Badge>
+          </InlineStack>
+        </div>
+      </Stack>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Icons</Heading>
+    <Prose class="mb-4">
+      <p>Use the <code>icon</code> prop to render an icon before the badge text. The icon
+        inherits the badge's text color automatically.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-3">
+        <Badge icon="circle-check">Completed</Badge>
+        <Badge icon="loader-circle" variant="secondary">Processing</Badge>
+        <Badge icon="clock" variant="outline">Scheduled</Badge>
+        <Badge icon="zap" variant="ghost">Fast</Badge>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Icon with Dot</Heading>
+    <Prose class="mb-4">
+      <p>The <code>icon</code> and <code>dot</code> props can be combined. The icon renders
+        on the left, the dot on the right.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-3">
+        <Badge icon="server" dot="success">Healthy</Badge>
+        <Badge icon="server" dot="warning" variant="secondary">Degraded</Badge>
+        <Badge icon="server" dot="danger" variant="outline">Down</Badge>
+      </div>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Keep labels to one or two words.</li>
+          <li>Use consistent variants for the same status across the app.</li>
+          <li>Pair with icons when the meaning isn't obvious from text alone.</li>
+          <li>Use the outline variant for low-priority or informational tags.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Use more than three or four badges in a row — it becomes visual noise.</li>
+          <li>Mix too many variant colours in one view.</li>
+          <li>Use destructive badges for non-critical information.</li>
+          <li>Rely on colour alone to convey meaning — add text or an icon for accessibility.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">variant</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">default, secondary, destructive, ghost, outline</td>
+          <td class="px-4 py-2 font-mono text-xs">default</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">icon</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Icon name</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">dot</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">default, success, warning, danger, info, subdued</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,244 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Icon</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    Renders an inline SVG icon by name from the bundled Lucide icon set, with configurable size.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'<Icon name="star"/>'}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Icon name=\"star\"/>\n\n<Icon name=\"heart\" size=\"lg\"/>\n\n<Icon name=\"github\"/>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Icons are referenced by their <a href="https://lucide.dev/icons" target="_blank">Lucide</a> name
+      using kebab-case (e.g. <code>search</code>, <code>chevron-down</code>). FontAwesome brand icons
+      (e.g. <code>github</code>) are also available as a fallback set. The SVGs are bundled at build
+      time — no external requests are made at runtime.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Icons work best as visual reinforcement alongside text: in buttons, menu items, badges, and
+      form labels. They help users scan an interface faster by providing recognizable visual
+      anchors.
+    </p>
+    <p>
+      Avoid using icons as the sole means of communication. An icon without a label or tooltip
+      forces the user to guess its meaning. When space is tight (icon-only buttons), always pair
+      with a <a href="/components/tooltip">Tooltip</a> or an <code>aria-label</code> for
+      accessibility.
+    </p>
+    <p>
+      Icons inherit <code>currentColor</code>, so they automatically match the text colour of their
+      parent element. Override with a utility class like <code>class="text-blue-500"</code> when
+      needed.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      The Icon component renders a wrapper <code>&lt;div&gt;</code> containing an inline SVG. The
+      wrapper is sized by the <code>size</code> prop, and the inner SVG scales to fit. This ensures
+      consistent alignment regardless of the icon's original viewBox dimensions.
+    </p>
+    <p>
+      Lucide icons use a consistent stroke-based design: 2px stroke width, round caps and joins,
+      on a 24×24 viewBox. FontAwesome brand icons (logos like GitHub, Slack, etc.) use filled paths
+      and are resolved automatically when a Lucide icon with that name doesn't exist.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Sizes</Heading>
+    <Prose class="mb-4">
+      <p>Five sizes from <strong>xs</strong> (8px inner) to <strong>xl</strong> (24px inner). Use
+        <strong>sm</strong> inside buttons and menu items, <strong>md</strong> as the standalone
+        default, and <strong>lg</strong>/<strong>xl</strong> for feature highlights or empty states.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-end gap-8">
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="star" size="xs"/>
+          <Text size="xs" tone="subdued" as="span">xs</Text>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="star" size="sm"/>
+          <Text size="xs" tone="subdued" as="span">sm</Text>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="star" size="md"/>
+          <Text size="xs" tone="subdued" as="span">md</Text>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="star" size="lg"/>
+          <Text size="xs" tone="subdued" as="span">lg</Text>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="star" size="xl"/>
+          <Text size="xs" tone="subdued" as="span">xl</Text>
+        </div>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">With Colour</Heading>
+    <Prose class="mb-4">
+      <p>Icons inherit <code>currentColor</code> from their parent. Use Tailwind colour utilities
+        directly on the Icon to override.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-6">
+        <Icon name="circle-check" size="lg" class="text-green-500"/>
+        <Icon name="triangle-alert" size="lg" class="text-yellow-500"/>
+        <Icon name="circle-alert" size="lg" class="text-red-500"/>
+        <Icon name="info" size="lg" class="text-blue-500"/>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Brand Icons</Heading>
+    <Prose class="mb-4">
+      <p>FontAwesome brand icons are available as a fallback. Use them the same way — just pass the name.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-6">
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="github"/>
+          <Text size="xs" tone="subdued" as="span">github</Text>
+        </div>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Common Icons</Heading>
+    <Prose class="mb-4">
+      <p>A selection of frequently used icons from the bundled set.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-6">
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="check"/>
+          <Text size="xs" tone="subdued" as="span">check</Text>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="x"/>
+          <Text size="xs" tone="subdued" as="span">x</Text>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="plus"/>
+          <Text size="xs" tone="subdued" as="span">plus</Text>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="settings"/>
+          <Text size="xs" tone="subdued" as="span">settings</Text>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="mail"/>
+          <Text size="xs" tone="subdued" as="span">mail</Text>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="search"/>
+          <Text size="xs" tone="subdued" as="span">search</Text>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="trash-2"/>
+          <Text size="xs" tone="subdued" as="span">trash-2</Text>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="pen"/>
+          <Text size="xs" tone="subdued" as="span">pen</Text>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="download"/>
+          <Text size="xs" tone="subdued" as="span">download</Text>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <Icon name="user"/>
+          <Text size="xs" tone="subdued" as="span">user</Text>
+        </div>
+      </div>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Pair icons with text labels wherever possible.</li>
+          <li>Use <strong>sm</strong> inside buttons and menu items for consistent sizing.</li>
+          <li>Add a tooltip or <code>aria-label</code> to icon-only elements.</li>
+          <li>Use semantic colours (green for success, red for danger) consistently.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Use icons as the only indicator of meaning — not everyone recognizes every icon.</li>
+          <li>Use brand icons to imply endorsement or partnership that doesn't exist.</li>
+          <li>Scale icons beyond <strong>xl</strong> — use an illustration instead.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">name</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any <a href="https://lucide.dev/icons" target="_blank" class="underline">Lucide icon name</a> (kebab-case), or a FontAwesome brand icon name</td>
+          <td class="px-4 py-2 font-mono text-xs">required</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">size</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">xs, sm, md, lg, xl</td>
+          <td class="px-4 py-2 font-mono text-xs">md</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

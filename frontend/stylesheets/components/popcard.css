@@ -1,0 +1,69 @@
+@layer components {
+  /* Popcard container */
+  .Orbital-Popcard-Container {
+    @apply inline-block;
+  }
+
+  /* Popcard is styled like a Card component */
+  .Orbital-Popcard {
+    @apply rounded-lg border bg-card text-card-foreground shadow-lg;
+    @apply p-6 min-w-[20rem] max-w-md;
+
+    position: absolute;
+    margin: 0;
+    z-index: 50;
+
+    @starting-style {
+      opacity: 0;
+    }
+
+    opacity: 1;
+    transition:
+      opacity 150ms ease-out,
+      display 150ms ease-out allow-discrete,
+      overlay 150ms ease-out allow-discrete;
+  }
+
+  .Orbital-Popcard:popover-open {
+    opacity: 1;
+  }
+
+  /* Hide until positioned by JS */
+  .Orbital-Popcard:popover-open:not([data-positioned]) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .Orbital-Popcard:popover-open[data-positioned] {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Popcard structural components */
+  .Orbital-Popcard-Header {
+    @apply mb-3;
+  }
+
+  .Orbital-Popcard-Title {
+    @apply text-lg font-semibold leading-none;
+  }
+
+  .Orbital-Popcard-Description {
+    @apply text-sm text-muted-foreground mt-1;
+  }
+
+  .Orbital-Popcard-Content {
+    @apply text-sm;
+  }
+
+  .Orbital-Popcard-Footer {
+    @apply flex items-center gap-3 mt-4 pt-4 border-t;
+  }
+
+  /* Responsive sizing */
+  @media (max-width: 640px) {
+    .Orbital-Popcard {
+      @apply min-w-[18rem] max-w-[90vw];
+    }
+  }
+}

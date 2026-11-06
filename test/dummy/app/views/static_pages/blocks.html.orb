@@ -1,0 +1,592 @@
+<AppFrame>
+  <div class="container mx-auto py-8 px-4 max-w-5xl">
+    <div class="mb-12">
+      <Heading size="2xl" as="h1" class="mb-2">Blocks</Heading>
+      <Text size="lg" tone="subdued" as="h2">
+        Common UI patterns composed from Orbital components. Copy and adapt these for your own layouts.
+      </Text>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- MARKETING                                    -->
+    <!-- ============================================ -->
+    <div class="mb-16">
+      <div class="mb-8">
+        <Text size="xs" weight="semibold" tone="subdued" as="div" class="uppercase tracking-widest mb-1">Marketing</Text>
+        <Heading size="xl" as="h2">Marketing &amp; Landing Pages</Heading>
+      </div>
+
+      <div class="flex flex-col gap-16">
+
+        <!-- Hero -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Hero</Heading>
+          <Text tone="subdued" as="p" class="mb-4">A centered hero section with headline, description, and call-to-action buttons.</Text>
+          <Example source={'
+            <div class="flex flex-col items-center text-center py-12 gap-4 max-w-2xl mx-auto">
+              <Badge variant="outline">New Release</Badge>
+              <Heading size="4xl" as="h1">Build faster with Orbital</Heading>
+              <Text size="lg" tone="subdued" as="p" align="center" class="max-w-lg">A complete component library for Rails apps. Ship polished interfaces in days, not weeks.</Text>
+              <div class="flex gap-3 mt-2">
+                <Button>Get started</Button>
+                <Button variant="outline"><Icon name="github" size="sm"/> View on GitHub</Button>
+              </div>
+            </div>
+          '}/>
+        </div>
+
+        <!-- Feature Grid -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Feature Grid</Heading>
+          <Text tone="subdued" as="p" class="mb-4">A grid of feature cards with icons, titles, and descriptions.</Text>
+          <Example source={'
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+              <Card>
+                  <div class="flex flex-col gap-2">
+                    <div class="rounded-lg bg-primary/10 w-10 h-10 flex items-center justify-center">
+                      <Icon name="zap" size="md" class="text-primary"/>
+                    </div>
+                    <Heading size="sm" as="div">Lightning fast</Heading>
+                    <Text size="sm" tone="subdued" as="p">Server-rendered components with zero client-side framework overhead.</Text>
+                  </div>
+              </Card>
+              <Card>
+                  <div class="flex flex-col gap-2">
+                    <div class="rounded-lg bg-primary/10 w-10 h-10 flex items-center justify-center">
+                      <Icon name="puzzle" size="md" class="text-primary"/>
+                    </div>
+                    <Heading size="sm" as="div">Composable</Heading>
+                    <Text size="sm" tone="subdued" as="p">Mix and match components to build any interface without fighting the framework.</Text>
+                  </div>
+              </Card>
+              <Card>
+                  <div class="flex flex-col gap-2">
+                    <div class="rounded-lg bg-primary/10 w-10 h-10 flex items-center justify-center">
+                      <Icon name="palette" size="md" class="text-primary"/>
+                    </div>
+                    <Heading size="sm" as="div">Themeable</Heading>
+                    <Text size="sm" tone="subdued" as="p">Customize colors, typography, and spacing with CSS variables. Dark mode included.</Text>
+                  </div>
+              </Card>
+            </div>
+          '}/>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Pricing Cards</Heading>
+          <Text tone="subdued" as="p" class="mb-4">Side-by-side pricing tiers with feature lists and call-to-action buttons.</Text>
+          <Example source={'
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+              <Card>
+                <Card:Header>
+                  <Header:Title>Free</Header:Title>
+                  <Header:Description>$0 / month</Header:Description>
+                </Card:Header>
+                  <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2"><Icon name="check" size="sm" class="text-green-600"/> <Text size="sm" as="span">3 projects</Text></div>
+                    <div class="flex items-center gap-2"><Icon name="check" size="sm" class="text-green-600"/> <Text size="sm" as="span">1 GB storage</Text></div>
+                    <div class="flex items-center gap-2"><Icon name="check" size="sm" class="text-green-600"/> <Text size="sm" as="span">Community support</Text></div>
+                  </div>
+                <Card:Footer>
+                  <Button variant="outline" class="w-full">Get started</Button>
+                </Card:Footer>
+              </Card>
+              <Card class="border-primary">
+                <Card:Header>
+                  <Header:Title>Pro</Header:Title>
+                  <Header:Description>$19 / month</Header:Description>
+                  <Header:Action><Badge>Popular</Badge></Header:Action>
+                </Card:Header>
+                  <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2"><Icon name="check" size="sm" class="text-green-600"/> <Text size="sm" as="span">Unlimited projects</Text></div>
+                    <div class="flex items-center gap-2"><Icon name="check" size="sm" class="text-green-600"/> <Text size="sm" as="span">50 GB storage</Text></div>
+                    <div class="flex items-center gap-2"><Icon name="check" size="sm" class="text-green-600"/> <Text size="sm" as="span">Priority support</Text></div>
+                    <div class="flex items-center gap-2"><Icon name="check" size="sm" class="text-green-600"/> <Text size="sm" as="span">Custom domains</Text></div>
+                  </div>
+                <Card:Footer>
+                  <Button class="w-full">Upgrade to Pro</Button>
+                </Card:Footer>
+              </Card>
+              <Card>
+                <Card:Header>
+                  <Header:Title>Enterprise</Header:Title>
+                  <Header:Description>$99 / month</Header:Description>
+                </Card:Header>
+                  <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2"><Icon name="check" size="sm" class="text-green-600"/> <Text size="sm" as="span">Everything in Pro</Text></div>
+                    <div class="flex items-center gap-2"><Icon name="check" size="sm" class="text-green-600"/> <Text size="sm" as="span">Unlimited storage</Text></div>
+                    <div class="flex items-center gap-2"><Icon name="check" size="sm" class="text-green-600"/> <Text size="sm" as="span">Dedicated support</Text></div>
+                    <div class="flex items-center gap-2"><Icon name="check" size="sm" class="text-green-600"/> <Text size="sm" as="span">SLA guarantee</Text></div>
+                  </div>
+                <Card:Footer>
+                  <Button variant="outline" class="w-full">Contact sales</Button>
+                </Card:Footer>
+              </Card>
+            </div>
+          '}/>
+        </div>
+
+        <!-- Testimonial -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Testimonial</Heading>
+          <Text tone="subdued" as="p" class="mb-4">A customer quote card with avatar, name, and role.</Text>
+          <Example source={'
+            <Card class="max-w-md w-full mx-auto">
+                <div class="flex flex-col gap-4">
+                  <div class="flex gap-1">
+                    <Icon name="star" size="sm" class="text-yellow-500"/>
+                    <Icon name="star" size="sm" class="text-yellow-500"/>
+                    <Icon name="star" size="sm" class="text-yellow-500"/>
+                    <Icon name="star" size="sm" class="text-yellow-500"/>
+                    <Icon name="star" size="sm" class="text-yellow-500"/>
+                  </div>
+                  <Text as="p" class="italic">"Orbital cut our frontend development time in half. The component library is beautifully designed and the DX is exceptional."</Text>
+                  <Separator/>
+                  <div class="flex items-center gap-3">
+                    <Avatar name="Sarah Chen" size="md"/>
+                    <div>
+                      <Text size="sm" weight="medium" as="div">Sarah Chen</Text>
+                      <Text size="xs" tone="subdued" as="div">CTO at Stackflow</Text>
+                    </div>
+                  </div>
+                </div>
+            </Card>
+          '}/>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Newsletter</Heading>
+          <Text tone="subdued" as="p" class="mb-4">An email capture form for newsletter signups.</Text>
+          <Example source={'
+            <Card class="max-w-lg w-full mx-auto">
+                <div class="flex flex-col items-center text-center gap-3">
+                  <Icon name="mail" size="lg" class="text-primary"/>
+                  <Heading size="md" as="div">Stay in the loop</Heading>
+                  <Text size="sm" tone="subdued" as="p">Get notified about new components, releases, and tips. No spam, unsubscribe anytime.</Text>
+                  <div class="flex gap-2 w-full mt-2">
+                    <TextField name="newsletter_email" label="Email" labelHidden placeholder="you@example.com" class="flex-1"/>
+                    <Button>Subscribe</Button>
+                  </div>
+                </div>
+            </Card>
+          '}/>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- AUTHENTICATION                               -->
+    <!-- ============================================ -->
+    <div class="mb-16">
+      <div class="mb-8">
+        <Text size="xs" weight="semibold" tone="subdued" as="div" class="uppercase tracking-widest mb-1">Authentication</Text>
+        <Heading size="xl" as="h2">Login &amp; Registration</Heading>
+      </div>
+
+      <div class="flex flex-col gap-16">
+
+        <!-- Sign In -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Sign In</Heading>
+          <Text tone="subdued" as="p" class="mb-4">A simple authentication form with email, password, and a forgot-password link.</Text>
+          <Example source={'
+            <Card class="max-w-sm w-full mx-auto">
+              <Card:Header>
+                <Header:Title>Sign in</Header:Title>
+                <Header:Description>Enter your credentials to access your account.</Header:Description>
+              </Card:Header>
+                <div class="flex flex-col gap-4">
+                  <TextField name="signin_email" label="Email" type="email" placeholder="you@example.com" iconLeft="mail"/>
+                  <TextField name="signin_password" label="Password" type="password" placeholder="••••••••"/>
+                  <div class="flex items-center justify-between">
+                    <CheckBox name="remember" label="Remember me"/>
+                    <Text size="sm" as="a" href="#" class="text-primary underline underline-offset-4">Forgot password?</Text>
+                  </div>
+                </div>
+              <Card:Footer>
+                <Button class="w-full">Sign in</Button>
+              </Card:Footer>
+            </Card>
+          '}/>
+        </div>
+
+        <!-- Sign Up -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Sign Up</Heading>
+          <Text tone="subdued" as="p" class="mb-4">A registration form with name, email, password, and terms acceptance.</Text>
+          <Example source={'
+            <Card class="max-w-sm w-full mx-auto">
+              <Card:Header>
+                <Header:Title>Create account</Header:Title>
+                <Header:Description>Get started with a free account.</Header:Description>
+              </Card:Header>
+                <div class="flex flex-col gap-4">
+                  <div class="grid grid-cols-2 gap-3">
+                    <TextField name="first_name" label="First name" placeholder="Jane"/>
+                    <TextField name="last_name" label="Last name" placeholder="Doe"/>
+                  </div>
+                  <TextField name="signup_email" label="Email" type="email" placeholder="you@example.com"/>
+                  <TextField name="signup_password" label="Password" type="password" placeholder="••••••••" help="At least 8 characters"/>
+                  <CheckBox name="terms" label="I agree to the terms and conditions"/>
+                </div>
+              <Card:Footer>
+                <Button class="w-full">Create account</Button>
+              </Card:Footer>
+            </Card>
+          '}/>
+        </div>
+
+        <!-- Forgot Password -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Forgot Password</Heading>
+          <Text tone="subdued" as="p" class="mb-4">A password reset form that sends a recovery email.</Text>
+          <Example source={'
+            <Card class="max-w-sm w-full mx-auto">
+              <Card:Header>
+                <Header:Title>Reset password</Header:Title>
+                <Header:Description>Enter your email and we will send you a reset link.</Header:Description>
+              </Card:Header>
+                <TextField name="reset_email" label="Email" type="email" placeholder="you@example.com" iconLeft="mail"/>
+              <Card:Footer>
+                <div class="flex flex-col gap-3 w-full">
+                  <Button class="w-full">Send reset link</Button>
+                  <Text size="sm" tone="subdued" as="p" align="center">
+                    Remember your password? <a href="#" class="text-primary underline underline-offset-4">Sign in</a>
+                  </Text>
+                </div>
+              </Card:Footer>
+            </Card>
+          '}/>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- APPLICATION                                  -->
+    <!-- ============================================ -->
+    <div class="mb-16">
+      <div class="mb-8">
+        <Text size="xs" weight="semibold" tone="subdued" as="div" class="uppercase tracking-widest mb-1">Application</Text>
+        <Heading size="xl" as="h2">App UI Patterns</Heading>
+      </div>
+
+      <div class="flex flex-col gap-16">
+
+        <!-- Page Header -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Page Header</Heading>
+          <Text tone="subdued" as="p" class="mb-4">A page title bar with description and action buttons.</Text>
+          <Example source={'
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full">
+              <div>
+                <Heading size="xl" as="h1">Team Members</Heading>
+                <Text size="sm" tone="subdued" as="p">Manage your team and their account permissions.</Text>
+              </div>
+              <div class="flex items-center gap-2">
+                <Button variant="outline"><Icon name="download" size="sm"/> Export</Button>
+                <Button><Icon name="plus" size="sm"/> Invite member</Button>
+              </div>
+            </div>
+          '}/>
+        </div>
+
+        <!-- Stats Row -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Stats Row</Heading>
+          <Text tone="subdued" as="p" class="mb-4">Key metrics displayed in a horizontal grid of cards.</Text>
+          <Example source={'
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+              <Card>
+                  <div class="flex flex-col gap-1">
+                    <Text size="sm" tone="subdued" weight="medium" as="div">Total Revenue</Text>
+                    <Heading size="2xl" as="div">$45,231</Heading>
+                    <Text size="xs" tone="success" as="div">+20.1% from last month</Text>
+                  </div>
+              </Card>
+              <Card>
+                  <div class="flex flex-col gap-1">
+                    <Text size="sm" tone="subdued" weight="medium" as="div">Active Users</Text>
+                    <Heading size="2xl" as="div">2,350</Heading>
+                    <Text size="xs" tone="success" as="div">+180 this week</Text>
+                  </div>
+              </Card>
+              <Card>
+                  <div class="flex flex-col gap-1">
+                    <Text size="sm" tone="subdued" weight="medium" as="div">Conversion Rate</Text>
+                    <Heading size="2xl" as="div">3.2%</Heading>
+                    <Text size="xs" tone="danger" as="div">-0.4% from last month</Text>
+                  </div>
+              </Card>
+            </div>
+          '}/>
+        </div>
+
+        <!-- Table Header -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Table Header</Heading>
+          <Text tone="subdued" as="p" class="mb-4">A toolbar above a data table with search, filters, and actions.</Text>
+          <Example source={'
+            <Card class="w-full">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                  <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <TextField name="table_search" label="Search" labelHidden iconLeft="search" placeholder="Search users..."/>
+                    <Dropdown label="Status" variant="outline">
+                      <Menu>
+                        <Menu:Item>All</Menu:Item>
+                        <Menu:Item>Active</Menu:Item>
+                        <Menu:Item>Inactive</Menu:Item>
+                      </Menu>
+                    </Dropdown>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <Button variant="outline"><Icon name="download" size="sm"/> Export</Button>
+                    <Button><Icon name="plus" size="sm"/> Add user</Button>
+                  </div>
+                </div>
+            </Card>
+          '}/>
+        </div>
+
+        <!-- Team List -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Team List</Heading>
+          <Text tone="subdued" as="p" class="mb-4">A list of team members with avatars, roles, and action menus.</Text>
+          <Example source={'
+            <Card class="w-full max-w-lg mx-auto">
+              <Card:Header>
+                <Header:Title>Team</Header:Title>
+                <Header:Description>3 members</Header:Description>
+              </Card:Header>
+                <div class="flex flex-col">
+                  <div class="flex items-center justify-between py-3">
+                    <div class="flex items-center gap-3">
+                      <Avatar name="Sam Taylor" initials="ST" size="sm"/>
+                      <div>
+                        <Text size="sm" weight="medium" as="div">Sam Taylor</Text>
+                        <Text size="xs" tone="subdued" as="div">sam@example.com</Text>
+                      </div>
+                    </div>
+                    <Badge variant="outline">Owner</Badge>
+                  </div>
+                  <Separator/>
+                  <div class="flex items-center justify-between py-3">
+                    <div class="flex items-center gap-3">
+                      <Avatar name="Sarah Chen" size="sm"/>
+                      <div>
+                        <Text size="sm" weight="medium" as="div">Sarah Chen</Text>
+                        <Text size="xs" tone="subdued" as="div">sarah@stackflow.io</Text>
+                      </div>
+                    </div>
+                    <Badge variant="outline">Admin</Badge>
+                  </div>
+                  <Separator/>
+                  <div class="flex items-center justify-between py-3">
+                    <div class="flex items-center gap-3">
+                      <Avatar name="Alex Rivera" size="sm"/>
+                      <div>
+                        <Text size="sm" weight="medium" as="div">Alex Rivera</Text>
+                        <Text size="xs" tone="subdued" as="div">alex@example.com</Text>
+                      </div>
+                    </div>
+                    <Badge variant="secondary">Member</Badge>
+                  </div>
+                </div>
+            </Card>
+          '}/>
+        </div>
+
+        <!-- Settings Section -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Settings Section</Heading>
+          <Text tone="subdued" as="p" class="mb-4">A settings panel with labeled rows of controls, separated by dividers.</Text>
+          <Example source={'
+            <Card class="max-w-lg w-full mx-auto">
+              <Card:Header>
+                <Header:Title>Notifications</Header:Title>
+                <Header:Description>Configure how you receive notifications.</Header:Description>
+              </Card:Header>
+                <div class="flex flex-col gap-0">
+                  <div class="flex items-center justify-between py-3">
+                    <div>
+                      <Text size="sm" weight="medium" as="div">Email notifications</Text>
+                      <Text size="xs" tone="subdued" as="div">Receive updates via email</Text>
+                    </div>
+                    <CheckBox name="email_notif" label=" "/>
+                  </div>
+                  <Separator/>
+                  <div class="flex items-center justify-between py-3">
+                    <div>
+                      <Text size="sm" weight="medium" as="div">Push notifications</Text>
+                      <Text size="xs" tone="subdued" as="div">Receive push notifications on your device</Text>
+                    </div>
+                    <CheckBox name="push_notif" label=" " checked/>
+                  </div>
+                  <Separator/>
+                  <div class="flex items-center justify-between py-3">
+                    <div>
+                      <Text size="sm" weight="medium" as="div">Weekly digest</Text>
+                      <Text size="xs" tone="subdued" as="div">Get a summary of activity every Monday</Text>
+                    </div>
+                    <CheckBox name="digest" label=" " checked/>
+                  </div>
+                </div>
+              <Card:Footer>
+                <div class="flex justify-end gap-2 w-full">
+                  <Button variant="outline">Cancel</Button>
+                  <Button>Save changes</Button>
+                </div>
+              </Card:Footer>
+            </Card>
+          '}/>
+        </div>
+
+        <!-- Profile Card -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Profile Card</Heading>
+          <Text tone="subdued" as="p" class="mb-4">A user profile card with avatar, name, role, and action buttons.</Text>
+          <Example source={'
+            <Card class="max-w-sm w-full mx-auto">
+                <div class="flex flex-col items-center text-center gap-3 pt-4">
+                  <Avatar name="Sam Taylor" initials="ST" size="xl"/>
+                  <div>
+                    <Heading size="md" as="div">Sam Taylor</Heading>
+                    <Text size="sm" tone="subdued" as="p">Engineering Lead</Text>
+                  </div>
+                  <div class="flex gap-2 mt-1">
+                    <Badge variant="outline">Admin</Badge>
+                    <Badge variant="outline">Core Team</Badge>
+                  </div>
+                </div>
+              <Card:Footer>
+                <div class="flex gap-2 w-full">
+                  <Button variant="outline" class="flex-1"><Icon name="mail" size="sm"/> Message</Button>
+                  <Button class="flex-1"><Icon name="user-plus" size="sm"/> Follow</Button>
+                </div>
+              </Card:Footer>
+            </Card>
+          '}/>
+        </div>
+
+        <!-- Activity Feed -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Activity Feed</Heading>
+          <Text tone="subdued" as="p" class="mb-4">A chronological list of user actions and events.</Text>
+          <Example source={'
+            <Card class="max-w-lg w-full mx-auto">
+              <Card:Header>
+                <Header:Title>Recent Activity</Header:Title>
+              </Card:Header>
+                <div class="flex flex-col gap-4">
+                  <div class="flex gap-3">
+                    <Avatar name="Sam Taylor" size="sm"/>
+                    <div class="flex-1">
+                      <Text size="sm" as="p"><Text weight="medium" as="span">Sam</Text> pushed 3 commits to <Text weight="medium" as="span">main</Text></Text>
+                      <Text size="xs" tone="subdued" as="div">2 minutes ago</Text>
+                    </div>
+                  </div>
+                  <Separator/>
+                  <div class="flex gap-3">
+                    <Avatar name="Sarah Chen" size="sm"/>
+                    <div class="flex-1">
+                      <Text size="sm" as="p"><Text weight="medium" as="span">Sarah</Text> opened pull request <Text weight="medium" as="span">#42</Text></Text>
+                      <Text size="xs" tone="subdued" as="div">15 minutes ago</Text>
+                    </div>
+                  </div>
+                  <Separator/>
+                  <div class="flex gap-3">
+                    <Avatar name="Alex Rivera" size="sm"/>
+                    <div class="flex-1">
+                      <Text size="sm" as="p"><Text weight="medium" as="span">Alex</Text> commented on issue <Text weight="medium" as="span">#38</Text></Text>
+                      <Text size="xs" tone="subdued" as="div">1 hour ago</Text>
+                    </div>
+                  </div>
+                  <Separator/>
+                  <div class="flex gap-3">
+                    <Avatar name="Sarah Chen" size="sm"/>
+                    <div class="flex-1">
+                      <Text size="sm" as="p"><Text weight="medium" as="span">Sarah</Text> deployed to <Badge variant="secondary" class="ml-1">production</Badge></Text>
+                      <Text size="xs" tone="subdued" as="div">3 hours ago</Text>
+                    </div>
+                  </div>
+                </div>
+            </Card>
+          '}/>
+        </div>
+
+        <!-- Notification List -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Notification List</Heading>
+          <Text tone="subdued" as="p" class="mb-4">A notification panel with read and unread states.</Text>
+          <Example source={'
+            <Card class="max-w-sm w-full mx-auto">
+              <Card:Header>
+                <Header:Title>Notifications</Header:Title>
+                <Header:Action><Badge>3 new</Badge></Header:Action>
+              </Card:Header>
+                <div class="flex flex-col">
+                  <div class="flex gap-3 py-3 px-1 bg-primary/5 rounded-md -mx-1">
+                    <div class="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
+                    <div>
+                      <Text size="sm" as="p">Your deploy to <Text weight="medium" as="span">production</Text> completed successfully.</Text>
+                      <Text size="xs" tone="subdued" as="div">2 min ago</Text>
+                    </div>
+                  </div>
+                  <Separator/>
+                  <div class="flex gap-3 py-3 px-1 bg-primary/5 rounded-md -mx-1">
+                    <div class="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
+                    <div>
+                      <Text size="sm" as="p"><Text weight="medium">Sarah</Text> requested your review on PR #42.</Text>
+                      <Text size="xs" tone="subdued" as="div">15 min ago</Text>
+                    </div>
+                  </div>
+                  <Separator/>
+                  <div class="flex gap-3 py-3 px-1 rounded-md -mx-1">
+                    <div class="w-2 h-2 rounded-full bg-transparent mt-1.5 flex-shrink-0"></div>
+                    <div>
+                      <Text size="sm" as="p">Weekly report is ready for download.</Text>
+                      <Text size="xs" tone="subdued" as="div">2 hours ago</Text>
+                    </div>
+                  </div>
+                  <Separator/>
+                  <div class="flex gap-3 py-3 px-1 rounded-md -mx-1">
+                    <div class="w-2 h-2 rounded-full bg-transparent mt-1.5 flex-shrink-0"></div>
+                    <div>
+                      <Text size="sm" as="p">Your subscription was renewed.</Text>
+                      <Text size="xs" tone="subdued" as="div">Yesterday</Text>
+                    </div>
+                  </div>
+                </div>
+              <Card:Footer>
+                <Button variant="ghost" class="w-full">View all notifications</Button>
+              </Card:Footer>
+            </Card>
+          '}/>
+        </div>
+
+        <!-- Empty State -->
+        <div>
+          <Heading size="lg" as="h3" class="mb-2">Empty State</Heading>
+          <Text tone="subdued" as="p" class="mb-4">A placeholder for when a list or section has no content yet.</Text>
+          <Example source={'
+            <Card class="max-w-lg w-full mx-auto">
+                <div class="flex flex-col items-center text-center py-8 gap-3">
+                  <div class="rounded-full bg-muted p-4">
+                    <Icon name="inbox" size="lg" class="text-muted-foreground"/>
+                  </div>
+                  <Heading size="md" as="div">No messages yet</Heading>
+                  <Text size="sm" tone="subdued" as="p" align="center" class="max-w-xs">When you receive messages, they will appear here. Start a conversation to get going.</Text>
+                  <Button class="mt-2"><Icon name="plus" size="sm"/> New message</Button>
+                </div>
+            </Card>
+          '}/>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</AppFrame>

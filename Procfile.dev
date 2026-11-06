@@ -1,0 +1,4 @@
+web: test/dummy/bin/rails server -b 0.0.0.0
+parcel: bun run watch
+js: bun run watch:dummy:js
+css: bun run watch:dummy:css

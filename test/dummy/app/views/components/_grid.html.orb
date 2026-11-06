@@ -1,0 +1,268 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Grid</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A CSS Grid container for laying out children in columns with consistent spacing.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <Grid columns="3" gap="4">
+      <div class="bg-primary/10 rounded p-3 text-xs text-center">One</div>
+      <div class="bg-primary/10 rounded p-3 text-xs text-center">Two</div>
+      <div class="bg-primary/10 rounded p-3 text-xs text-center">Three</div>
+      <div class="bg-primary/10 rounded p-3 text-xs text-center">Four</div>
+      <div class="bg-primary/10 rounded p-3 text-xs text-center">Five</div>
+      <div class="bg-primary/10 rounded p-3 text-xs text-center">Six</div>
+    </Grid>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Grid columns=\"2\" gap=\"4\">\n  <TextField label=\"First Name\"/>\n  <TextField label=\"Last Name\"/>\n</Grid>\n\n<Grid columns=\"4\" gap=\"4\">\n  <TextField label=\"Card number\" data-grid-span=\"3\"/>\n  <TextField label=\"CCV\"/>\n</Grid>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Grid renders a CSS Grid container with a configurable number of columns and gap.
+      Children are placed into cells automatically, each occupying one column. To make
+      a child span multiple columns, add a <code>data-grid-span</code> attribute.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use Grid for two-dimensional layouts with a fixed number of columns — form field pairs,
+      stat tile rows, card grids, or do/don't best-practice panels.
+    </p>
+    <p>
+      If you need a single row of items, use <a href="/components/inline-stack">InlineStack</a>.
+      If you need a vertical stack, use <a href="/components/stack">Stack</a>.
+      Grid is for when content flows into a fixed column structure.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      Grid renders a <code>&lt;div&gt;</code> with <code>display: grid</code> and
+      <code>grid-template-columns</code> set by the <code>columns</code> prop.
+      Spacing between cells uses the CSS <code>gap</code> property.
+    </p>
+    <p>
+      Children are placed left-to-right, top-to-bottom into the grid. Each child
+      occupies one column by default. To make a child span multiple columns, add
+      <code>data-grid-span="N"</code> to it.
+    </p>
+    <p>
+      All extra HTML attributes — <code>class</code>, <code>id</code>, <code>data-*</code>,
+      <code>aria-*</code> — are forwarded to the root element. Custom classes are merged
+      with the component class, not replaced.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Column Counts</Heading>
+    <Prose class="mb-4">
+      <p>Set the number of columns with the <code>columns</code> prop. Supports 1–6 and 12.</p>
+    </Prose>
+    <Example source={'
+      <Stack gap="6">
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">columns="2"</Text>
+          <Grid columns="2" gap="2">
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">1</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">2</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">3</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">4</div>
+          </Grid>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">columns="3"</Text>
+          <Grid columns="3" gap="2">
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">1</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">2</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">3</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">4</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">5</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">6</div>
+          </Grid>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">columns="4"</Text>
+          <Grid columns="4" gap="2">
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">1</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">2</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">3</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">4</div>
+          </Grid>
+        </div>
+      </Stack>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Gap Sizes</Heading>
+    <Prose class="mb-4">
+      <p>Control spacing between cells with the <code>gap</code> prop using
+        Tailwind's spacing scale.</p>
+    </Prose>
+    <Example source={'
+      <Stack gap="6">
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">gap="1"</Text>
+          <Grid columns="3" gap="1">
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">A</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">B</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">C</div>
+          </Grid>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">gap="4"</Text>
+          <Grid columns="3" gap="4">
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">A</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">B</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">C</div>
+          </Grid>
+        </div>
+        <div>
+          <Text size="xs" tone="subdued" as="div" class="mb-2">gap="8"</Text>
+          <Grid columns="3" gap="8">
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">A</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">B</div>
+            <div class="bg-primary/10 rounded p-2 text-xs text-center">C</div>
+          </Grid>
+        </div>
+      </Stack>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Column Spanning</Heading>
+    <Prose class="mb-4">
+      <p>Add <code>data-grid-span</code> to a child to make it span multiple columns.</p>
+    </Prose>
+    <Example source={'
+      <Grid columns="4" gap="3">
+        <div class="bg-primary/10 rounded p-3 text-xs text-center" data-grid-span="3">span 3</div>
+        <div class="bg-primary/10 rounded p-3 text-xs text-center">1</div>
+        <div class="bg-primary/10 rounded p-3 text-xs text-center">1</div>
+        <div class="bg-primary/10 rounded p-3 text-xs text-center" data-grid-span="2">span 2</div>
+        <div class="bg-primary/10 rounded p-3 text-xs text-center">1</div>
+        <div class="bg-primary/10 rounded p-3 text-xs text-center" data-grid-span="4">span 4 (full width)</div>
+      </Grid>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Form Layout</Heading>
+    <Prose class="mb-4">
+      <p>A common use case: pair form fields side by side with a full-width submit area.</p>
+    </Prose>
+    <Example source={'
+      <Stack gap="4" class="max-w-md">
+        <Heading size="sm" as="h3">Payment Details</Heading>
+        <Grid columns="2" gap="3">
+          <TextField label="First name" placeholder="Jane"/>
+          <TextField label="Last name" placeholder="Doe"/>
+        </Grid>
+        <Grid columns="4" gap="3">
+          <TextField label="Card number" placeholder="4242 4242 4242 4242" data-grid-span="3"/>
+          <TextField label="CCV" placeholder="123"/>
+        </Grid>
+        <Button fullwidth>Pay now</Button>
+      </Stack>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use Grid instead of <code>grid grid-cols-*</code> divs.</li>
+          <li>Use <code>data-grid-span</code> only when a child needs to span multiple columns.</li>
+          <li>Combine with <code>Stack</code> for vertical spacing around grid sections.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Use Grid for a single row of items — use <a href="/components/inline-stack">InlineStack</a> instead.</li>
+          <li>Use Grid for a single column — use <a href="/components/stack">Stack</a> instead.</li>
+          <li>Set <code>data-grid-span</code> larger than <code>columns</code> — items will overflow the grid.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">columns</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2 font-mono text-xs">1, 2, 3, 4, 5, 6, 12</td>
+          <td class="px-4 py-2 font-mono text-xs">"1"</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">gap</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2 font-mono text-xs">0, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10, 12, 16</td>
+          <td class="px-4 py-2 font-mono text-xs">"4"</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Heading size="sm" as="h4" class="mb-2 mt-6">Child Attributes</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Attribute</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Description</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">data-grid-span</td>
+          <td class="px-4 py-2 font-mono text-xs">2, 3, 4, 5, 6, 12</td>
+          <td class="px-4 py-2">Number of columns the child should span</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

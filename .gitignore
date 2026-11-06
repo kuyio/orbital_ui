@@ -1,0 +1,32 @@
+# Built gems: a leftover build would fail the next release-check
+*.gem
+
+# Dependencies
+/node_modules
+/.bundle
+
+# Logs, temp files and caches
+*.log
+/log
+/tmp
+/.parcel-cache
+/.ruby-lsp
+/.opencode
+
+# Dummy app
+/test/dummy/log
+/test/dummy/tmp
+/test/dummy/storage
+/test/dummy/public/assets
+/test/dummy/app/assets/builds/*
+!/test/dummy/app/assets/builds/.keep
+
+# Secrets
+.env*
+*.key
+
+# xpo
+.xpo/issues.snapshot.json
+.xpo/git.lock
+.xpo/events.lock
+.xpo/worktrees/

@@ -1,0 +1,232 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">CheckBox</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A toggle input for boolean values with an optional label, help text, and validation state.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <CheckBox name="terms" label="Accept terms and conditions"/>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<CheckBox name=\"terms\" label=\"I agree to the terms\"/>\n\n<CheckBox name=\"newsletter\" label=\"Subscribe\" checked/>\n\n<CheckBox name=\"agree\" label=\"I agree\" help=\"Required\" error=\"You must agree\"/>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      A CheckBox is a self-contained form control. The <code>name</code> and <code>value</code>
+      props map directly to the underlying <code>&lt;input type="checkbox"&gt;</code>. The
+      <code>label</code> is automatically linked via a generated <code>id</code>, so clicking the
+      label text toggles the checkbox.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use checkboxes when the user needs to toggle a single boolean option (like accepting terms),
+      or select multiple items from a list of choices. Each checkbox operates independently — toggling
+      one does not affect the others.
+    </p>
+    <p>
+      For mutually exclusive choices where only one option can be selected, use radio buttons instead.
+      For a simple on/off toggle with immediate effect (like enabling a feature), consider a switch
+      component if available.
+    </p>
+    <p>
+      Checkboxes belong in forms. For filtering or view options that take effect immediately without
+      a submit button, a toggle or segmented control may be a better fit.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      The checkbox renders a hidden native <code>&lt;input&gt;</code> for form submission, overlaid
+      with a custom styled indicator and check icon. This approach keeps native form behaviour
+      (validation, serialization) while allowing full visual control.
+    </p>
+    <p>
+      When an <code>error</code> is present, it replaces the <code>help</code> text — they never
+      appear simultaneously. This avoids visual clutter and ensures the most important message
+      (the error) is always visible.
+    </p>
+    <p>
+      If no <code>label</code> is provided, the component falls back to a humanized version of
+      the <code>name</code> prop (e.g. <code>accept_terms</code> becomes "Accept terms").
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">With Help Text</Heading>
+    <Prose class="mb-4">
+      <p>Provide additional context below the checkbox to explain what the option does or why it
+        matters.</p>
+    </Prose>
+    <Example source={'
+      <CheckBox name="newsletter" label="Subscribe to newsletter" help="We will send you updates once a week."/>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">With Error State</Heading>
+    <Prose class="mb-4">
+      <p>Display a validation error when the field is required but unchecked. The error replaces
+        the help text to keep the layout clean.</p>
+    </Prose>
+    <Example source={'
+      <CheckBox name="terms" label="Accept terms and conditions" error="You must accept the terms to continue"/>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Checked by Default</Heading>
+    <Prose class="mb-4">
+      <p>Pre-select the checkbox using the <code>checked</code> attribute. Useful for opt-out
+        patterns or settings that are enabled by default.</p>
+    </Prose>
+    <Example source={'
+      <CheckBox name="notifications" label="Enable notifications" checked/>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Disabled</Heading>
+    <Prose class="mb-4">
+      <p>Disabled checkboxes are visually muted and cannot be toggled. Use them to indicate that
+        an option exists but is not currently available.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-3">
+        <CheckBox name="disabled_unchecked" label="Unchecked disabled" disabled/>
+        <CheckBox name="disabled_checked" label="Checked disabled" checked disabled/>
+      </div>
+    '} align="start"/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Multiple Checkboxes</Heading>
+    <Prose class="mb-4">
+      <p>Group related checkboxes with the same <code>name[]</code> for multi-select scenarios.
+        Each selected value is submitted as part of an array.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-3">
+        <CheckBox name="features[]" value="dark_mode" label="Dark mode"/>
+        <CheckBox name="features[]" value="notifications" label="Push notifications" checked/>
+        <CheckBox name="features[]" value="analytics" label="Usage analytics"/>
+      </div>
+    '} align="start"/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use positive phrasing: "Enable notifications" not "Disable notifications".</li>
+          <li>Provide help text for options whose effect isn't obvious from the label.</li>
+          <li>Group related checkboxes visually and use a shared heading above them.</li>
+          <li>Show validation errors inline, close to the checkbox they relate to.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Use a single checkbox for mutually exclusive choices — use radio buttons.</li>
+          <li>Pre-check options that sign the user up for something (newsletters, data sharing).</li>
+          <li>Use double negatives: "Don't not send me emails" is confusing.</li>
+          <li>Rely on the checkbox alone for critical confirmations — pair with a dialog or alert.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">name</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">value</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">"1"</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">label</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">nil (humanized name)</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">help</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">error</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">checked</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">disabled</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">id</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">nil (auto-generated)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+@layer components {
+  .Orbital-NavigationMenu {
+    @apply flex items-center gap-3 w-full;
+    container-type: inline-size;
+  }
+
+  /* Hamburger toggle — visible when narrow, hidden when wide */
+  .Orbital-NavigationMenu-Toggle {
+    @apply flex items-center justify-center;
+    @apply p-1.5 rounded-md hover:bg-accent cursor-pointer ml-auto;
+  }
+
+  /* Desktop nav content — hidden when narrow, flex row when wide */
+  .Orbital-NavigationMenu-Content {
+    @apply hidden items-center gap-3 w-full;
+  }
+
+  /* Mobile popover — hidden by default, visible when open */
+  .Orbital-NavigationMenu-Mobile {
+    display: none;
+  }
+
+  .Orbital-NavigationMenu-Mobile:popover-open {
+    @apply flex flex-col items-stretch gap-1 p-2;
+    @apply border rounded-lg bg-popover text-popover-foreground shadow-lg;
+    @apply z-50;
+    position: fixed;
+    margin: 0;
+    inset: auto;
+    top: anchor(bottom, 3.5rem);
+    right: anchor(right, 1rem);
+    width: max-content;
+    min-width: 14rem;
+    max-width: calc(100vw - 2rem);
+  }
+
+  /* Wide container: show desktop nav, hide hamburger */
+  @container (min-width: 768px) {
+    .Orbital-NavigationMenu-Content {
+      @apply flex;
+    }
+
+    .Orbital-NavigationMenu-Toggle {
+      display: none;
+    }
+  }
+}

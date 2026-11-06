@@ -1,0 +1,260 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Button</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    An interactive element that triggers an action or navigates to a destination.
+    Renders as a <code class="text-xs bg-muted px-1 py-0.5 rounded">&lt;button&gt;</code> by default,
+    or an <code class="text-xs bg-muted px-1 py-0.5 rounded">&lt;a&gt;</code> when given a URL.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'<Button>Click me</Button>'}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Button>Save</Button>\n<Button variant=\"outline\" url=\"/settings\">Settings</Button>\n<Button variant=\"destructive\" modal=\"confirm-delete\">Delete</Button>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      At its simplest, a Button wraps a text label. Add a <code>variant</code> to control visual
+      weight, a <code>url</code> to turn it into a link, or a <code>modal</code> to wire it up to
+      a dialog.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use buttons for actions: submitting forms, confirming decisions, opening dialogs, or triggering
+      operations. If the interaction navigates to another page without side effects, consider using a
+      plain link or the <strong>link</strong> variant instead of a filled button.
+    </p>
+    <p>
+      Limit primary (default) buttons to one per section — this helps the user identify the main
+      action at a glance. Supporting actions should use <strong>secondary</strong>, <strong>outline</strong>,
+      or <strong>ghost</strong> variants to establish a clear visual hierarchy.
+    </p>
+    <p>
+      For small inline indicators that don't trigger actions, use a
+      <a href="/components/badge">Badge</a> instead.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      When a <code>url</code> is provided, the button renders as an <code>&lt;a&gt;</code> tag,
+      giving it native link behaviour (middle-click to open in new tab, right-click for context menu).
+      Without a URL, it renders as a <code>&lt;button type="button"&gt;</code>.
+    </p>
+    <p>
+      The <code>modal</code> prop has two modes. Pass a string ID to open an inline modal on the
+      same page (<code>modal="my-dialog"</code>). Or combine <code>modal</code> with <code>url</code>
+      to load a dialog asynchronously via Turbo Frame.
+    </p>
+    <p>
+      Disabled buttons are visually muted and ignore pointer events. They remain in the DOM for
+      layout stability but are excluded from the tab order.
+    </p>
+  </Prose>
+</div>
+
+<!-- Variants -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Variants</Heading>
+    <Prose class="mb-4">
+      <p>Six visual styles ordered by prominence. <strong>Default</strong> is the strongest call to
+        action; <strong>link</strong> is the most subtle, styled as underlined text.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-3">
+        <Button variant="default">Default</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="destructive">Destructive</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="link">Link</Button>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Sizes</Heading>
+    <Prose class="mb-4">
+      <p>Four sizes to fit different contexts. The <strong>icon</strong> size renders a square button
+        for icon-only actions like close, expand, or navigation arrows.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-3">
+        <Button size="sm">Small</Button>
+        <Button size="default">Default</Button>
+        <Button size="lg">Large</Button>
+        <Button size="icon"><Icon name="plus"/></Button>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">With Icons</Heading>
+    <Prose class="mb-4">
+      <p>Place an icon before or after the label to reinforce the action visually. Icons help users
+        scan a toolbar or action bar without reading every label.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-3">
+        <Button><Icon name="mail" size="sm"/> Send Email</Button>
+        <Button variant="outline"><Icon name="download" size="sm"/> Download</Button>
+        <Button variant="ghost"><Icon name="settings" size="sm"/> Settings</Button>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">As Link</Heading>
+    <Prose class="mb-4">
+      <p>When a <code>url</code> is provided, the button renders as an anchor tag. This gives it
+        native link behaviour while keeping the button's visual appearance.</p>
+    </Prose>
+    <Example source={'<Button url="/" variant="outline">Go Home</Button>'}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Disabled</Heading>
+    <Prose class="mb-4">
+      <p>Disabled buttons are visually muted and unclickable. Use them to indicate that an action
+        is not currently available — for example, a submit button before a form is valid.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-3">
+        <Button disabled>Disabled</Button>
+        <Button variant="secondary" disabled>Disabled</Button>
+        <Button variant="outline" disabled>Disabled</Button>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Full Width</Heading>
+    <Prose class="mb-4">
+      <p>Use <code>fullwidth</code> to make the button span the entire width of its container.
+        Common in card footers, form layouts, and mobile UIs.</p>
+    </Prose>
+    <Example source={'
+      <div class="w-72 border rounded-md">
+        <Stack gap="2" padding=4>
+          <Button fullwidth>Save Preferences</Button>
+          <Button fullwidth variant="outline">Cancel</Button>
+        </Stack>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Modal Trigger</Heading>
+    <Prose class="mb-4">
+      <p>Pass an ID string to <code>modal</code> to open an inline dialog on the page. Combine
+        <code>modal</code> with <code>url</code> to load a dialog asynchronously via Turbo.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-3">
+        <Button modal="demo-alert">Show Alert</Button>
+        <Alert id="demo-alert" title="Hello!" description="This alert was opened by a button with a modal prop." variant="info"/>
+      </div>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use action-oriented labels: "Save changes", "Send invite", "Delete account".</li>
+          <li>Limit one primary button per section to establish clear hierarchy.</li>
+          <li>Use the destructive variant for irreversible or dangerous actions.</li>
+          <li>Pair icon-only buttons with a tooltip for accessibility.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Use vague labels like "Click here" or "Submit".</li>
+          <li>Disable buttons without explaining why the action is unavailable.</li>
+          <li>Use a button when a plain link would be more appropriate.</li>
+          <li>Mix too many variants in the same button group — it weakens hierarchy.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">variant</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">default, destructive, outline, secondary, ghost, link</td>
+          <td class="px-4 py-2 font-mono text-xs">default</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">size</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">sm, default, lg, icon</td>
+          <td class="px-4 py-2 font-mono text-xs">default</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">url</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any URL</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">fullwidth</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">disabled</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">modal</td>
+          <td class="px-4 py-2">String / Boolean</td>
+          <td class="px-4 py-2">ID string, or true with url</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+@layer components {
+  /* Delete dialog destructive button styling */
+  .Orbital-Dialog[data-destructive="true"] form button[type="submit"],
+  .Orbital-Dialog[data-destructive="true"] .Orbital-Dialog-Footer button[type="submit"] {
+    @apply bg-destructive text-destructive-foreground;
+    @apply hover:bg-destructive/90;
+  }
+
+  /* Keep loading state styling */
+  .Orbital-Dialog[data-destructive="true"] form button[type="submit"][disabled],
+  .Orbital-Dialog[data-destructive="true"] .Orbital-Dialog-Footer button[type="submit"][disabled] {
+    @apply opacity-70 cursor-not-allowed;
+  }
+}

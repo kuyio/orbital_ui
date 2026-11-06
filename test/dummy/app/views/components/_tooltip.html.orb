@@ -1,0 +1,213 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Tooltip</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A small text label that appears on hover to describe an element.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <Tooltip text="This is a tooltip">
+      <Button variant="outline">Hover me</Button>
+    </Tooltip>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<Tooltip text=\"Description text\">\n  <Button size=\"icon\"><Icon name=\"plus\"/></Button>\n</Tooltip>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Tooltip wraps any element and shows a small floating label on hover. Pass the label
+      as the <code>text</code> prop and place the trigger element as the default content.
+      The tooltip is positioned using Floating UI and rendered via the native Popover API.
+    </p>
+  </Prose>
+  <div class="border rounded-lg bg-muted/50 overflow-hidden mt-4">
+    <CodeBlock code={"Tooltip\n├── (default content)  (the trigger element)\n└── Tooltip label      (floating text from text prop)"}/>
+  </div>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use Tooltip to label icon-only buttons, abbreviations, or truncated text — anywhere a
+      short text hint helps the user understand what an element does. Tooltips are essential
+      for accessibility on controls that lack a visible label.
+    </p>
+    <p>
+      For richer content with links, images, or interactive elements, use a
+      <a href="/components/popcard">Popcard</a> instead. For action menus, use a
+      <a href="/components/dropdown">Dropdown</a>. Tooltips are strictly informational —
+      they should never contain interactive content.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      By default the tooltip appears on <strong>hover</strong> with a short delay and
+      disappears when the cursor leaves the trigger. Set <code>on="click"</code> for
+      click-triggered tooltips on touch devices.
+    </p>
+    <p>
+      The <code>position</code> prop uses compass directions: <code>n</code> (above, default),
+      <code>s</code> (below), <code>e</code>/<code>w</code> (sides), with diagonal variants.
+      The tooltip automatically flips if there isn't enough room in the requested direction.
+    </p>
+    <p>
+      The tooltip renders with <code>role="tooltip"</code> and appears in the browser's top
+      layer via the native Popover API, so it won't be clipped by parent overflow or z-index
+      stacking contexts.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Positions</Heading>
+    <Prose class="mb-4">
+      <p>Place the tooltip on any side of the trigger. It flips automatically when near
+        viewport edges.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center justify-center gap-6">
+        <Tooltip text="Top tooltip" position="n">
+          <Button variant="outline" size="sm">North</Button>
+        </Tooltip>
+        <Tooltip text="Bottom tooltip" position="s">
+          <Button variant="outline" size="sm">South</Button>
+        </Tooltip>
+        <Tooltip text="Left tooltip" position="w">
+          <Button variant="outline" size="sm">West</Button>
+        </Tooltip>
+        <Tooltip text="Right tooltip" position="e">
+          <Button variant="outline" size="sm">East</Button>
+        </Tooltip>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">On Icon Buttons</Heading>
+    <Prose class="mb-4">
+      <p>Tooltips are essential for icon-only buttons that lack visible labels. Without them,
+        users must guess what each icon does.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <Tooltip text="Settings">
+          <Button variant="ghost" size="icon"><Icon name="settings"/></Button>
+        </Tooltip>
+        <Tooltip text="Delete">
+          <Button variant="ghost" size="icon"><Icon name="trash-2"/></Button>
+        </Tooltip>
+        <Tooltip text="Download">
+          <Button variant="ghost" size="icon"><Icon name="download"/></Button>
+        </Tooltip>
+        <Tooltip text="Share">
+          <Button variant="ghost" size="icon"><Icon name="share-2"/></Button>
+        </Tooltip>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">On Inline Text</Heading>
+    <Prose class="mb-4">
+      <p>Wrap any inline element to provide additional context — useful for abbreviations,
+        jargon, or truncated labels.</p>
+    </Prose>
+    <Example source={'
+      <Text>
+        The server returned a
+        <Tooltip text="The server encountered an unexpected condition that prevented it from fulfilling the request">
+          <Text class="underline decoration-dotted underline-offset-4 cursor-help">HTTP 500</Text>
+        </Tooltip>
+        error.
+      </Text>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Always add tooltips to icon-only buttons for accessibility.</li>
+          <li>Keep tooltip text short — one line, a few words.</li>
+          <li>Use for supplementary labels, not essential information.</li>
+          <li>Style tooltip triggers with a visual hint (dotted underline, help cursor) on non-button elements.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Put interactive content (links, buttons) inside a tooltip — use a Popcard instead.</li>
+          <li>Duplicate the visible label as a tooltip — it adds noise without value.</li>
+          <li>Use tooltips for error messages or validation — use inline error text.</li>
+          <li>Rely on hover tooltips for critical information — touch users can't hover.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">text</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">The tooltip label</td>
+          <td class="px-4 py-2 font-mono text-xs">""</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">on</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">hover, click</td>
+          <td class="px-4 py-2 font-mono text-xs">hover</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">position</td>
+          <td class="px-4 py-2">Symbol</td>
+          <td class="px-4 py-2 font-mono text-xs">auto, n, ne, e, se, s, sw, w, nw</td>
+          <td class="px-4 py-2 font-mono text-xs">n</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">id</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any unique string</td>
+          <td class="px-4 py-2 font-mono text-xs">auto-generated</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

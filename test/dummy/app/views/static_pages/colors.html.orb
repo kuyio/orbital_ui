@@ -1,0 +1,192 @@
+<AppFrame>
+  <div class="container mx-auto py-8 px-4 max-w-5xl">
+    <div class="mb-8">
+      <Heading size="2xl" as="h1" class="mb-2">Colors</Heading>
+      <Text size="lg" tone="subdued" as="h2">
+        The full Orbital semantic color palette. Every color is a CSS variable that adapts
+        to light and dark mode automatically.
+      </Text>
+    </div>
+
+    <!-- Semantic Colors -->
+    <div class="mb-12">
+      <Heading size="lg" as="h2" class="mb-4">Semantic Colors</Heading>
+      <Prose class="mb-6">
+        <p>
+          Orbital uses semantic color pairs — a background and its matching foreground. Components
+          reference these pairs instead of raw hex values, so switching themes updates everything.
+        </p>
+      </Prose>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- Background / Foreground -->
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-20 flex items-end p-3" style="background: var(--background); color: var(--foreground);">
+            <Text size="sm" weight="medium" as="span">Background</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--background / --foreground</Text>
+          </div>
+        </div>
+
+        <!-- Primary -->
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-20 flex items-end p-3" style="background: var(--primary); color: var(--primary-foreground);">
+            <Text size="sm" weight="medium" as="span" style="color: var(--primary-foreground);">Primary</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--primary / --primary-foreground</Text>
+          </div>
+        </div>
+
+        <!-- Secondary -->
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-20 flex items-end p-3" style="background: var(--secondary); color: var(--secondary-foreground);">
+            <Text size="sm" weight="medium" as="span" style="color: var(--secondary-foreground);">Secondary</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--secondary / --secondary-foreground</Text>
+          </div>
+        </div>
+
+        <!-- Muted -->
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-20 flex items-end p-3" style="background: var(--muted); color: var(--muted-foreground);">
+            <Text size="sm" weight="medium" as="span" style="color: var(--muted-foreground);">Muted</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--muted / --muted-foreground</Text>
+          </div>
+        </div>
+
+        <!-- Accent -->
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-20 flex items-end p-3" style="background: var(--accent); color: var(--accent-foreground);">
+            <Text size="sm" weight="medium" as="span" style="color: var(--accent-foreground);">Accent</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--accent / --accent-foreground</Text>
+          </div>
+        </div>
+
+        <!-- Destructive -->
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-20 flex items-end p-3" style="background: var(--destructive); color: var(--destructive-foreground);">
+            <Text size="sm" weight="medium" as="span" style="color: var(--destructive-foreground);">Destructive</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--destructive / --destructive-foreground</Text>
+          </div>
+        </div>
+
+        <!-- Card -->
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-20 flex items-end p-3" style="background: var(--card); color: var(--card-foreground);">
+            <Text size="sm" weight="medium" as="span" style="color: var(--card-foreground);">Card</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--card / --card-foreground</Text>
+          </div>
+        </div>
+
+        <!-- Popover -->
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-20 flex items-end p-3" style="background: var(--popover); color: var(--popover-foreground);">
+            <Text size="sm" weight="medium" as="span" style="color: var(--popover-foreground);">Popover</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--popover / --popover-foreground</Text>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Utility Colors -->
+    <div class="mb-12">
+      <Heading size="lg" as="h2" class="mb-4">Utility Colors</Heading>
+      <Prose class="mb-6">
+        <p>
+          Single-purpose colors for borders, inputs, and focus rings.
+        </p>
+      </Prose>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-16 flex items-center justify-center" style="background: var(--border);">
+            <Text size="sm" weight="medium" as="span">Border</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--border</Text>
+          </div>
+        </div>
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-16 flex items-center justify-center" style="background: var(--input);">
+            <Text size="sm" weight="medium" as="span">Input</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--input</Text>
+          </div>
+        </div>
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-16 flex items-center justify-center" style="background: var(--ring);">
+            <Text size="sm" weight="medium" as="span" style="color: white;">Ring</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--ring</Text>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tone Colors -->
+    <div>
+      <Heading size="lg" as="h2" class="mb-4">Tone Colors</Heading>
+      <Prose class="mb-6">
+        <p>
+          Status and feedback colors used by the <code>tone</code> prop on Text, Badge, and other components.
+        </p>
+      </Prose>
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-4">
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-16 flex items-center justify-center" style="background: var(--tone-success);">
+            <Text size="sm" weight="medium" as="span" style="color: white;">Success</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--tone-success</Text>
+          </div>
+        </div>
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-16 flex items-center justify-center" style="background: var(--tone-warning);">
+            <Text size="sm" weight="medium" as="span" style="color: white;">Warning</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--tone-warning</Text>
+          </div>
+        </div>
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-16 flex items-center justify-center" style="background: var(--tone-danger);">
+            <Text size="sm" weight="medium" as="span" style="color: white;">Danger</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--tone-danger</Text>
+          </div>
+        </div>
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-16 flex items-center justify-center" style="background: var(--tone-info);">
+            <Text size="sm" weight="medium" as="span" style="color: white;">Info</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--tone-info</Text>
+          </div>
+        </div>
+        <div class="border rounded-lg overflow-hidden">
+          <div class="h-16 flex items-center justify-center" style="background: var(--tone-magic);">
+            <Text size="sm" weight="medium" as="span" style="color: white;">Magic</Text>
+          </div>
+          <div class="px-3 py-2 border-t">
+            <Text size="xs" tone="subdued" as="div" class="font-mono">--tone-magic</Text>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</AppFrame>

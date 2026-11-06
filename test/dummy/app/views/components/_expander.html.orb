@@ -1,0 +1,173 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">Expander</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A flex spacer that fills available space, pushing sibling elements apart in flex layouts.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <div class="flex items-center border rounded-lg p-4 w-full">
+      <Text as="span">Left</Text>
+      <Expander/>
+      <Text as="span">Right</Text>
+    </div>
+  '} align="start"/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<div class=\"flex items-center\">\n  <Heading size=\"md\" as=\"span\">Title</Heading>\n  <Expander/>\n  <Button size=\"sm\">Action</Button>\n</div>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      Drop an <code>&lt;Expander/&gt;</code> between two elements in a flex container. It renders
+      as an empty <code>&lt;div&gt;</code> with <code>flex: 1</code>, consuming all remaining space
+      and pushing its siblings to opposite ends.
+    </p>
+  </Prose>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Expanders are useful in toolbars, headers, and footers where you need elements at both ends
+      with flexible space in between. They are a semantic alternative to
+      <code>justify-between</code> — especially when only some items should be pushed apart while
+      others stay grouped.
+    </p>
+    <p>
+      Prefer <code>justify-between</code> when all children should be evenly distributed. Use an
+      Expander when you need space at a specific point in the layout — for example, a title and
+      icon on the left with a button on the right.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      The Expander is purely structural — it renders an invisible, zero-content element that grows
+      to fill available space. It works in both horizontal (<code>flex-row</code>) and vertical
+      (<code>flex-col</code>) layouts.
+    </p>
+    <p>
+      In horizontal mode (the default), it expands along the main axis. Set <code>vertical</code>
+      to expand along the cross axis in column layouts.
+    </p>
+    <p>
+      Multiple expanders in the same container share the available space equally, which can be
+      useful for centering a middle element.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Toolbar Layout</Heading>
+    <Prose class="mb-4">
+      <p>A common pattern: group controls on the left, push actions to the right.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex items-center gap-2 border rounded-lg p-4 w-full">
+        <Heading size="md" as="span">Documents</Heading>
+        <Badge variant="secondary">12</Badge>
+        <Expander/>
+        <Button variant="outline" size="sm"><Icon name="filter" size="sm"/> Filter</Button>
+        <Button size="sm"><Icon name="plus" size="sm"/> New</Button>
+      </div>
+    '} align="start"/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Centering with Two Expanders</Heading>
+    <Prose class="mb-4">
+      <p>Place an Expander on both sides of an element to center it, while keeping siblings at
+        the edges.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex items-center border rounded-lg p-4 w-full">
+        <Button variant="ghost" size="icon"><Icon name="chevron-left"/></Button>
+        <Expander/>
+        <Heading size="md" as="span" class="min-w-28 text-center">Page 3 of 10</Heading>
+        <Expander/>
+        <Button variant="ghost" size="icon"><Icon name="chevron-right"/></Button>
+      </div>
+    '} align="start"/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Vertical</Heading>
+    <Prose class="mb-4">
+      <p>Use <code>vertical</code> in column flex layouts to push content to opposite ends
+        vertically.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col border rounded-lg p-4 h-40 w-full">
+        <Text as="span">Top</Text>
+        <Expander vertical/>
+        <Text as="span">Bottom</Text>
+      </div>
+    '} align="start"/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Use Expander when you need space at a specific point, not evenly distributed.</li>
+          <li>Combine with <code>gap</code> on the parent flex container for consistent spacing.</li>
+          <li>Use two Expanders to center a middle element.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Use Expander when <code>justify-between</code> would achieve the same result more simply.</li>
+          <li>Use outside of a flex container — it has no effect in block or grid layouts.</li>
+          <li>Nest Expanders inside other Expanders.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">vertical</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

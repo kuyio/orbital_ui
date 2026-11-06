@@ -1,0 +1,189 @@
+<AppFrame>
+  <div class="container mx-auto py-8 px-4 max-w-5xl">
+    <div class="mb-8">
+      <Heading size="2xl" as="h1" class="mb-2">Themes</Heading>
+      <Text size="lg" tone="subdued" as="h2">
+        Pick a color theme to customize the look of every Orbital component. Themes override CSS
+        variables at the root level — all components update instantly.
+      </Text>
+    </div>
+
+    <!-- Theme Picker -->
+    <div class="mb-12" data-controller="theme">
+      <Heading size="lg" as="h2" class="mb-4">Choose a Theme</Heading>
+      <div class="grid grid-cols-5 gap-3 mb-8">
+        <button data-theme="default" data-action="click->theme#select"
+          class="flex flex-col items-center gap-2 p-3 rounded-lg border cursor-pointer hover:bg-accent transition-colors">
+          <div class="flex gap-1">
+            <div class="w-4 h-4 rounded-full bg-[#171717] border"></div>
+            <div class="w-4 h-4 rounded-full bg-[#ececec] border"></div>
+          </div>
+          <Text size="xs" weight="medium" as="span">Default</Text>
+        </button>
+        <button data-theme="blue" data-action="click->theme#select"
+          class="flex flex-col items-center gap-2 p-3 rounded-lg border cursor-pointer hover:bg-accent transition-colors">
+          <div class="flex gap-1">
+            <div class="w-4 h-4 rounded-full bg-[#2563eb] border"></div>
+            <div class="w-4 h-4 rounded-full bg-[#f1f5f9] border"></div>
+          </div>
+          <Text size="xs" weight="medium" as="span">Blue</Text>
+        </button>
+        <button data-theme="green" data-action="click->theme#select"
+          class="flex flex-col items-center gap-2 p-3 rounded-lg border cursor-pointer hover:bg-accent transition-colors">
+          <div class="flex gap-1">
+            <div class="w-4 h-4 rounded-full bg-[#16a34a] border"></div>
+            <div class="w-4 h-4 rounded-full bg-[#f0fdf4] border"></div>
+          </div>
+          <Text size="xs" weight="medium" as="span">Green</Text>
+        </button>
+        <button data-theme="rose" data-action="click->theme#select"
+          class="flex flex-col items-center gap-2 p-3 rounded-lg border cursor-pointer hover:bg-accent transition-colors">
+          <div class="flex gap-1">
+            <div class="w-4 h-4 rounded-full bg-[#e11d48] border"></div>
+            <div class="w-4 h-4 rounded-full bg-[#fef2f2] border"></div>
+          </div>
+          <Text size="xs" weight="medium" as="span">Rose</Text>
+        </button>
+        <button data-theme="violet" data-action="click->theme#select"
+          class="flex flex-col items-center gap-2 p-3 rounded-lg border cursor-pointer hover:bg-accent transition-colors">
+          <div class="flex gap-1">
+            <div class="w-4 h-4 rounded-full bg-[#7c3aed] border"></div>
+            <div class="w-4 h-4 rounded-full bg-[#f5f3ff] border"></div>
+          </div>
+          <Text size="xs" weight="medium" as="span">Violet</Text>
+        </button>
+      </div>
+
+      <!-- Preview -->
+      <Heading size="md" as="h3" class="mb-4">Preview</Heading>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <Card>
+          <Card:Header>
+            <Header:Title>Create project</Header:Title>
+            <Header:Description>Deploy a new project in one click.</Header:Description>
+          </Card:Header>
+            <div class="flex flex-col gap-4">
+              <TextField name="project_name" label="Name" placeholder="My project"/>
+              <Select
+                name="framework"
+                label="Framework"
+                placeholder="Select a framework..."
+                options={[
+                  {label: "Rails", value: "rails"},
+                  {label: "Next.js", value: "nextjs"},
+                  {label: "Remix", value: "remix"},
+                  {label: "Astro", value: "astro"}
+                ]}
+              />
+            </div>
+          <Card:Footer>
+            <div class="flex justify-between w-full">
+              <Button variant="outline">Cancel</Button>
+              <Button>Deploy</Button>
+            </div>
+          </Card:Footer>
+        </Card>
+
+        <div class="flex flex-col gap-4">
+          <Card>
+              <div class="flex items-center gap-4">
+                <Avatar name="Sam Taylor" initials="ST" size="lg"/>
+                <div class="flex-1">
+                  <Heading size="sm" as="div">Sam Taylor</Heading>
+                  <Text size="sm" tone="subdued" as="div">sam@example.com</Text>
+                </div>
+                <Badge>Pro</Badge>
+              </div>
+          </Card>
+          <div class="flex gap-3">
+            <Button class="flex-1">Primary</Button>
+            <Button variant="secondary" class="flex-1">Secondary</Button>
+            <Button variant="outline" class="flex-1">Outline</Button>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <Badge>Default</Badge>
+            <Badge variant="secondary">Secondary</Badge>
+            <Badge variant="outline">Outline</Badge>
+            <Badge variant="destructive">Destructive</Badge>
+          </div>
+          <Card>
+              <div class="flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                  <Text size="sm" weight="medium" as="div">Notifications</Text>
+                  <CheckBox name="preview_notif" label=" " checked/>
+                </div>
+                <Separator/>
+                <div class="flex items-center justify-between">
+                  <Text size="sm" weight="medium" as="div">Newsletter</Text>
+                  <CheckBox name="preview_news" label=" "/>
+                </div>
+              </div>
+          </Card>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use -->
+    <div class="mb-12">
+      <Heading size="lg" as="h2" class="mb-4">How to Use</Heading>
+      <Prose>
+        <p>
+          Orbital ships a default theme. To use a preset, import its CSS file after the base
+          theme — it overrides the <code>:root</code> variables.
+        </p>
+      </Prose>
+      <div class="border rounded-lg bg-card overflow-hidden mt-4">
+        <CodeBlock code={"@import \"tailwindcss\";\n@import \"orbital_ui/theme\";\n\n/* Override with a preset */\n@import \"orbital_ui/themes/blue\";"}/>
+      </div>
+      <Prose class="mt-4">
+        <p>
+          Or create your own theme by overriding individual variables:
+        </p>
+      </Prose>
+      <div class="border rounded-lg bg-card overflow-hidden mt-4">
+        <CodeBlock code={"@import \"tailwindcss\";\n@import \"orbital_ui/theme\";\n\n:root {\n  --primary: #7c3aed;\n  --primary-foreground: #f5f3ff;\n  --ring: #7c3aed;\n}"}/>
+      </div>
+    </div>
+
+    <!-- Variables Reference -->
+    <div>
+      <Heading size="lg" as="h2" class="mb-4">Variables Reference</Heading>
+      <Prose class="mb-4">
+        <p>These CSS custom properties control the entire color system. Override any of them
+          in your own <code>:root</code> block.</p>
+      </Prose>
+      <div class="border rounded-lg overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-muted">
+            <tr>
+              <th class="text-left px-4 py-2 font-medium">Variable</th>
+              <th class="text-left px-4 py-2 font-medium">Purpose</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y">
+            <tr><td class="px-4 py-2 font-mono text-xs">--background</td><td class="px-4 py-2">Page background</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--foreground</td><td class="px-4 py-2">Default text color</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--primary</td><td class="px-4 py-2">Primary buttons, links, active states</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--primary-foreground</td><td class="px-4 py-2">Text on primary backgrounds</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--secondary</td><td class="px-4 py-2">Secondary buttons, subtle backgrounds</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--secondary-foreground</td><td class="px-4 py-2">Text on secondary backgrounds</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--muted</td><td class="px-4 py-2">Muted backgrounds (disabled, readonly)</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--muted-foreground</td><td class="px-4 py-2">Subdued text, placeholders</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--accent</td><td class="px-4 py-2">Hover and focus backgrounds</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--accent-foreground</td><td class="px-4 py-2">Text on accent backgrounds</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--destructive</td><td class="px-4 py-2">Danger buttons, error states</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--destructive-foreground</td><td class="px-4 py-2">Text on destructive backgrounds</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--card</td><td class="px-4 py-2">Card backgrounds</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--card-foreground</td><td class="px-4 py-2">Text inside cards</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--popover</td><td class="px-4 py-2">Popover/dropdown backgrounds</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--popover-foreground</td><td class="px-4 py-2">Text inside popovers</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--border</td><td class="px-4 py-2">Default border color</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--input</td><td class="px-4 py-2">Input field borders</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--ring</td><td class="px-4 py-2">Focus ring color</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-xs">--radius</td><td class="px-4 py-2">Default border radius</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</AppFrame>

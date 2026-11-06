@@ -1,0 +1,59 @@
+@layer components {
+  .Orbital-Button {
+    @apply cursor-pointer inline-flex items-center justify-center gap-2;
+    @apply whitespace-nowrap rounded-md text-sm font-medium;
+    @apply transition-all outline-none;
+    @apply focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+
+  .Orbital-Button[data-disabled="true"] {
+    @apply pointer-events-none opacity-50;
+  }
+
+  .Orbital-Button[data-fullwidth] {
+    @apply w-full;
+  }
+
+  /* Variants */
+  .Orbital-Button[data-variant="default"] {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  }
+
+  .Orbital-Button[data-variant="destructive"] {
+    @apply bg-destructive text-white hover:bg-destructive/90;
+  }
+
+  .Orbital-Button[data-variant="outline"] {
+    @apply border border-input bg-card;
+    @apply hover:bg-accent hover:text-accent-foreground;
+  }
+
+  .Orbital-Button[data-variant="secondary"] {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+
+  .Orbital-Button[data-variant="ghost"] {
+    @apply hover:bg-accent hover:text-accent-foreground;
+  }
+
+  .Orbital-Button[data-variant="link"] {
+    @apply text-primary underline-offset-4 hover:underline;
+  }
+
+  /* Sizes */
+  .Orbital-Button[data-size="sm"] {
+    @apply h-6 rounded-md gap-1.5 px-3 text-xs;
+  }
+
+  .Orbital-Button[data-size="default"] {
+    @apply h-8 px-4 py-1;
+  }
+
+  .Orbital-Button[data-size="lg"] {
+    @apply h-11 rounded-md px-6 text-base;
+  }
+
+  .Orbital-Button[data-size="icon"] {
+    @apply size-8 p-0 shrink-0;
+  }
+}

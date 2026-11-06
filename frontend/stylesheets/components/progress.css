@@ -1,0 +1,29 @@
+@layer components {
+  .Orbital-ProgressBar {
+    @apply w-full rounded-full bg-muted overflow-hidden;
+  }
+
+  .Orbital-ProgressBar[data-size="xs"] {
+    @apply h-1;
+  }
+
+  .Orbital-ProgressBar[data-size="sm"] {
+    @apply h-1.5;
+  }
+
+  .Orbital-ProgressBar[data-size="md"] {
+    @apply h-2;
+  }
+
+  .Orbital-ProgressBar[data-size="lg"] {
+    @apply h-3;
+  }
+
+  .Orbital-ProgressBar[data-size="xl"] {
+    @apply h-4;
+  }
+
+  .Orbital-ProgressBar-Fill {
+    @apply h-full rounded-full bg-primary transition-[width] duration-300 ease-out;
+  }
+}

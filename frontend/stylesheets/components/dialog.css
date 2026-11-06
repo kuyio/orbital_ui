@@ -1,0 +1,52 @@
+@layer components {
+  .Orbital-Dialog {
+    @apply border-none p-0 shadow-2xl rounded-lg;
+    @apply bg-card text-card-foreground;
+    @apply overflow-hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .Orbital-Dialog-Close {
+    @apply absolute top-4 right-4 z-10;
+    @apply text-muted-foreground hover:text-card-foreground;
+    @apply transition-colors;
+    @apply rounded-sm;
+    @apply p-1;
+    @apply focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+    @apply cursor-pointer;
+  }
+
+  .Orbital-Dialog-Close svg {
+    @apply w-4 h-4;
+  }
+
+  .Orbital-Dialog-Header {
+    @apply px-6 pt-6 pb-4;
+    @apply flex flex-col;
+  }
+
+  .Orbital-Dialog-Body {
+    @apply px-6 py-4;
+    @apply overflow-y-auto;
+  }
+
+  .Orbital-Dialog-Footer {
+    @apply px-6 pt-4 pb-6;
+    @apply flex items-center justify-end gap-3;
+  }
+
+  .Orbital-Dialog-Title {
+    @apply text-lg font-semibold leading-none;
+  }
+
+  .Orbital-Dialog-Description {
+    @apply text-sm text-muted-foreground mt-2;
+  }
+
+  @media (max-width: 640px) {
+    .Orbital-Dialog {
+      @apply max-w-[95vw];
+    }
+  }
+}

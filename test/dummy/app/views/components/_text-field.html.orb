@@ -1,0 +1,325 @@
+<div class="mb-8">
+  <Heading size="2xl" as="h1" class="mb-2">TextField</Heading>
+  <Text size="lg" tone="subdued" as="h2">
+    A text input field with support for labels, help text, validation, icons, prefixes, suffixes,
+    and multiline mode.
+  </Text>
+</div>
+
+<!-- Canonical example -->
+<div class="mb-8">
+  <Example source={'
+    <div class="max-w-sm w-full">
+      <TextField name="email" label="Email" placeholder="you@example.com"/>
+    </div>
+  '}/>
+</div>
+
+<!-- Usage -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
+  <div class="border rounded-lg bg-card overflow-hidden">
+    <CodeBlock code={"<TextField name=\"email\" label=\"Email\" placeholder=\"you@example.com\"/>\n\n<TextField name=\"password\" type=\"password\" label=\"Password\" required/>\n\n<TextField name=\"bio\" label=\"Bio\" multiline={4} placeholder=\"Tell us about yourself\"/>"}/>
+  </div>
+  <Prose class="mt-4">
+    <p>
+      TextField renders a labeled input (or textarea in multiline mode) with optional help text,
+      error messages, icons, and prefix/suffix decorations. It wraps the standard
+      <code>Orbital-Field</code> layout shared with other form components like
+      <a href="/components/select">Select</a> and <a href="/components/checkbox">CheckBox</a>.
+    </p>
+  </Prose>
+  <div class="border rounded-lg bg-muted/50 overflow-hidden mt-4">
+    <CodeBlock code={"TextField\n├── Label          (from label prop, hideable)\n├── Input wrapper\n│   ├── Icon/Prefix (optional left decoration)\n│   ├── <input> or <textarea>\n│   └── Icon/Suffix (optional right decoration)\n└── Help / Error   (optional feedback text)"}/>
+  </div>
+</div>
+
+<!-- When to Use -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">When to Use</Heading>
+  <Prose>
+    <p>
+      Use TextField for any free-text form input — names, emails, passwords, search queries,
+      messages, and descriptions. It handles both single-line inputs and multiline textareas
+      through the same component.
+    </p>
+    <p>
+      For choosing from a predefined list of options, use <a href="/components/select">Select</a>
+      instead. For binary choices, use <a href="/components/checkbox">CheckBox</a>.
+    </p>
+  </Prose>
+</div>
+
+<!-- Behaviour -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Behaviour</Heading>
+  <Prose>
+    <p>
+      The input renders as an <code>&lt;input&gt;</code> by default. Set <code>multiline={n}</code>
+      to render a <code>&lt;textarea&gt;</code> with <em>n</em> rows instead. Multiline textareas
+      have resize disabled by default — set <code>resizable</code> to allow vertical resizing.
+    </p>
+    <p>
+      When <code>error</code> is set, the input border turns red and the error message replaces
+      any help text below the field. The <code>help</code> and <code>error</code> props are
+      mutually exclusive in the UI — error always wins.
+    </p>
+    <p>
+      The label is auto-generated from <code>name</code> (humanized) if no <code>label</code>
+      prop is provided. Set <code>labelHidden</code> to visually hide the label while keeping
+      it accessible to screen readers.
+    </p>
+  </Prose>
+</div>
+
+<!-- Examples -->
+<div class="flex flex-col gap-12 mb-12">
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Help Text and Error State</Heading>
+    <Prose class="mb-4">
+      <p>Provide contextual guidance with <code>help</code>, or display validation feedback
+        with <code>error</code>. The error state also adds a red border to the input.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-6 max-w-sm w-full">
+        <TextField name="username" label="Username" placeholder="johndoe"
+          help="Must be between 3 and 20 characters."/>
+        <TextField name="email" label="Email" value="not-an-email"
+          error="Please enter a valid email address."/>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">With Icons</Heading>
+    <Prose class="mb-4">
+      <p>Add icons to the left or right side of the input for visual context. Common patterns
+        include a search icon for search fields and an envelope for email inputs.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-6 max-w-sm w-full">
+        <TextField name="search" label="Search" labelHidden
+          iconLeft="search" placeholder="Search..."/>
+        <TextField name="email" label="Email"
+          iconLeft="mail" placeholder="you@example.com"/>
+        <TextField name="website" label="Website"
+          iconRight="external-link" placeholder="https://example.com"/>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Prefix and Suffix</Heading>
+    <Prose class="mb-4">
+      <p>Display static text before or after the input value for units, currency symbols, or
+        formatting hints. Combine with <code>rightAligned</code> for numeric fields.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-6 max-w-sm w-full">
+        <TextField name="price" label="Price" prefix="$" placeholder="0.00"/>
+        <TextField name="weight" label="Weight" suffix="kg" placeholder="0"/>
+        <TextField name="amount" label="Amount" prefix="$" suffix=".00"
+          placeholder="100" rightAligned/>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Multiline</Heading>
+    <Prose class="mb-4">
+      <p>Pass a number to <code>multiline</code> to render a textarea with that many rows.
+        Add <code>resizable</code> to let users drag the handle to expand the area.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-6 max-w-sm w-full">
+        <TextField name="message" label="Message" multiline={4}
+          placeholder="Type your message here..."/>
+        <TextField name="notes" label="Notes" multiline={3} resizable
+          placeholder="Resizable textarea..."/>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Disabled and Readonly</Heading>
+    <Prose class="mb-4">
+      <p><code>disabled</code> prevents all interaction and mutes the field visually.
+        <code>readonly</code> allows focus and text selection but prevents editing — useful
+        for displaying values the user can copy but not change.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-6 max-w-sm w-full">
+        <TextField name="disabled_field" label="Disabled" value="Cannot edit" disabled/>
+        <TextField name="readonly_field" label="Readonly" value="Read only value" readonly/>
+      </div>
+    '}/>
+  </div>
+</div>
+
+<!-- Best Practices -->
+<div class="mb-12">
+  <Heading size="lg" as="h2" class="mb-4">Best Practices</Heading>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border rounded-lg p-4 border-green-500/30 bg-green-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-green-600">Do</Heading>
+      <Prose>
+        <ul>
+          <li>Always provide a label — use <code>labelHidden</code> only when context makes the purpose obvious (e.g. a search field with a search icon).</li>
+          <li>Use <code>help</code> text to explain constraints before the user encounters an error.</li>
+          <li>Set the <code>type</code> prop (<code>email</code>, <code>password</code>, <code>tel</code>) for proper mobile keyboards and browser autofill.</li>
+          <li>Use <code>placeholder</code> to show an example value, not to replace the label.</li>
+        </ul>
+      </Prose>
+    </div>
+    <div class="border rounded-lg p-4 border-red-500/30 bg-red-500/5">
+      <Heading size="sm" as="h4" class="mb-2 text-red-600">Don't</Heading>
+      <Prose>
+        <ul>
+          <li>Use placeholder text as the only label — it disappears on focus and fails accessibility.</li>
+          <li>Show errors before the user has interacted with the field — validate on blur or submit.</li>
+          <li>Use a multiline TextField for rich text — it only handles plain text.</li>
+          <li>Combine both <code>iconLeft</code> and <code>prefix</code> — pick one per side to avoid crowding.</li>
+        </ul>
+      </Prose>
+    </div>
+  </div>
+</div>
+
+<!-- API Reference -->
+<div>
+  <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
+  <div class="border rounded-lg overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">name</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Form field name</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">type</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2 font-mono text-xs">text, password, email, number, tel, url, search</td>
+          <td class="px-4 py-2 font-mono text-xs">text</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">value</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">label</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">labelHidden</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">placeholder</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">help</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">error</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">iconLeft</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Icon name</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">iconRight</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Icon name</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">prefix</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">suffix</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Any string</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">multiline</td>
+          <td class="px-4 py-2">Integer</td>
+          <td class="px-4 py-2">Number of rows</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">disabled</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">readonly</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">required</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">autofocus</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">fullwidth</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">rightAligned</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">resizable</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

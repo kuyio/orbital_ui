@@ -1,0 +1,286 @@
+<AppFrame>
+  <div class="container mx-auto py-8 px-4 max-w-5xl">
+    <div class="mb-8">
+      <Heading size="2xl" as="h1" class="mb-2">Components</Heading>
+      <Text tone="subdued" as="h2" size="lg">
+        Beautifully designed components built with Tailwind CSS and Stimulus. Browse the full library below.
+      </Text>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+
+      <ComponentCard name="accordion">
+        <div class="w-full">
+          <Accordion>
+            <Accordion:Item value="1">
+              <Item:Trigger>Is it accessible?</Item:Trigger>
+              Yes. It adheres to the WAI-ARIA pattern.
+            </Accordion:Item>
+          </Accordion>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="alert">
+        <div class="flex items-center gap-2 px-3 py-2 rounded-md bg-amber-500/10 border border-amber-500/30 text-xs">
+          <Icon name="triangle-alert" size="sm" class="text-amber-500 shrink-0"/>
+          <span>Heads up! Check your settings.</span>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="avatar">
+        <Avatar initials="NB" size="lg"/>
+      </ComponentCard>
+
+      <ComponentCard name="badge">
+        <Badge>Badge</Badge>
+      </ComponentCard>
+
+      <ComponentCard name="button">
+        <Button>Button</Button>
+      </ComponentCard>
+
+      <ComponentCard name="button-group">
+        <ButtonGroup>
+          <Button variant="outline">Left</Button>
+          <Button variant="outline">Center</Button>
+          <Button variant="outline">Right</Button>
+        </ButtonGroup>
+      </ComponentCard>
+
+      <ComponentCard name="card">
+        <Card class="w-full max-w-48 text-xs">
+          <Card:Header>
+            <Header:Title>Card Title</Header:Title>
+            <Header:Description>Card description</Header:Description>
+          </Card:Header>
+          <Text size="xs" tone="subdued" as="p">Content goes here.</Text>
+        </Card>
+      </ComponentCard>
+
+      <ComponentCard name="checkbox">
+        <CheckBox label="Accept terms" checked={true}/>
+      </ComponentCard>
+
+      <ComponentCard name="dialog">
+        <div class="w-48 rounded-lg border bg-card shadow-lg overflow-hidden text-left">
+          <div class="px-3 py-2 border-b">
+            <div class="text-xs font-semibold">Are you sure?</div>
+            <div class="text-[10px] text-muted-foreground">This action cannot be undone.</div>
+          </div>
+          <div class="px-3 py-2 border-t flex justify-end gap-1.5">
+            <div class="px-2 py-0.5 rounded text-[10px] border bg-background">Cancel</div>
+            <div class="px-2 py-0.5 rounded text-[10px] bg-primary text-primary-foreground">Confirm</div>
+          </div>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="dropdown">
+        <div class="flex flex-col items-center gap-2">
+          <Dropdown label="Options">
+            <Menu>
+              <Menu::Item icon="pencil">Edit</Menu::Item>
+              <Menu::Item icon="copy">Duplicate</Menu::Item>
+              <Menu::Item icon="trash-2" destructive={true}>Delete</Menu::Item>
+            </Menu>
+          </Dropdown>
+          <Text size="xs" tone="subdued" as="span">Click to open</Text>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="expander">
+        <div class="flex items-stretch gap-4 h-20 w-full">
+          <div class="rounded border bg-card flex items-center justify-center w-24 h-24">
+            <Text size="xs" tone="subdued" as="span">Panel</Text>
+          </div>
+          <Expander/>
+          <div class="rounded border bg-card flex items-center justify-center  w-24 h-24">
+            <Text size="xs" tone="subdued" as="span">Panel</Text>
+          </div>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="grid">
+        <Grid columns="3" gap="2" class="w-full max-w-48">
+          <div class="bg-primary/10 rounded p-1.5 text-xs text-center">1</div>
+          <div class="bg-primary/10 rounded p-1.5 text-xs text-center">2</div>
+          <div class="bg-primary/10 rounded p-1.5 text-xs text-center">3</div>
+          <div class="bg-primary/10 rounded p-1.5 text-xs text-center">4</div>
+          <div class="bg-primary/10 rounded p-1.5 text-xs text-center">5</div>
+          <div class="bg-primary/10 rounded p-1.5 text-xs text-center">6</div>
+        </Grid>
+      </ComponentCard>
+
+      <ComponentCard name="heading">
+        <Heading size="xl" as="div">Heading</Heading>
+      </ComponentCard>
+
+      <ComponentCard name="icon">
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <Icon name="star" size="md"/>
+          <Icon name="heart" size="md"/>
+          <Icon name="bell" size="md"/>
+          <Icon name="settings" size="md"/>
+          <Icon name="zap" size="md"/>
+          <Icon name="bookmark" size="md"/>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="image">
+        <div class="flex items-center gap-3">
+          <Image asset="logo.svg" alt="Logo" width={48} height={48}/>
+          <Image asset="logo.svg" alt="Logo" width={32} height={32}/>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="inline-stack">
+        <InlineStack gap="2" align="center" class="w-full max-w-48">
+          <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">A</div>
+          <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">B</div>
+          <div class="bg-primary/10 rounded px-3 py-1.5 text-xs">C</div>
+        </InlineStack>
+      </ComponentCard>
+
+      <ComponentCard name="kbd">
+        <div class="flex flex-col items-center gap-3">
+          <div class="flex items-center gap-1">
+            <Kbd>⌘</Kbd>
+            <span class="text-xs text-muted-foreground">+</span>
+            <Kbd>Shift</Kbd>
+            <span class="text-xs text-muted-foreground">+</span>
+            <Kbd>P</Kbd>
+          </div>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="menu">
+        <div class="border rounded-lg bg-card shadow-sm overflow-hidden">
+          <Menu>
+            <Menu::Item icon="file">New File</Menu::Item>
+            <Menu::Item icon="folder">New Folder</Menu::Item>
+            <Menu::Separator/>
+            <Menu::Item icon="settings">Settings</Menu::Item>
+          </Menu>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="navigation-menu">
+        <div class="w-full border rounded-lg bg-card shadow-sm overflow-hidden">
+          <div class="flex items-center gap-1 px-3 py-2">
+            <Icon name="rocket" size="sm" class="text-primary mr-1"/>
+            <Text size="xs" weight="semibold" as="span" class="mr-3">App</Text>
+            <Text size="xs" as="span" class="text-muted-foreground">Home</Text>
+            <Text size="xs" as="span" class="text-muted-foreground ml-2">About</Text>
+            <Text size="xs" as="span" class="text-muted-foreground ml-2">Docs</Text>
+          </div>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="popcard">
+        <div class="flex flex-col items-center gap-3">
+          <div class="w-40 rounded-lg border bg-card shadow-lg p-3 text-left">
+            <div class="flex items-center gap-2 mb-1">
+              <Avatar initials="NB" size="xs"/>
+              <Text size="xs" weight="semibold" as="span">Sam</Text>
+            </div>
+            <Text size="xs" tone="subdued" as="p">Building components.</Text>
+          </div>
+          <Text size="xs" tone="subdued" as="span">Hover to preview</Text>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="popover">
+        <div class="w-44 rounded-lg border bg-card shadow-lg p-3 text-left">
+          <Text size="xs" weight="semibold" as="div" class="mb-1">Dimensions</Text>
+          <div class="flex gap-2">
+            <div class="flex-1">
+              <Text size="xs" tone="subdued" as="div">Width</Text>
+              <div class="text-xs border rounded px-2 py-0.5 bg-background mt-0.5">100%</div>
+            </div>
+            <div class="flex-1">
+              <Text size="xs" tone="subdued" as="div">Height</Text>
+              <div class="text-xs border rounded px-2 py-0.5 bg-background mt-0.5">auto</div>
+            </div>
+          </div>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="progress-bar">
+        <div class="flex flex-col gap-3 w-full max-w-48">
+          <ProgressBar value=45 max=100 size="md"/>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="select">
+        <Select
+          label="Color"
+          placeholder="Pick a color..."
+          options={[{label: "Red", value: "red"}, {label: "Blue", value: "blue"}, {label: "Green", value: "green"}]}/>
+      </ComponentCard>
+
+      <ComponentCard name="separator">
+        <div class="flex flex-col items-center gap-4 w-full max-w-48">
+          <div class="flex items-center gap-3 w-full">
+            <Text size="xs" as="span">Section A</Text>
+            <Separator class="flex-1"/>
+            <Text size="xs" as="span">Section B</Text>
+          </div>
+          <Separator class="w-full"/>
+          <div class="flex items-center gap-3 h-6">
+            <Text size="xs" as="span">Left</Text>
+            <Separator orientation="vertical" class="h-full"/>
+            <Text size="xs" as="span">Right</Text>
+          </div>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="stack">
+        <Stack gap="2" class="w-full max-w-48">
+          <div class="bg-primary/10 rounded px-3 py-1.5 text-xs text-center">Item A</div>
+          <div class="bg-primary/10 rounded px-3 py-1.5 text-xs text-center">Item B</div>
+          <div class="bg-primary/10 rounded px-3 py-1.5 text-xs text-center">Item C</div>
+        </Stack>
+      </ComponentCard>
+
+      <ComponentCard name="spinner">
+        <Spinner size="md"/>
+      </ComponentCard>
+
+      <ComponentCard name="text">
+        <div class="flex flex-col gap-1.5">
+          <Text size="sm" as="div">Default text</Text>
+          <Text size="sm" tone="subdued" as="div">Subdued text</Text>
+          <Text size="sm" tone="success" as="div">Success text</Text>
+          <Text size="sm" tone="danger" as="div">Danger text</Text>
+          <Text size="sm" tone="info" as="div">Info text</Text>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="text-field">
+        <div class="w-full max-w-48">
+          <TextField label="Email" placeholder="you@example.com" iconLeft="mail"/>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="tooltip">
+        <div class="flex flex-col items-center gap-2">
+          <div class="rounded bg-foreground text-background px-2.5 py-1 text-xs shadow-sm">
+            Save your work
+          </div>
+          <div class="w-2 h-2 bg-foreground rotate-45 -mt-3.5"></div>
+          <Button variant="outline" size="icon" class="mt-1">
+            <Icon name="save" size="sm"/>
+          </Button>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="typography">
+        <div class="flex flex-col gap-1 text-left">
+          <Heading size="md" as="div">Title</Heading>
+          <Text size="sm" as="div">Lead paragraph text for the section.</Text>
+          <Text size="xs" tone="subdued" as="div">Muted helper text below.</Text>
+        </div>
+      </ComponentCard>
+
+    </div>
+  </div>
+</AppFrame>

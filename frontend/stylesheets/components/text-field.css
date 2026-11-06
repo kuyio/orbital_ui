@@ -1,0 +1,77 @@
+@layer components {
+  .Orbital-Field {
+    @apply grid w-full max-w-sm gap-1 text-left;
+  }
+
+  .Orbital-Field[data-fullwidth="true"] {
+    @apply w-full;
+  }
+
+  .Orbital-Field-Label {
+    @apply leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70;
+  }
+
+  .Orbital-Field-Label[data-hidden="true"] {
+    @apply sr-only;
+  }
+
+  .Orbital-Input {
+    @apply relative flex items-center;
+  }
+
+  .Orbital-Input input,
+  .Orbital-Input textarea {
+    @apply flex w-full rounded-md border border-input bg-card px-3 py-2;
+    @apply text-sm ring-offset-card placeholder:text-gray-300;
+    @apply file:border-0 file:bg-transparent file:text-sm file:font-medium;
+    @apply focus-visible:outline-none focus-visible:ring-offset-0;
+    @apply disabled:cursor-not-allowed disabled:opacity-50;
+    @apply focus-visible:ring-3 focus-visible:ring-primary/20 focus-visible:border-primary/40;
+    @apply hover:bg-secondary/30;
+  }
+
+  .Orbital-Input input:not([type="checkbox"]):not([type="radio"]) {
+    @apply h-8;
+  }
+
+  .Orbital-Input input[data-error="true"],
+  .Orbital-Input textarea[data-error="true"] {
+    @apply border-red-500;
+  }
+
+  .Orbital-Input input[data-align="right"],
+  .Orbital-Input textarea[data-align="right"] {
+    @apply text-right;
+  }
+
+  .Orbital-Field-Help {
+    @apply leading-none;
+  }
+
+  .Orbital-Input-Icon {
+    @apply absolute gap-1 flex items-center pointer-events-none;
+  }
+
+  .Orbital-Input-Icon[data-position="left"] {
+    @apply left-2;
+  }
+
+  .Orbital-Input-Icon[data-position="right"] {
+    @apply right-2;
+  }
+
+  .Orbital-Input textarea.noresize {
+    resize: none;
+  }
+
+  .Orbital-Input input[readonly],
+  .Orbital-Input textarea[readonly] {
+    background: color-mix(in oklab, var(--muted) 40%, var(--card));
+    @apply cursor-default;
+  }
+
+  .Orbital-Input input[readonly]:hover,
+  .Orbital-Input textarea[readonly]:hover {
+    background: color-mix(in oklab, var(--muted) 40%, var(--card));
+  }
+}

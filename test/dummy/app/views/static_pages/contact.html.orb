@@ -1,0 +1,19 @@
+<ModalFrame>
+  <Dialog open dismissible size="default">
+    <Dialog:Header>
+      <Heading>Contact Us</Heading>
+    </Dialog:Header>
+
+    <Dialog:Body>
+      <div class="flex flex-col gap-4">
+        <TextField name="email" label="Your email address" fullwidth/>
+        <TextField name="question" label="Your question" multiline=5 fullwidth/>
+      </div>
+    </Dialog:Body>
+
+    <Dialog:Footer>
+      <Button variant="outline" data-action="orbital-modal#close">Close</Button>
+      <Button>Send Message</Button>
+    </Dialog:Footer>
+  </Dialog>
+</ModalFrame>

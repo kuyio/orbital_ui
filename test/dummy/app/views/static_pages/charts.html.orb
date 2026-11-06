@@ -1,0 +1,10 @@
+<AppFrame>
+  <div class="container mx-auto py-8 px-4 max-w-4xl">
+    <div class="mb-8">
+      <Heading size="2xl" as="h1" class="mb-2">Charts</Heading>
+      <Text tone="subdued" as="p">
+        Data visualization components for common chart types.
+      </Text>
+    </div>
+  </div>
+</AppFrame>
