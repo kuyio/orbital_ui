@@ -6,6 +6,7 @@
 - Remove `Dialog.turbo_frame_response`, which always raised `NoMethodError`. Use `ModalFrame` or `DialogFrame`.
 - Fix the spelling of the missing required attribute error.
 - Add a `src` prop to `Image` for URLs. Pass exactly one of `asset` and `src`.
+- Add `gap` and `padding` props to `Card`, for its content area.
 
 ## [0.2.0] - 2026-11-06
 

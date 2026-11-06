@@ -80,6 +80,11 @@
       The footer typically holds action buttons. Use <code>flex justify-between</code> inside the
       footer to place a cancel button on the left and a submit button on the right.
     </p>
+    <p>
+      The <code>gap</code> and <code>padding</code> props apply to the content area only. Without
+      them, content keeps its default layout and padding. The header and footer keep their own
+      padding either way.
+    </p>
   </Prose>
 </div>
 
@@ -139,6 +144,42 @@
   </div>
 
   <div>
+    <Heading size="md" as="h3" class="mb-2">Spacing Children</Heading>
+    <Prose class="mb-4">
+      <p>Set <code>gap</code> to space the content's direct children, instead of wrapping them in
+        a flex container.</p>
+    </Prose>
+    <Example source={'
+      <Card gap="4" class="w-[320px]">
+        <TextField name="spacing_name" label="Name"/>
+        <TextField name="spacing_email" label="Email"/>
+        <Button>Save</Button>
+      </Card>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Custom Padding</Heading>
+    <Prose class="mb-4">
+      <p>Set <code>padding</code> for compact cards, or use <code>padding="0"</code> for content
+        that runs to the edges, such as a table or image.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-col gap-4 w-[320px]">
+        <Card padding="2">
+          <Text as="p">Compact content.</Text>
+        </Card>
+        <Card padding="0">
+          <Text as="p">Flush content.</Text>
+        </Card>
+        <Card padding="8">
+          <Text as="p">Roomy content.</Text>
+        </Card>
+      </div>
+    '}/>
+  </div>
+
+  <div>
     <Heading size="md" as="h3" class="mb-2">Minimal Card</Heading>
     <Prose class="mb-4">
       <p>All slots are optional. A card with just a body is useful for simple content blocks that
@@ -191,6 +232,32 @@
   <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
 
   <Heading size="sm" as="h4" class="mb-2 mt-6">Card</Heading>
+  <div class="border rounded-lg overflow-hidden mb-4">
+    <table class="w-full text-sm">
+      <thead class="bg-muted">
+        <tr>
+          <th class="text-left px-4 py-2 font-medium">Prop</th>
+          <th class="text-left px-4 py-2 font-medium">Type</th>
+          <th class="text-left px-4 py-2 font-medium">Values</th>
+          <th class="text-left px-4 py-2 font-medium">Default</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">gap</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2 font-mono text-xs">0, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10, 12, 16</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">padding</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2 font-mono text-xs">0, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10, 12, 16</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="border rounded-lg overflow-hidden mb-4">
     <table class="w-full text-sm">
       <thead class="bg-muted">
